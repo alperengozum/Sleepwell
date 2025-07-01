@@ -5456,10 +5456,10 @@ execa@^5.0.0:
     signal-exit "^3.0.3"
     strip-final-newline "^2.0.0"
 
-expo-alarm@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/expo-alarm/-/expo-alarm-0.1.0.tgz"
-  integrity sha512-3NzJd16I9bZE9NSU5PBQLAf2QEwUWO9i+Bnty2qNpo/l0AtWllDwUmHXMvZUkUaZNUqsRkL8QBfuPY/4O5gA2A==
+expo-alarm@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/expo-alarm/-/expo-alarm-0.2.1.tgz#f06b1273bbd995f22b2df83c876dff73be94068e"
+  integrity sha512-tP/YQ5BJawCVaMurr6B6YH/o0796PeX0Or197rT3TmMMUx9Yuw2eAr3bAxZlnqt0uBYIakLC6N6Xm/RfKblxUQ==
 
 expo-application@~5.3.0:
   version "5.3.1"

@@ -21,7 +21,7 @@
     "@types/react-native-vector-icons": "^6.4.18",
     "css-color-keywords": "^1.0.0",
     "expo": "~49.0.15",
-    "expo-alarm": "^0.1.0",
+    "expo-alarm": "^0.2.1",
     "expo-constants": "~14.4.2",
     "expo-localization": "~14.3.0",
     "expo-navigation-bar": "~2.3.0",
