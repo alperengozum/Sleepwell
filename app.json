@@ -1,42 +1,40 @@
 {
   "displayName": "Sleepwell",
-  "expo": {
-    "name": "Sleepwell",
-    "slug": "Sleepwell",
-    "version": "0.2.3",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#000000"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.alperengozum.sleepwell"
-    },
-    "android": {
-      "permissions": [
-        "com.android.alarm.permission.SET_ALARM"
-      ],
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#744EAA"
-      },
-      "package": "com.alperengozum.sleepwell",
-      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.alperengozum.sleepwell"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-localization"
-    ]
+  "name": "Sleepwell",
+  "slug": "Sleepwell",
+  "version": "0.2.3",
+  "orientation": "portrait",
+  "icon": "./assets/icon.png",
+  "userInterfaceStyle": "light",
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#000000"
   },
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.alperengozum.sleepwell"
+  },
+  "android": {
+    "permissions": [
+      "com.android.alarm.permission.SET_ALARM"
+    ],
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/adaptive-icon.png",
+      "backgroundColor": "#744EAA"
+    },
+    "package": "com.alperengozum.sleepwell",
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.alperengozum.sleepwell"
+  },
+  "web": {
+    "favicon": "./assets/favicon.png"
+  },
+  "plugins": [
+    "expo-localization"
+  ],
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-------~------",
     "ios_app_id": "ca-app-pub--------~------"
