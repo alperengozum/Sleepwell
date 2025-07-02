@@ -28,7 +28,7 @@ export function BottomTabNavigator() {
         options={{
           tabBarIcon: (color: number | ColorValue | undefined, size: number | undefined) => (
             <Ionicons
-              name="md-alarm-outline"
+              name="alarm-outline"
               size={size ? size : 24}
               color="white"
             />
@@ -53,7 +53,7 @@ export function BottomTabNavigator() {
         options={{
           tabBarIcon: (color: number | ColorValue | undefined, size: number | undefined)  => (
             <Ionicons
-              name="md-settings-outline"
+              name="settings-outline"
               size={size ? size : 24}
               color="white"
             />
