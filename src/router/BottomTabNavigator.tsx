@@ -4,7 +4,7 @@ import {AnimatedTabBarNavigator} from "react-native-animated-nav-tab-bar";
 import Calculate from "../screen/Calculate";
 import Reports from "../screen/Reports";
 import Settings from "../screen/Settings";
-import { ColorValue } from "react-native";
+import {ColorValue} from "react-native";
 
 
 export function BottomTabNavigator() {
@@ -39,7 +39,8 @@ export function BottomTabNavigator() {
         name="Reports"
         component={Reports}
         options={{
-          tabBarIcon: (color: number | ColorValue | undefined, size: number | undefined)  => (<Ionicons
+          tabBarIcon: (color: number | ColorValue | undefined, size: number | undefined) => (
+            <Ionicons
               name="file-tray-outline"
               size={size ? size : 24}
               color="white"
@@ -51,7 +52,7 @@ export function BottomTabNavigator() {
         name="Settings"
         component={Settings}
         options={{
-          tabBarIcon: (color: number | ColorValue | undefined, size: number | undefined)  => (
+          tabBarIcon: (color: number | ColorValue | undefined, size: number | undefined) => (
             <Ionicons
               name="settings-outline"
               size={size ? size : 24}
