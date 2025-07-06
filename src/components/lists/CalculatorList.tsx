@@ -5,21 +5,17 @@ import {GenericCard} from "../cards/GenericCard";
 import {GenericHeaderCard} from "../cards/GenericHeaderCard";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {useNavigation} from "@react-navigation/native";
-import {
-  AndroidPickerMode,
-  AndroidTimeInputMode,
-  MaterialDatetimePickerAndroid
-} from "react-native-material-datetime-picker";
 import {Observer} from "mobx-react";
 import {SleepType} from "../../store/SleepStore";
 import mobileAds, {AdEventType, InterstitialAd, TestIds} from 'react-native-google-mobile-ads';
-import {getCalendars} from "expo-localization";
 import {addHours} from "../../utils/DateUtils";
 import {createIntentAlarm} from "../../utils/AlarmUtils";
 import {List, ListType} from "../../domain/List";
+import {TimerPickerModal} from "react-native-timer-picker";
+import {LinearGradient} from "expo-linear-gradient";
+import {getCalendars} from "expo-localization";
 
 const adUnitId = TestIds.INTERSTITIAL;
-
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {requestNonPersonalizedAdsOnly: true});
 
 const getRenderItem = ({item}: { item: List }): React.ReactElement => {
@@ -52,6 +48,10 @@ const getRenderItem = ({item}: { item: List }): React.ReactElement => {
 export const CalculatorList = () => {
   const [loaded, setLoaded] = useState(false);
   const navigation = useNavigation();
+
+  const [showPicker, setShowPicker] = useState(false);
+  const [pickerTitle, setPickerTitle] = useState("");
+  const [isStart, setIsStart] = useState(true);
 
   const list: (List)[] = [
     {
@@ -106,11 +106,15 @@ export const CalculatorList = () => {
   }
 
   const whenToWakeUp = (): void => {
-    showTimePicker('Select bed time.', true);
+    setPickerTitle("Select bed time.");
+    setIsStart(true);
+    setShowPicker(true);
   }
 
   const whenToGoToBed = (): void => {
-    showTimePicker('Select wake up time.', false);
+    setPickerTitle("Select wake up time.");
+    setIsStart(false);
+    setShowPicker(true);
   }
 
   const takeAPowerNap = (): void => {
@@ -124,21 +128,6 @@ export const CalculatorList = () => {
     }
     createIntentAlarm(date, SleepType.POWERNAP);
   }
-
-  const showTimePicker = (title: string, isStart: boolean = true): void => {
-    let currentTime = new Date();
-    MaterialDatetimePickerAndroid.show({
-      value: currentTime,
-      titleText: title,
-      mode: AndroidPickerMode.TIME,
-      is24Hour: getCalendars()[0].uses24hourClock || false,
-      inputMode: AndroidTimeInputMode.CLOCK,
-      negativeButtonText: " ",
-      onConfirm: (time: Date) => {
-        showAdOrNavigate({name: "Cycle", params: {time: time.getTime(), isStart}})
-      },
-    });
-  };
 
   const showAdOrNavigate = (navigationConfig: { name: string, params: Record<string, any> }): void => {
     if (loaded) {
@@ -163,6 +152,12 @@ export const CalculatorList = () => {
     return unsubscribe;
   }, []);
 
+  const getPickedDate = (picked: { hours?: number; minutes?: number; seconds?: number }) => {
+    const now = new Date();
+    now.setHours(picked.hours ?? 0, picked.minutes ?? 0, picked.seconds ?? 0, 0);
+    return now;
+  };
+
   return (
     <Observer>
       {() => (
@@ -173,6 +168,38 @@ export const CalculatorList = () => {
             stickyHeaderIndices={stickyHeaderIndices}
             getItemType={(item) => typeof item === "string" ? "sectionHeader" : "row"}
             estimatedItemSize={10}
+          />
+          <TimerPickerModal
+            visible={showPicker}
+            setIsVisible={setShowPicker}
+            onConfirm={(pickedDuration) => {
+              const pickedDate = getPickedDate(pickedDuration);
+              showAdOrNavigate({name: "Cycle", params: {time: pickedDate.getTime(), isStart}});
+              setShowPicker(false);
+            }}
+            modalTitle={pickerTitle}
+            onCancel={() => setShowPicker(false)}
+            initialValue={
+              {
+                hours: isStart ? 23 : 8,
+                minutes: isStart ? 30 : 0,
+              }
+            }
+            closeOnOverlayPress
+            hideSeconds
+            use12HourPicker={!getCalendars()[0].uses24hourClock}
+            LinearGradient={LinearGradient}
+            styles={{
+              theme: "dark",
+              confirmButton: {
+                backgroundColor: "#7e22ce",
+                color: "#fff",
+                borderColor: "#7e22ce",
+              },
+            }}
+            modalProps={{
+              overlayOpacity: 0.5,
+            }}
           />
         </View>)}
     </Observer>

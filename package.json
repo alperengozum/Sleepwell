@@ -45,6 +45,7 @@
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
     "react-native-swiper-flatlist": "^3.2.3",
+    "react-native-timer-picker": "^2.2.0",
     "react-native-toast-message": "^2.2.0",
     "react-native-vector-icons": "^9.2.0",
     "styled-components": "^6.1.2"
