@@ -4,6 +4,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import SettingsStore, {SettingsType} from "../../store/SettingsStore";
 import {GenericCard} from "./GenericCard";
 import {useNavigation} from "@react-navigation/native";
+import {TouchableOpacity} from "react-native";
 
 export const WelcomeCard = () => {
   const navigation = useNavigation();
@@ -22,16 +23,21 @@ export const WelcomeCard = () => {
         </VStack>
         <View flex={1}>
           <HStack alignItems="center" justifyContent="flex-end" space={5}>
-            <IconButton
-              bg={"$purple.800"}
-              _active={{
-                bg: "$purple.600"
+            <TouchableOpacity
+              style={{
+                backgroundColor: "#6B21A8",
+                borderRadius: 15,
+                borderWidth: 1,
+                borderColor: "#6B21A8",
+                padding: 8,
+                alignItems: "center",
+                justifyContent: "center"
               }}
-              borderRadius="15"
-              variant="outline"
-              icon={<Icon as={Ionicons} name="caret-forward-outline" size={8} color={"white"}/>}
+              activeOpacity={0.7}
               onPress={onShowPress}
-            />
+            >
+              <Icon as={Ionicons} name="caret-forward-outline" size={8} color="white"/>
+            </TouchableOpacity>
           </HStack>
         </View>
       </HStack>

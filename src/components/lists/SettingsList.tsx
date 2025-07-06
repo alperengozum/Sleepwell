@@ -8,6 +8,7 @@ import {FallAsleepCard} from "../cards/FallAsleepCard";
 import {SupportMeCard} from "../cards/SupportMeCard";
 import {List, ListType} from "../../domain/List";
 import {WelcomeCard} from "../cards/WelcomeCard";
+import {SafeAreaView} from "react-native-safe-area-context";
 
 const getRenderItem = ({item}: { item: List }): React.ReactElement => {
   if (item!.type === ListType.HEADER) {
