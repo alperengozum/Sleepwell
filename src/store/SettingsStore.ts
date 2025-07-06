@@ -40,6 +40,13 @@ class SettingsStore implements ISettingsStore {
     )
   }
 
+  async getSettingsAsync(type?: SettingsType): Promise<Array<Settings> | undefined> {
+    while (this.loading) {
+      await new Promise(resolve => setTimeout(resolve, 50));
+    }
+    return this.getSettings(type);
+  }
+
   getSettings(type?: SettingsType): Array<Settings> | undefined {
     if (!this.settings) {
       return undefined
@@ -48,6 +55,7 @@ class SettingsStore implements ISettingsStore {
       let filteredSettings = this.settings.filter((setting) => setting.type == type);
       return filteredSettings;
     }
+
     return this.settings;
   }
 
