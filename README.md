@@ -18,12 +18,14 @@ Sleepwell is an open-source app and any issues, features, or pull requests are w
 - When to wake up?, When to go to bed?, Go to bed now, Power nap calculations.
 - Set selected alarm after calculation.
 - Fall Asleep Time in settings.
+
 - Reports page, graph, and deletable sleep logs.
 - Information page.
 
 ## Screenshots
 
-<img src="https://user-images.githubusercontent.com/65407096/200229009-fc74b0b4-988d-48e9-a973-01df31a0f105.jpg" height="500"> <img src="https://user-images.githubusercontent.com/65407096/200229946-fa88c4ed-e380-4ba4-aede-6f243874a0a7.jpg" height="500"> <img src="https://user-images.githubusercontent.com/65407096/200230012-57fe3f40-c3db-4b6b-b984-fd019a635759.jpg" height="500"> <img src="https://user-images.githubusercontent.com/65407096/200229145-332718e0-99cd-4cd0-b843-744dac31dca3.jpg" height="500"> <img src="https://user-images.githubusercontent.com/65407096/200229409-fed6c3df-5326-4fb4-8925-91b5efd8c03f.jpg" height="500"> <img src="https://user-images.githubusercontent.com/65407096/200229476-eca7ec45-f517-4695-b725-1fa3da2d5806.jpg" height="500"> 
+
+<img src="https://github.com/user-attachments/assets/ca3ebc64-63ba-45f1-973f-cad1bc89f9da" height="500"> <img src="https://github.com/user-attachments/assets/ea1aa2f5-cc06-45e2-b293-379ebc02d48b" height="500"> <img src="https://github.com/user-attachments/assets/e2a15dfe-538a-4501-b449-fcd9af9333ea" height="500"> <img src="https://user-images.githubusercontent.com/65407096/200230012-57fe3f40-c3db-4b6b-b984-fd019a635759.jpg" height="500"> <img src="https://github.com/user-attachments/assets/af9efb76-1709-42ed-9204-3c1c409481ac" height="500"> <img src="https://github.com/user-attachments/assets/7dc8f884-89ce-4edd-aa13-e4d7ae6cca49" height="500"> <img src="https://github.com/user-attachments/assets/bc26a60f-f2aa-4838-b615-cc0b9ea1f029" height="500"> 
 
 ## Using Legacy version without Expo
 - Use [react-native-legacy](https://github.com/Alperengozum/Sleepwell/tree/react-native-legacy) branch for use legacy version of the Sleepwell.

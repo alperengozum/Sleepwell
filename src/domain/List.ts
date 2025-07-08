@@ -3,7 +3,7 @@ import React from "react";
 export interface List {
   name: string | number;
   type: ListType;
-  desc?: string | number;
+  desc?: string | number | boolean;
   icon?: React.ReactNode;
   id?: number;
   onClick?: () => void;
