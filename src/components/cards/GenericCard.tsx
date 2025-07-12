@@ -1,6 +1,6 @@
 import {StyleProp, ViewStyle} from "react-native";
 import {Box, Pressable} from "@gluestack-ui/themed-native-base";
-import React, {useMemo} from "react";
+import React, {ReactNode, useMemo} from "react";
 
 export const GenericCard = (props: Props) => {
   const {children, style, onPress} = props;
@@ -23,5 +23,5 @@ export const GenericCard = (props: Props) => {
 interface Props {
   style?: StyleProp<ViewStyle>,
   onPress?: () => void,
-  children: JSX.Element[] | JSX.Element
+  children: ReactNode[] | ReactNode
 }
