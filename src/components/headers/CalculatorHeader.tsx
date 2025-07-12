@@ -1,11 +1,14 @@
-import React, {useEffect, useRef, useState} from "react";
-import {Animated, NativeScrollEvent, NativeSyntheticEvent, StyleSheet} from "react-native";
+import React, {useEffect, useState} from "react";
+import {StyleSheet} from "react-native";
 import {Heading, HStack, Icon, IconButton, Text, View, VStack} from "@gluestack-ui/themed-native-base";
 import {useLinkTo} from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import moment from "moment";
 import LiveClock from "../clock/LiveClock";
-import { getCalendars } from 'expo-localization';
+import {getCalendars} from 'expo-localization';
+import {MotiView} from "moti";
+import Animated, {useSharedValue, useAnimatedScrollHandler, useAnimatedStyle} from "react-native-reanimated";
+
 export default function CalculatorHeader(props: { children: React.ReactNode; }) {
   const linkTo = useLinkTo();
   const [is24Hour, setIs24Hour] = useState<boolean | undefined>(undefined);
@@ -14,45 +17,50 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
   const HEADER_MIN_HEIGHT = 150;
   const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-  const scrollY = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    setIs24Hour(getCalendars()[0].uses24hourClock || false);
+  }, []);
 
-  const scrollviewRef = useRef();
+  const scrollY = useSharedValue(0);
 
-  const headerTranslateY = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE],
-    outputRange: [0, -HEADER_SCROLL_DISTANCE],
-    extrapolate: "clamp"
+  const onScroll = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollY.value = event.contentOffset.y;
+    },
   });
 
-  const imageOpacity = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-    outputRange: [1, 1, 0],
-    extrapolate: "clamp"
+  const headerStyle = useAnimatedStyle(() => {
+    const progress = Math.min(scrollY.value / HEADER_SCROLL_DISTANCE, 1);
+    return {
+      transform: [
+        {translateY: -HEADER_SCROLL_DISTANCE * progress},
+        {scale: 1 - 0.2 * progress}
+      ],
+      opacity: 1 - progress
+    };
   });
 
-  const imageTranslateY = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE],
-    outputRange: [0, 100],
-    extrapolate: "clamp"
+  const headerBgStyle = useAnimatedStyle(() => {
+    const progress = Math.min(scrollY.value / HEADER_SCROLL_DISTANCE, 1);
+    return {
+      opacity: 1 - progress,
+      transform: [{translateY: 100 * progress}]
+    };
   });
 
-  const welcomeTitleScale = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-    outputRange: [1, 1, 0],
-    extrapolate: "clamp"
-  });
-
-  const titleTranslateY = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-    outputRange: [0, 0, -90],
-    extrapolate: "clamp"
+  const topHeaderBarStyle = useAnimatedStyle(() => {
+    const progress = Math.min(scrollY.value / HEADER_SCROLL_DISTANCE, 1);
+    return {
+      transform: [
+        {scale: 1 - 0.2 * progress},
+        {translateY: -90 * progress}
+      ],
+      opacity: 1 - progress
+    };
   });
 
   const styles = StyleSheet.create({
-    saveArea: {
-      flex: 1,
-      backgroundColor: "black",
-    },
+    saveArea: {flex: 1, backgroundColor: "black"},
     header: {
       position: "absolute",
       top: 0,
@@ -67,7 +75,7 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
       top: 0,
       left: 0,
       right: 0,
-      width: 0,
+      width: "100%",
       height: HEADER_MAX_HEIGHT,
       resizeMode: "cover"
     },
@@ -90,21 +98,10 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
       left: 0,
       right: 0
     },
-    title: {
-      color: "black",
-      fontSize: 20
-    }
+    title: {color: "black", fontSize: 20}
   });
 
-  const openInfoScreen = () => {
-    linkTo("/Info");
-  }
-
-  useEffect(()=>{
-
-    const findTimeFormat = async () => {setIs24Hour(getCalendars()[0].uses24hourClock || false)}
-    findTimeFormat();
-  }, [])
+  const openInfoScreen = () => linkTo("/Info");
 
   return (
     <View style={styles.saveArea}>
@@ -112,39 +109,14 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT - 32, paddingBottom: 100}}
         scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: scrollY}}}],
-          {useNativeDriver: true}
-        )}
-        ref={scrollviewRef}
-        onMomentumScrollEnd={(e: NativeSyntheticEvent<NativeScrollEvent>) => {
-          if (e.nativeEvent.contentOffset.y > HEADER_MAX_HEIGHT / 5 && e.nativeEvent.contentOffset.y < HEADER_MAX_HEIGHT) {
-            //@ts-ignore
-            scrollviewRef.current?.scrollTo({x: 0, y: HEADER_MAX_HEIGHT + 10, animated: true});
-          }
-        }}>
+        onScroll={onScroll}
+      >
         {props?.children}
       </Animated.ScrollView>
-      <Animated.View
-        style={[styles.header, {transform: [{translateY: headerTranslateY}]}]}>
-        <Animated.View
-          style={[
-            styles.headerBackground,
-            {
-              opacity: imageOpacity,
-              transform: [{translateY: imageTranslateY}]
-            }
-          ]}
-        />
-      </Animated.View>
-      <Animated.View
-        style={[
-          styles.topHeaderBar,
-          {
-            marginTop: 50,
-            transform: [{scale: welcomeTitleScale}, {translateY: titleTranslateY}]
-          }
-        ]}>
+      <MotiView style={[styles.header, headerStyle]}>
+        <MotiView style={[styles.headerBackground, headerBgStyle]}/>
+      </MotiView>
+      <MotiView style={[styles.topHeaderBar, {marginTop: 50}, topHeaderBarStyle]}>
         <VStack alignItems="center">
           <HStack mt={5} mx={10} space={2}>
             <Heading color="white" size="xl" letterSpacing={0.1} fontWeight="thin">
@@ -153,26 +125,23 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
             <Heading color="purple.700" size="xl" letterSpacing={0.1} fontWeight="thin">
               well
             </Heading>
-
           </HStack>
           {is24Hour != undefined ? <LiveClock is24Hour={is24Hour}/> : <React.Fragment/>}
-          <Text color="gray.400">
+          <Text color="gray.200">
             {moment().format("dddd, D MMMM YYYY")}
           </Text>
         </VStack>
-      </Animated.View>
-      <Animated.View
-        style={[styles.topBar, {transform: [{scale: 1}, {translateY: -90}]}]}>
+      </MotiView>
+      <MotiView style={[styles.topBar, {transform: [{scale: 1}, {translateY: -90}]}]}>
         <HStack justifyContent="flex-end" alignItems="center" width="100%" height="100%">
           <IconButton
             colorScheme="purple"
             borderRadius="full"
             onPress={openInfoScreen}
-            icon={<Icon as={Ionicons} name="information-circle-outline" size={8} />}
+            icon={<Icon as={Ionicons} name="information-circle-outline" size={8}/>}
           />
         </HStack>
-      </Animated.View>
+      </MotiView>
     </View>
   );
-
 }

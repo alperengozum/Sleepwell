@@ -1,6 +1,6 @@
 import {StyleProp, ViewStyle} from "react-native";
 import {Box} from "@gluestack-ui/themed-native-base";
-import React from "react";
+import React, {ReactNode} from "react";
 import {InterfaceBoxProps} from "@gluestack-ui/themed-native-base/lib/typescript/components/primitives/Box";
 
 
@@ -16,6 +16,6 @@ export const GenericHeaderCard = (props: Props) => {
 
 interface Props {
   style?: StyleProp<ViewStyle>,
-  children: JSX.Element[] | JSX.Element,
+  children: ReactNode[] | ReactNode,
   boxProps?: InterfaceBoxProps
 }
