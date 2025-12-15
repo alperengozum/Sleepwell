@@ -4,7 +4,6 @@ import {HStack, Text, View} from "@gluestack-ui/themed-native-base";
 import {GenericHeaderCard} from "../cards/GenericHeaderCard";
 import SettingsStore, {Settings, SettingsType} from "../../store/SettingsStore";
 import {FallAsleepCard} from "../cards/FallAsleepCard";
-import {SupportMeCard} from "../cards/SupportMeCard";
 import {List, ListType} from "../../domain/List";
 import {WelcomeCard} from "../cards/WelcomeCard";
 import {autorun} from "mobx";
@@ -21,8 +20,6 @@ const getRenderItem = ({item}: { item: List }): React.ReactElement => {
     switch (item.name) {
       case SettingsType.FALL_ASLEEP:
         return <FallAsleepCard/>
-      case SettingsType.SUPPORT_ME:
-        return <SupportMeCard/>
       case SettingsType.WELCOME:
         return <WelcomeCard/>
       default:

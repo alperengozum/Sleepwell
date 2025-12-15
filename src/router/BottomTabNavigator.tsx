@@ -5,6 +5,7 @@ import Calculate from "../screen/Calculate";
 import Reports from "../screen/Reports";
 import Settings from "../screen/Settings";
 import {ColorValue} from "react-native";
+import { View } from "moti";
 
 
 export function BottomTabNavigator() {
