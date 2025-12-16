@@ -28,7 +28,8 @@
       "backgroundColor": "#744EAA"
     },
     "package": "com.alperengozum.sleepwell",
-    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.alperengozum.sleepwell"
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.alperengozum.sleepwell",
+    "useLegacyPackaging": false
   },
   "web": {
     "favicon": "./assets/favicon.png"
