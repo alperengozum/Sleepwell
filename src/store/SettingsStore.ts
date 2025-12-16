@@ -3,7 +3,6 @@ import {getItem, setItem} from "../utils/AsyncStorageUtils";
 
 export enum SettingsType {
   FALL_ASLEEP = "Fall Asleep",
-  SUPPORT_ME = "Support Me",
   WELCOME = "Welcome",
 }
 

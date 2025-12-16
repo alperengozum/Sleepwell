@@ -2,7 +2,7 @@
   "displayName": "Sleepwell",
   "name": "Sleepwell",
   "slug": "Sleepwell",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "orientation": "portrait",
   "icon": "./assets/icon.png",
   "userInterfaceStyle": "light",
@@ -27,7 +27,8 @@
       "backgroundColor": "#744EAA"
     },
     "package": "com.alperengozum.sleepwell",
-    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.alperengozum.sleepwell"
+    "playStoreUrl": "https://play.google.com/store/apps/details?id=com.alperengozum.sleepwell",
+    "useLegacyPackaging": false
   },
   "web": {
     "favicon": "./assets/favicon.png"

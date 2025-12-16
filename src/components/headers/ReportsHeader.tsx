@@ -42,16 +42,24 @@ export default function ReportsHeader(props: {
     },
   });
 
+  const getProgress = () => {
+    "worklet";
+    if (HEADER_SCROLL_DISTANCE === 0) {
+      return 0;
+    }
+    return Math.min(scrollY.value / HEADER_SCROLL_DISTANCE, 1);
+  };
+
   // Animated styles
   const headerStyle = useAnimatedStyle(() => {
-    const progress = Math.min(scrollY.value / HEADER_SCROLL_DISTANCE, 1);
+    const progress = getProgress();
     return {
       transform: [{translateY: -HEADER_SCROLL_DISTANCE * progress}]
     };
   });
 
   const headerBgStyle = useAnimatedStyle(() => {
-    const progress = Math.min(scrollY.value / HEADER_SCROLL_DISTANCE, 1);
+    const progress = getProgress();
     return {
       opacity: 1 - progress,
       transform: [{translateY: 100 * progress}]
@@ -59,7 +67,7 @@ export default function ReportsHeader(props: {
   });
 
   const topHeaderBarStyle = useAnimatedStyle(() => {
-    const progress = Math.min(scrollY.value / HEADER_SCROLL_DISTANCE, 1);
+    const progress = getProgress();
     return {
       scale: 1 - 0.5 * progress,
       transform: [{translateY: 0}]
@@ -67,7 +75,7 @@ export default function ReportsHeader(props: {
   });
 
   const topBarStyle = useAnimatedStyle(() => {
-    const progress = Math.min(scrollY.value / HEADER_SCROLL_DISTANCE, 1);
+    const progress = getProgress();
     return {
       transform: [
         {scale: 1 - 0.1 * progress},
