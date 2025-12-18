@@ -123,7 +123,7 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
         estimatedItemSize={200}
         ListFooterComponent={<View height={120}>
           <Text color="white" fontSize="md" textAlign="center" mt={10}>
-            {filteredSleeps?.length! > 0 ? `No more sleeps to show.\nTotal Sleeps: ${filteredSleeps?.length}` : "No sleeps to show.\nWhy didn't you sleep?"}
+            {(filteredSleeps?.length ?? 0) > 0 ? `No more sleeps to show.\nTotal Sleeps: ${filteredSleeps?.length}` : "No sleeps to show.\nWhy didn't you sleep?"}
           </Text>
         </View>}
       />
