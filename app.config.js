@@ -1,5 +1,12 @@
 require('dotenv/config');
 
+// Validate that required environment variables are set
+if (!process.env.EXPO_PUBLIC_AD_UNIT_ID) {
+  console.warn('Warning: EXPO_PUBLIC_AD_UNIT_ID is not set. Please set it in your .env file.');
+  console.warn('For development/testing, use: ca-app-pub-3940256099942544/1033173712');
+  console.warn('For production, use your actual AdMob ad unit ID.');
+}
+
 module.exports = {
   displayName: "Sleepwell",
   name: "Sleepwell",
@@ -42,7 +49,10 @@ module.exports = {
     eas: {
       projectId: "8bd61a54-8390-4733-98a7-9fd75385dfe1"
     },
-    adUnitId: process.env.EXPO_PUBLIC_AD_UNIT_ID || "ca-app-pub-3940256099942544/1033173712"
+    // Ad unit ID must be set via EXPO_PUBLIC_AD_UNIT_ID environment variable
+    // For production, use your real Google AdMob ad unit ID
+    // For development/testing, use a test ad unit ID
+    adUnitId: process.env.EXPO_PUBLIC_AD_UNIT_ID
   }
 };
 
