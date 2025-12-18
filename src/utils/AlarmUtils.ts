@@ -1,5 +1,4 @@
-import {useSleepStore} from "../store/SleepStore";
-import {SleepType} from "../store/SleepStore";
+import {useSleepStore, SleepType} from "../store/SleepStore";
 import {setAlarm} from "expo-alarm";
 import Toast from "react-native-toast-message";
 
