@@ -9,11 +9,13 @@ import * as NavigationBar from "expo-navigation-bar";
 import Toast from "react-native-toast-message";
 import {toastConfig} from "./src/components/config/ToastConfig";
 import {initializeSettingsStore} from "./src/store/SettingsStore";
+import {initializeSleepStore} from "./src/store/SleepStore";
 
 export default function App() {
   useEffect(() => {
-    // Initialize settings store when app is ready
+    // Initialize stores when app is ready
     initializeSettingsStore();
+    initializeSleepStore();
     
     StatusBar.setHidden(true);
     NavigationBar.setBackgroundColorAsync("black");

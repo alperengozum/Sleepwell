@@ -111,5 +111,7 @@ export const useSleepStore = create<SleepStore>((set, get) => ({
   },
 }));
 
-// Initialize store on import
-useSleepStore.getState().initialize();
+// Initialize store when explicitly requested (e.g., from app startup)
+export const initializeSleepStore = () => {
+  return useSleepStore.getState().initialize();
+};
