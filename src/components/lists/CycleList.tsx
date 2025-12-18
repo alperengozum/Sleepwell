@@ -4,7 +4,6 @@ import {HStack, Icon, Text, View, VStack, useToast, Box} from "@gluestack-ui/the
 import {GenericCard} from "../cards/GenericCard";
 import {GenericHeaderCard} from "../cards/GenericHeaderCard";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import {useSleepStore} from "../../store/SleepStore";
 import {SleepType} from "../../store/SleepStore";
 import {useSettingsStore} from "../../store/SettingsStore";
 import {SettingsType} from "../../store/SettingsStore";
