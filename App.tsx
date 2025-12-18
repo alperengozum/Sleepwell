@@ -16,7 +16,7 @@ export default function App() {
     initializeSettingsStore();
     
     StatusBar.setHidden(true);
-    NavigationBar.setBackgroundColorAsync("black")
+    NavigationBar.setBackgroundColorAsync("black");
     NavigationBar.setVisibilityAsync("hidden");
   })
 
