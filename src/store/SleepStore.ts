@@ -32,10 +32,27 @@ export const useSleepStore = create<SleepStore>((set, get) => ({
   sleeps: undefined,
 
   initialize: async () => {
-    const sleeps = await getItem("sleeps");
-    const processedSleeps = sleeps || [];
+    let processedSleeps: Array<Sleep> = [];
+
+    try {
+      const sleeps = await getItem("sleeps");
+      if (Array.isArray(sleeps)) {
+        processedSleeps = sleeps;
+      } else if (sleeps) {
+        // Unexpected/corrupted data, default to empty array
+        console.error("Unexpected data format for 'sleeps' in storage. Resetting to empty array.");
+      }
+    } catch (error) {
+      console.error("Failed to load 'sleeps' from storage. Using empty array instead.", error);
+    }
+
     set({ sleeps: processedSleeps });
-    await setItem("sleeps", processedSleeps);
+
+    try {
+      await setItem("sleeps", processedSleeps);
+    } catch (error) {
+      console.error("Failed to persist 'sleeps' to storage during initialization.", error);
+    }
   },
 
   getSleeps: (type?: SleepType, filters?: Partial<SleepFilter>) => {
