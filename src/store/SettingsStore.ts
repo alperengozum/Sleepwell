@@ -39,10 +39,25 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
   loading: true,
 
   initialize: async () => {
-    const settings = await getItem("settings");
-    const processedSettings = settings || getInitialSettings();
-    set({ settings: processedSettings, loading: false });
-    await setItem("settings", processedSettings);
+    try {
+      const settings = await getItem("settings");
+      const processedSettings = settings || getInitialSettings();
+      set({ settings: processedSettings, loading: false });
+      try {
+        await setItem("settings", processedSettings);
+      } catch (persistError) {
+        console.error("Failed to persist settings during initialization:", persistError);
+      }
+    } catch (error) {
+      console.error("Failed to initialize settings store:", error);
+      const fallbackSettings = getInitialSettings();
+      set({ settings: fallbackSettings, loading: false });
+      try {
+        await setItem("settings", fallbackSettings);
+      } catch (persistError) {
+        console.error("Failed to persist fallback settings during initialization:", persistError);
+      }
+    }
   },
 
   getSettings: (type?: SettingsType) => {
