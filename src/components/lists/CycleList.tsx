@@ -4,8 +4,9 @@ import {HStack, Icon, Text, View, VStack, useToast, Box} from "@gluestack-ui/the
 import {GenericCard} from "../cards/GenericCard";
 import {GenericHeaderCard} from "../cards/GenericHeaderCard";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import SleepStore, {SleepType} from "../../store/SleepStore";
-import SettingsStore, {SettingsType} from "../../store/SettingsStore";
+import {SleepType} from "../../store/SleepStore";
+import {useSettingsStore} from "../../store/SettingsStore";
+import {SettingsType} from "../../store/SettingsStore";
 import {getCalendars} from "expo-localization";
 import {addHours, formatHour} from "../../utils/DateUtils";
 import {createIntentAlarm} from "../../utils/AlarmUtils";
@@ -63,7 +64,8 @@ export const CycleList = (props: { params: any; }) => {
       list.find((d: List) => d.name == "Sleep")!.desc = "Go to bed at";
       for (let i = 6; i >= 1; i--) {
         let date = addHours(new Date(params.time), -i * 1.5)
-        date = addHours(date, -(SettingsStore.getSettings(SettingsType.FALL_ASLEEP)![0]!.value || 0) / 60)
+        const fallAsleepSettings = useSettingsStore.getState().getSettings(SettingsType.FALL_ASLEEP);
+        date = addHours(date, -(fallAsleepSettings?.[0]?.value as number || 0) / 60)
         tempList.push({
           type: ListType.ITEM,
           name: i,
@@ -78,7 +80,8 @@ export const CycleList = (props: { params: any; }) => {
       list.find((d: List) => d.name == "Sleep")!.desc = "Wake up at";
       for (let i = 6; i >= 1; i--) {
         let date = addHours(new Date(params.time), i * 1.5)
-        date = addHours(date, (SettingsStore.getSettings(SettingsType.FALL_ASLEEP)![0]!.value || 0) / 60)
+        const fallAsleepSettings = useSettingsStore.getState().getSettings(SettingsType.FALL_ASLEEP);
+        date = addHours(date, (fallAsleepSettings?.[0]?.value as number || 0) / 60)
         tempList.push({
           type: ListType.ITEM,
           name: i,

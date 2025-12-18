@@ -5,7 +5,8 @@ import {Button, HStack, View} from "@gluestack-ui/themed-native-base";
 import {SwiperFlatList} from "react-native-swiper-flatlist";
 import LottieView from "lottie-react-native";
 import {SlideItem} from "../components/slide/SlideItem";
-import SettingsStore, {SettingsType} from "../store/SettingsStore";
+import {useSettingsStore} from "../store/SettingsStore";
+import {SettingsType} from "../store/SettingsStore";
 import { SwiperFlatListRefProps } from "react-native-swiper-flatlist/src/components/SwiperFlatList/SwiperFlatListProps";
 
 export default function Welcome() {
@@ -21,7 +22,7 @@ export default function Welcome() {
   }, [navigation])
 
   const onDone = () => {
-    SettingsStore.editSetting(SettingsType.WELCOME, false);
+    useSettingsStore.getState().editSetting(SettingsType.WELCOME, false);
     // @ts-ignore
     navigation.navigate("Main");
   }

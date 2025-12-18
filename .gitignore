@@ -29,7 +29,13 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
 .env*.local
 
 # typescript
 *.tsbuildinfo
+
+# nvm.fish
+nvm.fish-main/
+
+.idea/

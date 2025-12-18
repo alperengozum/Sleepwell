@@ -1,7 +1,8 @@
 import {HStack, Icon, IconButton, Text, View, VStack} from "@gluestack-ui/themed-native-base";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import SettingsStore, {SettingsType} from "../../store/SettingsStore";
+import {useSettingsStore} from "../../store/SettingsStore";
+import {SettingsType} from "../../store/SettingsStore";
 import {GenericCard} from "./GenericCard";
 import {useNavigation} from "@react-navigation/native";
 import {TouchableOpacity} from "react-native";
@@ -10,7 +11,7 @@ export const WelcomeCard = () => {
   const navigation = useNavigation();
 
   const onShowPress = () => {
-    SettingsStore.editSetting(SettingsType.WELCOME, true);
+    useSettingsStore.getState().editSetting(SettingsType.WELCOME, true);
     //@ts-ignore
     navigation.navigate("Welcome")
   }
