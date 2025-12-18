@@ -1,29 +1,27 @@
 import {HStack, Icon, IconButton, Text, View, VStack} from "@gluestack-ui/themed-native-base";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import {useSettingsStore} from "../../store/SettingsStore";
+import {useSettingsStore, Settings} from "../../store/SettingsStore";
 import {SettingsType} from "../../store/SettingsStore";
 import {GenericCard} from "./GenericCard";
 
 export const FallAsleepCard = () => {
-  const getSettings = useSettingsStore((state) => state.getSettings);
   const editSetting = useSettingsStore((state) => state.editSetting);
-  const settings = useSettingsStore((state) => state.settings);
+  const currentValue = useSettingsStore((state) => {
+    const fallAsleepSettings = state.settings?.filter((s: Settings) => s.type === SettingsType.FALL_ASLEEP);
+    return fallAsleepSettings?.[0]?.value as number || 0;
+  });
 
   const onAddPress = () => {
-    const fallAsleepSettings = getSettings(SettingsType.FALL_ASLEEP);
-    const value = (fallAsleepSettings?.[0]?.value as number || 0) + 5;
+    const value = currentValue + 5;
     editSetting(SettingsType.FALL_ASLEEP, value);
   }
   
   const onMinusPress = () => {
-    const fallAsleepSettings = getSettings(SettingsType.FALL_ASLEEP);
-    let value = (fallAsleepSettings?.[0]?.value as number || 0) - 5;
+    let value = currentValue - 5;
     if (value < 0) value = 0;
     editSetting(SettingsType.FALL_ASLEEP, value);
   }
-
-  const currentValue = getSettings(SettingsType.FALL_ASLEEP)?.[0]?.value as number || 0;
 
   return (
     <GenericCard style={{marginVertical: 10}}>
