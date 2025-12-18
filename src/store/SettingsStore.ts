@@ -99,5 +99,7 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
   },
 }));
 
-// Initialize store on import
-useSettingsStore.getState().initialize();
+// Initialize store when explicitly requested (e.g., from app startup)
+export const initializeSettingsStore = () => {
+  return useSettingsStore.getState().initialize();
+};
