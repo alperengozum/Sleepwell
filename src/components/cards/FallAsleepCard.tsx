@@ -1,16 +1,15 @@
 import {HStack, Icon, IconButton, Text, View, VStack} from "@gluestack-ui/themed-native-base";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import {useSettingsStore, Settings} from "../../store/SettingsStore";
+import {useSettingsStore} from "../../store/SettingsStore";
 import {SettingsType} from "../../store/SettingsStore";
 import {GenericCard} from "./GenericCard";
 
 export const FallAsleepCard = () => {
   const editSetting = useSettingsStore((state) => state.editSetting);
-  const currentValue = useSettingsStore((state) => {
-    const fallAsleepSettings = state.settings?.filter((s: Settings) => s.type === SettingsType.FALL_ASLEEP);
-    return fallAsleepSettings?.[0]?.value as number || 0;
-  });
+  const currentValue = useSettingsStore((state) => 
+    state.getSettings(SettingsType.FALL_ASLEEP)?.[0]?.value as number || 0
+  );
 
   const onAddPress = () => {
     const value = currentValue + 5;
