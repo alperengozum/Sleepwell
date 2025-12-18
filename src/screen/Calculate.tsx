@@ -21,14 +21,13 @@ export default function Calculate() {
   useEffect(() => {
     const checkSettings = async () => {
       let loading = useSettingsStore.getState().loading;
-      const getSettings = useSettingsStore.getState().getSettings;
       
       while (loading) {
         // wait until SettingsStore is loaded
         await new Promise(resolve => setTimeout(resolve, 100));
         loading = useSettingsStore.getState().loading;
       }
-      const settings = getSettings(SettingsType.WELCOME);
+      const settings = useSettingsStore.getState().getSettings(SettingsType.WELCOME);
       if (!(settings && settings[0].value === false)) {
         // @ts-ignore
         navigation.navigate("Welcome");
