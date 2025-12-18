@@ -16,9 +16,9 @@ interface SettingsStore {
   settings: Array<Settings> | undefined;
   loading: boolean;
   getSettings: (type?: SettingsType) => Array<Settings> | undefined;
-  setSettings: (settings: Array<Settings> | undefined) => void;
-  addSetting: (setting: Settings) => void;
-  editSetting: (type: SettingsType, value: string | number | boolean | undefined) => void;
+  setSettings: (settings: Array<Settings> | undefined) => Promise<void>;
+  addSetting: (setting: Settings) => Promise<void>;
+  editSetting: (type: SettingsType, value: string | number | boolean | undefined) => Promise<void>;
   getSettingsAsync: (type?: SettingsType) => Promise<Array<Settings> | undefined>;
   initialize: () => Promise<void>;
 }
