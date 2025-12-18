@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {FlashList} from "@shopify/flash-list";
 import {HStack, Text, View} from "@gluestack-ui/themed-native-base";
 import {GenericHeaderCard} from "../cards/GenericHeaderCard";
-import SettingsStore, {Settings, SettingsType} from "../../store/SettingsStore";
+import {useSettingsStore} from "../../store/SettingsStore";
+import {Settings, SettingsType} from "../../store/SettingsStore";
 import {FallAsleepCard} from "../cards/FallAsleepCard";
 import {List, ListType} from "../../domain/List";
 import {WelcomeCard} from "../cards/WelcomeCard";
-import {autorun} from "mobx";
 
 const getRenderItem = ({item}: { item: List }): React.ReactElement => {
   if (item!.type === ListType.HEADER) {
@@ -31,22 +31,7 @@ const getRenderItem = ({item}: { item: List }): React.ReactElement => {
 }
 
 export const SettingsList = () => {
-  const [settings, setSettings] = useState<Array<Settings> | undefined>(undefined);
-
-  useEffect(() => {
-    const fetchSettings = async () => {
-      const data = await SettingsStore.getSettingsAsync();
-      setSettings(data);
-    };
-    fetchSettings();
-  }, []);
-
-  useEffect(() => {
-    const disposer = autorun(() => {
-      setSettings(SettingsStore.getSettings());
-    });
-    return () => disposer();
-  }, []);
+  const settings = useSettingsStore((state) => state.settings);
 
   const buildList = () => {
     let newList: Array<List> = [];

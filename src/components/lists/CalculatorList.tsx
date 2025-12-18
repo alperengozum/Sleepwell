@@ -5,7 +5,6 @@ import {GenericCard} from "../cards/GenericCard";
 import {GenericHeaderCard} from "../cards/GenericHeaderCard";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {useNavigation} from "@react-navigation/native";
-import {Observer} from "mobx-react";
 import {SleepType} from "../../store/SleepStore";
 import mobileAds, {AdEventType, InterstitialAd, TestIds} from 'react-native-google-mobile-ads';
 import {addHours} from "../../utils/DateUtils";
@@ -14,8 +13,9 @@ import {List, ListType} from "../../domain/List";
 import {TimerPickerModal} from "react-native-timer-picker";
 import {LinearGradient} from "expo-linear-gradient";
 import {getCalendars} from "expo-localization";
+import Constants from "expo-constants";
 
-const adUnitId = TestIds.INTERSTITIAL;
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : (Constants.expoConfig?.extra?.adUnitId || 'ca-app-pub-3940256099942544/1033173712');
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {requestNonPersonalizedAdsOnly: true});
 
 const getRenderItem = ({item}: { item: List }): React.ReactElement => {
@@ -159,49 +159,46 @@ export const CalculatorList = () => {
   };
 
   return (
-    <Observer>
-      {() => (
-        <View width={"100%"} h={"100%"} mt={50}>
-          <FlashList
-            data={list}
-            renderItem={getRenderItem}
-            stickyHeaderIndices={stickyHeaderIndices}
-            getItemType={(item) => typeof item === "string" ? "sectionHeader" : "row"}
-            estimatedItemSize={10}
-          />
-          <TimerPickerModal
-            visible={showPicker}
-            setIsVisible={setShowPicker}
-            onConfirm={(pickedDuration) => {
-              const pickedDate = getPickedDate(pickedDuration);
-              showAdOrNavigate({name: "Cycle", params: {time: pickedDate.getTime(), isStart}});
-              setShowPicker(false);
-            }}
-            modalTitle={pickerTitle}
-            onCancel={() => setShowPicker(false)}
-            initialValue={
-              {
-                hours: isStart ? 23 : 8,
-                minutes: isStart ? 30 : 0,
-              }
-            }
-            closeOnOverlayPress
-            hideSeconds
-            use12HourPicker={!getCalendars()[0].uses24hourClock}
-            LinearGradient={LinearGradient}
-            styles={{
-              theme: "dark",
-              confirmButton: {
-                backgroundColor: "#7e22ce",
-                color: "#fff",
-                borderColor: "#7e22ce",
-              },
-            }}
-            modalProps={{
-              overlayOpacity: 0.5,
-            }}
-          />
-        </View>)}
-    </Observer>
+    <View width={"100%"} h={"100%"} mt={50}>
+      <FlashList
+        data={list}
+        renderItem={getRenderItem}
+        stickyHeaderIndices={stickyHeaderIndices}
+        getItemType={(item) => typeof item === "string" ? "sectionHeader" : "row"}
+        estimatedItemSize={10}
+      />
+      <TimerPickerModal
+        visible={showPicker}
+        setIsVisible={setShowPicker}
+        onConfirm={(pickedDuration) => {
+          const pickedDate = getPickedDate(pickedDuration);
+          showAdOrNavigate({name: "Cycle", params: {time: pickedDate.getTime(), isStart}});
+          setShowPicker(false);
+        }}
+        modalTitle={pickerTitle}
+        onCancel={() => setShowPicker(false)}
+        initialValue={
+          {
+            hours: isStart ? 23 : 8,
+            minutes: isStart ? 30 : 0,
+          }
+        }
+        closeOnOverlayPress
+        hideSeconds
+        use12HourPicker={!getCalendars()[0].uses24hourClock}
+        LinearGradient={LinearGradient}
+        styles={{
+          theme: "dark",
+          confirmButton: {
+            backgroundColor: "#7e22ce",
+            color: "#fff",
+            borderColor: "#7e22ce",
+          },
+        }}
+        modalProps={{
+          overlayOpacity: 0.5,
+        }}
+      />
+    </View>
   );
 };

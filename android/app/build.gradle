@@ -91,8 +91,8 @@ android {
         applicationId 'com.alperengozum.sleepwell'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 300004
-        versionName "0.3.2"
+        versionCode 300005
+        versionName "0.3.1"
     }
     signingConfigs {
         debug {

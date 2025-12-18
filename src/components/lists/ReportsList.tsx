@@ -3,8 +3,8 @@ import {FlashList} from "@shopify/flash-list";
 import {HStack, Icon, IconButton, Text, View, VStack} from "@gluestack-ui/themed-native-base";
 import {GenericCard} from "../cards/GenericCard";
 import {GenericHeaderCard} from "../cards/GenericHeaderCard";
-import SleepStore, {Sleep, SleepFilter, SleepType} from "../../store/SleepStore";
-import {Observer} from "mobx-react";
+import {useSleepStore} from "../../store/SleepStore";
+import {Sleep, SleepFilter, SleepType} from "../../store/SleepStore";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {SleepIndicatorChart} from "../charts/SleepIndicatorChart";
 import {SleepLineChart} from "../charts/SleepLineChart";
@@ -18,25 +18,29 @@ interface ReportsListProps {
 }
 
 export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) => {
+  const getSleeps = useSleepStore((state) => state.getSleeps);
+  const deleteSleep = useSleepStore((state) => state.deleteSleep);
+  const sleeps = useSleepStore((state) => state.sleeps);
 
   useEffect(() => {
     buildList()
-  }, [selectedDate]);
+  }, [selectedDate, sleeps]);
 
-  const getSleeps = () => {
-    return SleepStore.getSleeps(SleepType.SLEEP, {
+  const getFilteredSleeps = () => {
+    return getSleeps(SleepType.SLEEP, {
       start: selectedDate?.start || getMonthBefore(),
       end: selectedDate?.end || getMonthBefore(new Date(), 0)
     })
   }
+  
   const buildList = (): Array<List> => {
-    const sleeps = getSleeps();
+    const filteredSleeps = getFilteredSleeps();
     const newList: Array<List> = [];
     newList.push({
       type: ListType.HEADER,
       name: "Reports",
     })
-    sleeps?.forEach((sleep: Sleep) => {
+    filteredSleeps?.forEach((sleep: Sleep) => {
       newList.push({
         type: ListType.ITEM,
         name: sleep.type,
@@ -46,10 +50,12 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
     })
     return newList;
   }
-  const deleteSleep = (id: number) => {
-    SleepStore.deleteSleep(id)
+  
+  const handleDeleteSleep = (id: number) => {
+    deleteSleep(id)
   }
   const getRenderItem = ({item}: { item: List }): React.ReactElement => {
+    const filteredSleeps = getFilteredSleeps();
     switch (item!.type) {
       case ListType.HEADER:
         // Rendering header
@@ -59,9 +65,9 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
             my: 0,
             mt: 10
           }}>
-            <SleepLineChart sleeps={getSleeps()}/>
-            <SleepIndicatorChart sleeps={getSleeps()}/>
-            <SleepPieChart sleeps={getSleeps()}/>
+            <SleepLineChart sleeps={filteredSleeps}/>
+            <SleepIndicatorChart sleeps={filteredSleeps}/>
+            <SleepPieChart sleeps={filteredSleeps}/>
           </GenericHeaderCard>
         );
       case ListType.ITEM:
@@ -87,7 +93,7 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
                     borderWidth={1}
                     variant="outline"
                     icon={<Icon as={Ionicons} name="trash-outline" size={6}/>}
-                    onPress={() => deleteSleep(item.id as number)}
+                    onPress={() => handleDeleteSleep(item.id as number)}
                   />
                 </HStack>
               </View>
@@ -99,30 +105,28 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
     }
   };
 
+  const filteredSleeps = getFilteredSleeps();
+
   return (
-    <Observer>
-      {() => (
-        <View width="100%" mt={50} height="100%">
-          <FlashList
-            contentContainerStyle={{paddingBottom: 140}}
-            data={buildList()}
-            renderItem={getRenderItem}
-            onEndReached={() => {
-              //TODO: Add end reached
-            }}
-            getItemType={(item) => {
-              // To achieve better performance, specify the type based on the item
-              return typeof item === "string" ? "sectionHeader" : "row";
-            }}
-            estimatedItemSize={200}
-            ListFooterComponent={<View height={120}>
-              <Text color="white" fontSize="md" textAlign="center" mt={10}>
-                {getSleeps()?.length! > 0 ? `No more sleeps to show.\nTotal Sleeps: ${getSleeps()?.length}` : "No sleeps to show.\nWhy didn't you sleep?"}
-              </Text>
-            </View>}
-          />
-        </View>)
-      }
-    </Observer>
+    <View width="100%" mt={50} height="100%">
+      <FlashList
+        contentContainerStyle={{paddingBottom: 140}}
+        data={buildList()}
+        renderItem={getRenderItem}
+        onEndReached={() => {
+          //TODO: Add end reached
+        }}
+        getItemType={(item) => {
+          // To achieve better performance, specify the type based on the item
+          return typeof item === "string" ? "sectionHeader" : "row";
+        }}
+        estimatedItemSize={200}
+        ListFooterComponent={<View height={120}>
+          <Text color="white" fontSize="md" textAlign="center" mt={10}>
+            {filteredSleeps?.length! > 0 ? `No more sleeps to show.\nTotal Sleeps: ${filteredSleeps?.length}` : "No sleeps to show.\nWhy didn't you sleep?"}
+          </Text>
+        </View>}
+      />
+    </View>
   );
 };

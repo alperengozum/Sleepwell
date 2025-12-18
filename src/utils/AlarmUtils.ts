@@ -1,4 +1,5 @@
-import SleepStore, {SleepType} from "../store/SleepStore";
+import {useSleepStore} from "../store/SleepStore";
+import {SleepType} from "../store/SleepStore";
 import {setAlarm} from "expo-alarm";
 import Toast from "react-native-toast-message";
 
@@ -17,7 +18,7 @@ export const createIntentAlarm = (date: Date, type?: SleepType, cycleCount?: num
       autoHide: true,
     })
   })
-  SleepStore.addSleep({
+  useSleepStore.getState().addSleep({
     end: date, start: createDate, type: type || SleepType.SLEEP, cycle: cycleCount || undefined
   })
 }

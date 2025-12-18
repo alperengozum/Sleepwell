@@ -1,4 +1,4 @@
-import {action, makeAutoObservable} from "mobx";
+import {create} from "zustand";
 import {getItem, setItem} from "../utils/AsyncStorageUtils";
 
 export enum SleepType {
@@ -14,88 +14,85 @@ export interface Sleep {
   id?: number
 }
 
-export interface ISleepStore {
-  getSleeps(type?: SleepType, filters?:Partial<SleepFilter>): Array<Sleep> | undefined;
-
-  setSleeps(sleeps: Array<Sleep>): void;
-
-  addSleep(sleeps: Sleep): void;
-
-  deleteSleep(id: number): void
-}
-
 export interface SleepFilter {
   start?: Date,
   end?: Date,
 }
 
-class SleepStore implements ISleepStore {
+interface SleepStore {
+  sleeps: Array<Sleep> | undefined;
+  getSleeps: (type?: SleepType, filters?: Partial<SleepFilter>) => Array<Sleep> | undefined;
+  setSleeps: (sleeps: Array<Sleep>) => void;
+  addSleep: (sleep: Sleep) => void;
+  deleteSleep: (id: number) => void;
+  initialize: () => Promise<void>;
+}
 
-  public sleeps: Array<Sleep> | undefined;
+export const useSleepStore = create<SleepStore>((set, get) => ({
+  sleeps: undefined,
 
-  constructor() {
-    getItem("sleeps").then(
-      (sleeps) => {
-        this.setSleeps(sleeps || [])
-        makeAutoObservable(this);
-      }
-    )
-  }
+  initialize: async () => {
+    const sleeps = await getItem("sleeps");
+    const processedSleeps = sleeps || [];
+    set({ sleeps: processedSleeps });
+    await setItem("sleeps", processedSleeps);
+  },
 
-
-  getSleeps(type?: SleepType, filters?: Partial<SleepFilter>): Array<Sleep> | undefined {
-    if (!this.sleeps) {
-      return undefined
+  getSleeps: (type?: SleepType, filters?: Partial<SleepFilter>) => {
+    const { sleeps } = get();
+    if (!sleeps) {
+      return undefined;
     }
-    let sleeps = this.sleeps
+    let filteredSleeps = sleeps;
+    
     if (type) {
-      sleeps = this.sleeps.filter((sleep) => sleep.type == type);
+      filteredSleeps = filteredSleeps.filter((sleep) => sleep.type == type);
     }
+    
     if (filters) {
       if (filters.start) {
-        sleeps = sleeps.filter((sleep) => {
-          return new Date(sleep.start)>= filters.start!;
+        filteredSleeps = filteredSleeps.filter((sleep) => {
+          return new Date(sleep.start) >= filters.start!;
         });
       }
       if (filters.end) {
-        sleeps = sleeps.filter((sleep) => new Date(sleep.start) <= filters.end!);
+        filteredSleeps = filteredSleeps.filter((sleep) => new Date(sleep.start) <= filters.end!);
       }
     }
-    return sleeps;
-  }
+    
+    return filteredSleeps;
+  },
 
-  setSleeps(sleeps: Array<Sleep>): void {
-    this.sleeps = sleeps;
-    setItem("sleeps", sleeps)
-    action(async () => {
-    });
-  }
+  setSleeps: async (sleeps: Array<Sleep>) => {
+    set({ sleeps });
+    await setItem("sleeps", sleeps);
+  },
 
-  addSleep(sleep: Sleep): void {
-    if (!this.sleeps) {
-      this.sleeps = [sleep];
-    }
+  addSleep: async (sleep: Sleep) => {
+    const { sleeps } = get();
+    let newSleeps = sleeps || [];
+    
     if (!sleep.id) {
-      sleep.id = this.sleeps.length || Math.random() * 1000;
+      sleep.id = newSleeps.length || Math.random() * 1000;
     }
-    this.sleeps.push(sleep);
-    setItem("sleeps", this.sleeps)
+    newSleeps = [...newSleeps, sleep];
+    
+    set({ sleeps: newSleeps });
+    await setItem("sleeps", newSleeps);
+  },
 
-    action(async () => {
-    });
-  }
-
-  deleteSleep(id: number): void {
-    if (!this.sleeps) {
-      console.error("There is nothing to delete.")
+  deleteSleep: async (id: number) => {
+    const { sleeps } = get();
+    if (!sleeps) {
+      console.error("There is nothing to delete.");
+      return;
     }
-    this.sleeps = this.sleeps?.filter((s) => s.id != id);
-    setItem("sleeps", this.sleeps)
+    
+    const filteredSleeps = sleeps.filter((s) => s.id != id);
+    set({ sleeps: filteredSleeps });
+    await setItem("sleeps", filteredSleeps);
+  },
+}));
 
-    action(async () => {
-    });
-  }
-
-}
-
-export default new SleepStore();
+// Initialize store on import
+useSleepStore.getState().initialize();

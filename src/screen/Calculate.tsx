@@ -3,7 +3,8 @@ import CalculatorHeader from "../components/headers/CalculatorHeader";
 import {CalculatorList} from "../components/lists/CalculatorList";
 import {useNavigation} from "@react-navigation/native";
 import * as NavigationBar from 'expo-navigation-bar';
-import SettingsStore, {SettingsType} from "../store/SettingsStore";
+import {useSettingsStore} from "../store/SettingsStore";
+import {SettingsType} from "../store/SettingsStore";
 
 
 export default function Calculate() {
@@ -19,11 +20,15 @@ export default function Calculate() {
 
   useEffect(() => {
     const checkSettings = async () => {
-      while (SettingsStore.loading) {
+      let loading = useSettingsStore.getState().loading;
+      const getSettings = useSettingsStore.getState().getSettings;
+      
+      while (loading) {
         // wait until SettingsStore is loaded
         await new Promise(resolve => setTimeout(resolve, 100));
+        loading = useSettingsStore.getState().loading;
       }
-      const settings = SettingsStore.getSettings(SettingsType.WELCOME);
+      const settings = getSettings(SettingsType.WELCOME);
       if (!(settings && settings[0].value === false)) {
         // @ts-ignore
         navigation.navigate("Welcome");

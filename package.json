@@ -22,6 +22,7 @@
     "@shopify/flash-list": "1.7.6",
     "@types/react-native-vector-icons": "^6.4.18",
     "css-color-keywords": "^1.0.0",
+    "dotenv": "^17.2.3",
     "expo": "~53.0.25",
     "expo-alarm": "^0.2.2",
     "expo-constants": "~17.1.8",
@@ -32,8 +33,6 @@
     "expo-splash-screen": "~0.30.10",
     "expo-status-bar": "~2.2.3",
     "lottie-react-native": "7.2.2",
-    "mobx": "^6.6.2",
-    "mobx-react": "^7.5.3",
     "moment": "^2.29.4",
     "moti": "^0.29.0",
     "react": "19.0.0",
@@ -42,7 +41,7 @@
     "react-native-animated-nav-tab-bar": "^3.1.8",
     "react-native-chart-kit": "^6.12.0",
     "react-native-gesture-handler": "~2.24.0",
-    "react-native-google-mobile-ads": "14.7.2",
+    "react-native-google-mobile-ads": "14.11.0",
     "react-native-reanimated": "~3.19.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.15.3",
@@ -51,7 +50,8 @@
     "react-native-timer-picker": "^2.2.0",
     "react-native-toast-message": "^2.2.0",
     "react-native-vector-icons": "^9.2.0",
-    "styled-components": "^6.1.2"
+    "styled-components": "^6.1.2",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

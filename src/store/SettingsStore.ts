@@ -1,4 +1,4 @@
-import {action, makeAutoObservable} from "mobx";
+import {create} from "zustand";
 import {getItem, setItem} from "../utils/AsyncStorageUtils";
 
 export enum SettingsType {
@@ -12,101 +12,92 @@ export interface Settings {
   id?: number
 }
 
-export interface ISettingsStore {
-
-  getSettings(type?: SettingsType): Array<Settings> | undefined;
-
-  setSettings(settings: Array<Settings>): void;
-
-  addSetting(settings: Settings): void;
-
-  editSetting(type: SettingsType, value: string | number | undefined): void
-
+interface SettingsStore {
+  settings: Array<Settings> | undefined;
+  loading: boolean;
+  getSettings: (type?: SettingsType) => Array<Settings> | undefined;
+  setSettings: (settings: Array<Settings> | undefined) => void;
+  addSetting: (setting: Settings) => void;
+  editSetting: (type: SettingsType, value: string | number | boolean | undefined) => void;
+  getSettingsAsync: (type?: SettingsType) => Promise<Array<Settings> | undefined>;
+  initialize: () => Promise<void>;
 }
 
-class SettingsStore implements ISettingsStore {
-
-  public settings: Array<Settings> | undefined;
-  public loading: boolean = true;
-
-  constructor() {
-    getItem("settings").then(
-      (settings) => {
-        this.setSettings(settings)
-        this.loading = false;
-        makeAutoObservable(this);
-      }
-    )
-  }
-
-  async getSettingsAsync(type?: SettingsType): Promise<Array<Settings> | undefined> {
-    while (this.loading) {
-      await new Promise(resolve => setTimeout(resolve, 50));
+const getInitialSettings = (): Settings[] => {
+  const settings: Settings[] = (Object.keys(SettingsType) as Array<keyof typeof SettingsType>).map((key, i) => {
+    return {
+      type: SettingsType[key],
+      value: undefined,
+      id: i
     }
-    return this.getSettings(type);
-  }
+  })
+  return settings;
+}
 
-  getSettings(type?: SettingsType): Array<Settings> | undefined {
-    if (!this.settings) {
-      return undefined
+export const useSettingsStore = create<SettingsStore>((set, get) => ({
+  settings: undefined,
+  loading: true,
+
+  initialize: async () => {
+    const settings = await getItem("settings");
+    const processedSettings = settings || getInitialSettings();
+    set({ settings: processedSettings, loading: false });
+    await setItem("settings", processedSettings);
+  },
+
+  getSettings: (type?: SettingsType) => {
+    const { settings } = get();
+    if (!settings) {
+      return undefined;
     }
     if (type) {
-      let filteredSettings = this.settings.filter((setting) => setting.type == type);
-      return filteredSettings;
+      return settings.filter((setting) => setting.type == type);
     }
+    return settings;
+  },
 
-    return this.settings;
-  }
+  setSettings: async (settings: Array<Settings> | undefined) => {
+    const processedSettings = settings || getInitialSettings();
+    set({ settings: processedSettings });
+    await setItem("settings", processedSettings);
+  },
 
-  setSettings(settings: Array<Settings> | undefined): void {
-    this.settings = settings;
-
-    if (!settings) {
-      this.settings = this.getInitialSettings();
-    }
-
-    setItem("settings", this.settings)
-    action(async () => {
-    });
-  }
-
-  addSetting(setting: Settings): void {
-    if (!this.settings) {
-      this.settings = [setting];
-    }
+  addSetting: async (setting: Settings) => {
+    const { settings } = get();
+    let newSettings = settings || [];
+    
     if (!setting.id) {
-      setting.id = this.settings.length || Math.random() * 1000;
+      setting.id = newSettings.length || Math.random() * 1000;
     }
-    this.settings.push(setting);
-    setItem("settings", this.settings)
+    newSettings = [...newSettings, setting];
+    
+    set({ settings: newSettings });
+    await setItem("settings", newSettings);
+  },
 
-    action(async () => {
-    });
-  }
-
-  editSetting(type: SettingsType, value: string | number | boolean | undefined): void {
-    this.settings = this.settings?.map((s) => {
+  editSetting: async (type: SettingsType, value: string | number | boolean | undefined) => {
+    const { settings } = get();
+    if (!settings) return;
+    
+    const updatedSettings = settings.map((s) => {
       if (s.type == type) {
-        s.value = value;
+        return { ...s, value };
       }
       return s;
     });
-    setItem("settings", this.settings)
-    action(async () => {
-    });
-  }
+    
+    set({ settings: updatedSettings });
+    await setItem("settings", updatedSettings);
+  },
 
-  private getInitialSettings(): Settings[] {
-    const settings: Settings[] = (Object.keys(SettingsType) as Array<keyof typeof SettingsType>).map((key, i) => {
-      return {
-        type: SettingsType[key],
-        value: undefined,
-        id: i
-      }
-    })
-    return settings;
-  }
+  getSettingsAsync: async (type?: SettingsType) => {
+    const { loading, getSettings } = get();
+    while (loading) {
+      await new Promise(resolve => setTimeout(resolve, 50));
+    }
+    return getSettings(type);
+  },
+}));
 
-}
-
-export default new SettingsStore();
+// Initialize store on import
+useSettingsStore.getState().initialize();
