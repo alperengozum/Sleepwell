@@ -8,9 +8,13 @@ import 'react-native-reanimated'
 import * as NavigationBar from "expo-navigation-bar";
 import Toast from "react-native-toast-message";
 import {toastConfig} from "./src/components/config/ToastConfig";
+import {initializeSettingsStore} from "./src/store/SettingsStore";
 
 export default function App() {
   useEffect(() => {
+    // Initialize settings store when app is ready
+    initializeSettingsStore();
+    
     StatusBar.setHidden(true);
     NavigationBar.setBackgroundColorAsync("black")
     NavigationBar.setVisibilityAsync("hidden");
