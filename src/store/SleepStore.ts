@@ -22,9 +22,9 @@ export interface SleepFilter {
 interface SleepStore {
   sleeps: Array<Sleep> | undefined;
   getSleeps: (type?: SleepType, filters?: Partial<SleepFilter>) => Array<Sleep> | undefined;
-  setSleeps: (sleeps: Array<Sleep>) => void;
-  addSleep: (sleep: Sleep) => void;
-  deleteSleep: (id: number) => void;
+  setSleeps: (sleeps: Array<Sleep>) => Promise<void>;
+  addSleep: (sleep: Sleep) => Promise<void>;
+  deleteSleep: (id: number) => Promise<void>;
   initialize: () => Promise<void>;
 }
 
