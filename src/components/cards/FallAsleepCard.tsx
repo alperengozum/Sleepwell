@@ -6,10 +6,12 @@ import {SettingsType} from "../../store/SettingsStore";
 import {GenericCard} from "./GenericCard";
 
 export const FallAsleepCard = () => {
+  const getSettings = useSettingsStore((state) => state.getSettings);
   const editSetting = useSettingsStore((state) => state.editSetting);
-  const currentValue = useSettingsStore((state) => 
-    state.getSettings(SettingsType.FALL_ASLEEP)?.[0]?.value as number || 0
-  );
+  // Subscribe to settings to ensure re-render when they change
+  useSettingsStore((state) => state.settings);
+  
+  const currentValue = getSettings(SettingsType.FALL_ASLEEP)?.[0]?.value as number || 0;
 
   const onAddPress = () => {
     const value = currentValue + 5;
