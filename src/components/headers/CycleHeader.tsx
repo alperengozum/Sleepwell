@@ -5,9 +5,11 @@ import { useNavigation } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { MotiView } from "moti";
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function CycleHeader(props: { children: React.ReactNode; }) {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   const HEADER_MAX_HEIGHT = 150;
   const HEADER_MIN_HEIGHT = 80;
@@ -67,7 +69,7 @@ export default function CycleHeader(props: { children: React.ReactNode; }) {
       right: 0,
       backgroundColor: "transparent",
       overflow: "hidden",
-      height: HEADER_MAX_HEIGHT
+      height: HEADER_MAX_HEIGHT + insets.top
     },
     headerBackground: {
       position: "absolute",
@@ -75,7 +77,7 @@ export default function CycleHeader(props: { children: React.ReactNode; }) {
       left: 0,
       right: 0,
       width: "100%",
-      height: HEADER_MAX_HEIGHT,
+      height: HEADER_MAX_HEIGHT + insets.top,
       resizeMode: "cover"
     },
     topBar: {
@@ -121,7 +123,7 @@ export default function CycleHeader(props: { children: React.ReactNode; }) {
         <MotiView style={[styles.headerBackground, headerBgStyle]} />
       </MotiView>
       <MotiView style={[styles.topHeaderBar, topHeaderBarStyle]}>
-        <HStack justifyContent="space-between" alignItems="center" width="100%" height="100%" bgColor="black">
+        <HStack justifyContent="space-between" alignItems="center" width="100%" height="100%" bgColor="black" paddingTop={insets.top}>
           <IconButton
             colorScheme="white"
             borderRadius="full"

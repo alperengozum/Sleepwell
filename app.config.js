@@ -11,7 +11,7 @@ module.exports = {
   displayName: "Sleepwell",
   name: "Sleepwell",
   slug: "Sleepwell",
-  version: "0.3.2",
+  version: "0.4.0",
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
@@ -28,6 +28,7 @@ module.exports = {
     bundleIdentifier: "com.alperengozum.sleepwell"
   },
   android: {
+    versionCode: 400000,
     permissions: [
       "com.android.alarm.permission.SET_ALARM"
     ],

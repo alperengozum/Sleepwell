@@ -6,7 +6,8 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@expo/config": "^11.0.0",
@@ -38,19 +39,19 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.6",
-    "react-native-animated-nav-tab-bar": "^3.1.8",
+    "react-native-animated-nav-tab-bar": "github:torgeadelin/react-native-animated-nav-tab-bar#pull/148/head",
     "react-native-chart-kit": "^6.12.0",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-google-mobile-ads": "14.11.0",
-    "react-native-reanimated": "~3.19.4",
+    "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
-    "react-native-screens": "~4.15.3",
+    "react-native-screens": "~4.11.1",
     "react-native-svg": "15.11.2",
     "react-native-swiper-flatlist": "^3.2.3",
     "react-native-timer-picker": "^2.2.0",
     "react-native-toast-message": "^2.2.0",
     "react-native-vector-icons": "^9.2.0",
-    "styled-components": "^6.1.2",
+    "styled-components": "^4.4.1",
     "zustand": "^5.0.9"
   },
   "devDependencies": {
@@ -58,6 +59,8 @@
     "@types/react": "~19.0.10",
     "@types/sync-storage": "^0.4.3",
     "metro": "^0.82.0",
+    "patch-package": "^8.0.1",
+    "postinstall-postinstall": "^2.1.0",
     "typescript": "~5.8.3"
   },
   "private": true
