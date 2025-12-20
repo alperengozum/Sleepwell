@@ -8,7 +8,7 @@ import 'react-native-reanimated'
 import * as NavigationBar from "expo-navigation-bar";
 import Toast from "react-native-toast-message";
 import {toastConfig} from "./src/components/config/ToastConfig";
-import {initializeSettingsStore, useSettingsStore} from "./src/store/SettingsStore";
+import {initializeSettingsStore} from "./src/store/SettingsStore";
 import {initializeSleepStore} from "./src/store/SleepStore";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import './src/i18n';
