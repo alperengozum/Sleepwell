@@ -75,7 +75,7 @@
   "info": {
     "title": "Informations",
     "healthNotice": "Health notice 💜",
-    "healthNoticeDesc": "Sleepwell cannot be associated with healthcare professionals and not gives recommendations.",
+    "healthNoticeDesc": "Sleepwell cannot be associated with healthcare professionals and does not give recommendations.",
     "logoOrigin": "Where does the logo come from?",
     "logoOriginDesc": "It is a mix of 🌌 Milky Way and 🌙 Crescent Moon emojis, I fixed some details. Images of the emoji use Twemoji - Twitter's open-source emoji collection (License: CC BY-SA 4.0)",
     "openSource": "Is Sleepwell an open-source project?",
