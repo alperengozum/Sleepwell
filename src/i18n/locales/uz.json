@@ -1,0 +1,112 @@
+{
+  "settings": {
+    "title": "Sozlamalar",
+    "language": "Til",
+    "fallAsleep": "Uxlash",
+    "welcome": "Xush kelibsiz",
+    "fallAsleepTime": "Uxlash vaqti",
+    "fallAsleepDesc": "Uxlash uchun necha daqiqa kerak?",
+    "showWelcomeSlide": "Xush kelibsiz slaydini ko'rsatish"
+  },
+  "language": {
+    "select": "Tilni tanlang",
+    "english": "Ingliz tili",
+    "turkish": "Turk tili",
+    "german": "Nemis tili",
+    "french": "Fransuz tili",
+    "azerbaijani": "Ozarbayjon tili",
+    "uzbek": "O'zbek tili",
+    "hindi": "Hind tili",
+    "urdu": "Urdu tili",
+    "arabic": "Arab tili",
+    "spanish": "Ispan tili",
+    "russian": "Rus tili"
+  },
+  "common": {
+    "cancel": "Bekor qilish",
+    "confirm": "Tasdiqlash",
+    "save": "Saqlash",
+    "skip": "O'tkazib yuborish",
+    "previous": "Oldingi",
+    "next": "Keyingi",
+    "done": "Tugallandi"
+  },
+  "calculator": {
+    "sleep": "Uyqu",
+    "goToBedNow": "Hozir yotish",
+    "goToBedNowDesc": "Agar men hozir yotsam, qachon uyg'onishim kerak?",
+    "whenToWakeUp": "Qachon uyg'onishim kerak?",
+    "whenToWakeUpDesc": "Uyg'onish uchun mukammal vaqtni toping.",
+    "whenToGoToBed": "Qachon yotishim kerak?",
+    "whenToGoToBedDesc": "Yotish uchun mukammal vaqtni toping.",
+    "powerNap": "Qisqa uyqu",
+    "takePowerNap": "Qisqa kuch uyqusi",
+    "takePowerNapDesc": "Mahsuldorligingizni, e'tiboringizni va kuchingizni oshiring!",
+    "selectBedTime": "Yotish vaqtini tanlang.",
+    "selectWakeUpTime": "Uyg'onish vaqtini tanlang."
+  },
+  "welcome": {
+    "slide1Title": "Uyqu sifatini yaxshilang:\nSleepwell bilan boshlang!",
+    "slide1Desc": "Sleepwell ochiq manbali uyqu davri ilovasi. Optimal uyg'onish, uyqu va qisqa uyqu vaqtlarini belgilang. Yaxshi uyqu uchun moslashtiriladigan signal va taraqqiyot hisobotlarini o'rganing.",
+    "slide2Title": "Sleepwell funksiyalari bilan\nxotirjam uyqu zavqini bering",
+    "slide2Desc": "Sleepwell shaxsiylashtirilgan uyqu jadvalini yaratish va kuzatishga yordam beradi. Moslashtiriladigan signallar, tushunarli hisobotlar va foydalanuvchi uchun qulay dizayn bilan sog'liq uchun yaxshi uyqu tajribasini bering.",
+    "slide3Title": "Sleepwell: Uyqu davrlarini\nhisoblash va kuzatish",
+    "slide3Desc": "Sleepwell ilg'or algoritmlardan foydalanib uyqu davrlarini tahlil qiladi va shaxsiylashtirilgan vaqtlarni taklif qiladi. Optimallashtirilgan uyg'onish va dam olish vaqtlari bilan yaxshiroq uyqing.",
+    "slide4Title": "Sleepwell hamjamiyatiga qo'shiling:\nYaxshi uyqu uchun hamkorlik",
+    "slide4Desc": "Sleepwell hamjamiyat tajribasini qo'llab-quvvatlaydi. GitHub va boshqa platformalarda hissa qo'shing. Yaxshilangan uyqu sifatini va hamkorlik taraqqiyotini uchun Sleepwell-ni yuklab oling."
+  },
+  "cycle": {
+    "sleep": "Uyqu",
+    "wakeUpAt": "Shu vaqtda uyg'on",
+    "goToBedAt": "Shu vaqtda yot",
+    "sleepCycles": "Uyqu davrlari",
+    "equalsHours": "{{hours}} soatlik uyquga teng.",
+    "title": "Uyqu davrlari"
+  },
+  "reports": {
+    "title": "Hisobotlar",
+    "sleepCycles": "Uyqu davrlari",
+    "powernap": "Qisqa uyqu",
+    "equalsHours": "{{hours}} soatlik uyquga teng.",
+    "equals30Minutes": "30 daqiqalik uyquga teng.",
+    "noMoreSleeps": "Ko'rsatish uchun boshqa uyqu yo'q.\nJami uyqu: {{count}}",
+    "noSleeps": "Ko'rsatish uchun uyqu yo'q.\nNima uchun uxlamadingiz?"
+  },
+  "info": {
+    "title": "Ma'lumotlar",
+    "healthNotice": "Salomatlik ogohlantirishi 💜",
+    "healthNoticeDesc": "Sleepwell sog'liqni saqlash mutaxassislari bilan bog'lanib bo'lmaydi va tavsiya bermaydi.",
+    "logoOrigin": "Logo qayerdan keladi?",
+    "logoOriginDesc": "Bu 🌌 Somon yo'li va 🌙 Yarim oy emoji-larining aralashmasidir, ba'zi tafsilotlarni tuzatdim. Emoji rasmlari Twemoji - Twitter-ning ochiq manbali emoji to'plamidan foydalanadi (Litsenziya: CC BY-SA 4.0)",
+    "openSource": "Sleepwell ochiq manbali loyihami?",
+    "openSourceDesc": "HA! Butun loyihaga Github-da yetishingiz mumkin",
+    "openGithubProject": "Github loyihasini ochish",
+    "addFeature": "Yangi funksiya qo'sha olamanmi? 👋",
+    "addFeatureDesc": "Albatta! Github-da Pull Request-lar xush ko'riladi.",
+    "openGithubPulls": "Github Pull-larini ochish",
+    "haveIssue": "Men muammoga duch keldim",
+    "haveIssueDesc": "Buni eshitganimdan afsusdaman 😔. Iltimos, Github Issue oching yoki imkon qadar tez tuzatish uchun menga elektron pochta yuboring",
+    "openGithubIssues": "Github Issue-larini ochish",
+    "contact": "Siz bilan bog'lanishni xohlayman",
+    "contactDesc": "Menga elektron pochta yubormoqchimisiz?",
+    "sendMail": "Elektron pochta yuborish",
+    "otherProjects": "Boshqa loyihalar",
+    "otherProjectsDesc": "Mobil loyihalarimni Play Store-da baham ko'ryapman, shuningdek Github-imni tekshirishingiz mumkin. Mana Play Store havolam.",
+    "openPlayStore": "Google Play Store-ni ochish",
+    "link": "Havola"
+  },
+  "charts": {
+    "sleepCycles": "Uyqu davrlari",
+    "cyclesSuffix": " Davr",
+    "cycles": "Davr",
+    "average": "O'rtacha",
+    "median": "Median",
+    "noSleepData": "Uyqu ma'lumotlari yo'q"
+  },
+  "tabs": {
+    "calculate": "Hisobla",
+    "reports": "Hisobotlar",
+    "settings": "Sozlamalar"
+  }
+}
+

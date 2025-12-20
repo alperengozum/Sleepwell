@@ -1,0 +1,112 @@
+{
+  "settings": {
+    "title": "Parametrlər",
+    "language": "Dil",
+    "fallAsleep": "Yatmaq",
+    "welcome": "Xoş gəlmisiniz",
+    "fallAsleepTime": "Yatmaq vaxtı",
+    "fallAsleepDesc": "Yatmaq üçün neçə dəqiqə lazımdır?",
+    "showWelcomeSlide": "Xoş gəlmisiniz slaydını göstər"
+  },
+  "language": {
+    "select": "Dil seçin",
+    "english": "İngilis dili",
+    "turkish": "Türk dili",
+    "german": "Alman dili",
+    "french": "Fransız dili",
+    "azerbaijani": "Azərbaycan dili",
+    "uzbek": "Özbək dili",
+    "hindi": "Hind dili",
+    "urdu": "Urdu dili",
+    "arabic": "Ərəb dili",
+    "spanish": "İspan dili",
+    "russian": "Rus dili"
+  },
+  "common": {
+    "cancel": "Ləğv et",
+    "confirm": "Təsdiq et",
+    "save": "Saxla",
+    "skip": "Keç",
+    "previous": "Əvvəlki",
+    "next": "Növbəti",
+    "done": "Bitdi"
+  },
+  "calculator": {
+    "sleep": "Yuxu",
+    "goToBedNow": "İndi yat",
+    "goToBedNowDesc": "İndi yatsam, nə vaxt oyanmalıyam?",
+    "whenToWakeUp": "Nə vaxt oyanmalıyam?",
+    "whenToWakeUpDesc": "Oyanmaq üçün mükəmməl vaxtı tapın.",
+    "whenToGoToBed": "Nə vaxt yatmalıyam?",
+    "whenToGoToBedDesc": "Yatmaq üçün mükəmməl vaxtı tapın.",
+    "powerNap": "Qısa yuxu",
+    "takePowerNap": "Qısa bir güc yuxusu",
+    "takePowerNapDesc": "Məhsuldarlığınızı, diqqətinizi və gücünüzü artırın!",
+    "selectBedTime": "Yatma saatını seçin.",
+    "selectWakeUpTime": "Oyanma saatını seçin."
+  },
+  "welcome": {
+    "slide1Title": "Yuxu keyfiyyətinizi artırın:\nSleepwell ilə başlayın!",
+    "slide1Desc": "Sleepwell açıq mənbəli yuxu dövrü tətbiqidir. Optimal oyanma, yuxu və qısa yuxu vaxtlarını müəyyənləşdirin. Daha yaxşı yuxu üçün fərdiləşdirilə bilən siqnal və tərəqqi hesabatlarını kəşf edin.",
+    "slide2Title": "Sleepwell funksiyaları ilə\nrahat yuxu həzzini yaşayın",
+    "slide2Desc": "Sleepwell fərdiləşdirilmiş yuxu cədvəlləri yaratmağa və izləməyə kömək edir. Fərdiləşdirilə bilən siqnallar, dərrakəli hesabatlar və istifadəçi dostu dizaynla daha sağlam yuxu təcrübəsi yaşayın.",
+    "slide3Title": "Sleepwell: Yuxu dövrlərinin\nhesablanması və izlənməsi",
+    "slide3Desc": "Sleepwell inkişaf etmiş alqoritmlərdən istifadə edərək yuxu dövrlərini təhlil edir və fərdiləşdirilmiş vaxtları təklif edir. Optimallaşdırılmış oyanma və istirahət vaxtları ilə daha yaxşı yuxu.",
+    "slide4Title": "Sleepwell icmasına qoşulun:\nDaha yaxşı yuxu üçün əməkdaşlıq",
+    "slide4Desc": "Sleepwell icma təcrübəsini dəstəkləyir. GitHub və digər platformalarda töhfə verin. Təkmilləşdirilmiş yuxu keyfiyyəti və əməkdaşlıq tərəqqisi üçün Sleepwell-i yükləyin."
+  },
+  "cycle": {
+    "sleep": "Yuxu",
+    "wakeUpAt": "Bu saatda oyan",
+    "goToBedAt": "Bu saatda yat",
+    "sleepCycles": "Yuxu dövrləri",
+    "equalsHours": "{{hours}} saatlıq yuxuya bərabərdir.",
+    "title": "Yuxu dövrləri"
+  },
+  "reports": {
+    "title": "Hesabatlar",
+    "sleepCycles": "Yuxu dövrləri",
+    "powernap": "Qısa yuxu",
+    "equalsHours": "{{hours}} saatlıq yuxuya bərabərdir.",
+    "equals30Minutes": "30 dəqiqəlik yuxuya bərabərdir.",
+    "noMoreSleeps": "Göstəriləcək daha çox yuxu yoxdur.\nÜmumi yuxu: {{count}}",
+    "noSleeps": "Göstəriləcək yuxu yoxdur.\nNiyə yatmadınız?"
+  },
+  "info": {
+    "title": "Məlumat",
+    "healthNotice": "Sağlamlıq xəbərdarlığı 💜",
+    "healthNoticeDesc": "Sleepwell sağlamlıq mütəxəssisləri ilə əlaqələndirilə bilməz və tövsiyə vermir.",
+    "logoOrigin": "Loqo haradan gəlir?",
+    "logoOriginDesc": "🌌 Süd yolu və 🌙 Aypara emoji-lərinin qarışığıdır, bəzi detalları düzəltdim. Emoji şəkilləri Twemoji - Twitter-in açıq mənbəli emoji kolleksiyasını istifadə edir (Lisenziya: CC BY-SA 4.0)",
+    "openSource": "Sleepwell açıq mənbəli layihədir?",
+    "openSourceDesc": "BƏLİ! Bütün layihəyə Github-da çata bilərsiniz",
+    "openGithubProject": "Github layihəsini aç",
+    "addFeature": "Yeni funksiya əlavə edə bilərəmmi? 👋",
+    "addFeatureDesc": "Əlbəttə! Github-da Pull Request-lər xoş qarşılanır.",
+    "openGithubPulls": "Github Pull-ları aç",
+    "haveIssue": "Bir problemim var",
+    "haveIssueDesc": "Bunu eşitdiyimə görə üzülürəm 😔. Zəhmət olmasa Github Issue açın və ya mümkün qədər tez düzəltmək üçün mənə e-poçt göndərin",
+    "openGithubIssues": "Github Issue-ları aç",
+    "contact": "Sizinlə əlaqə saxlamaq istəyirəm",
+    "contactDesc": "Mənə e-poçt göndərmək istəyirsiniz?",
+    "sendMail": "E-poçt göndər",
+    "otherProjects": "Digər layihələr",
+    "otherProjectsDesc": "Mobil layihələrimi Play Store-da paylaşıram, həmçinin Github-ımı yoxlaya bilərsiniz. Budur Play Store linkim.",
+    "openPlayStore": "Google Play Store-u aç",
+    "link": "Link"
+  },
+  "charts": {
+    "sleepCycles": "Yuxu dövrləri",
+    "cyclesSuffix": " Dövr",
+    "cycles": "Dövr",
+    "average": "Orta",
+    "median": "Median",
+    "noSleepData": "Yuxu məlumatı yoxdur"
+  },
+  "tabs": {
+    "calculate": "Hesabla",
+    "reports": "Hesabatlar",
+    "settings": "Parametrlər"
+  }
+}
+

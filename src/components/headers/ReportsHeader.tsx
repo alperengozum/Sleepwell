@@ -7,12 +7,14 @@ import {getMonthBefore} from "../../utils/DateUtils";
 import {MotiView} from "moti";
 import Animated, {useSharedValue, useAnimatedScrollHandler, useAnimatedStyle} from "react-native-reanimated";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {useTranslation} from "react-i18next";
 
 export default function ReportsHeader(props: {
   children: React.ReactNode,
   selectedDate: SleepFilter,
   setSelectedDate: React.Dispatch<React.SetStateAction<SleepFilter>>
 }) {
+  const { t } = useTranslation();
   const {selectedDate, setSelectedDate} = props;
   const insets = useSafeAreaInsets();
 
@@ -158,7 +160,7 @@ export default function ReportsHeader(props: {
                       onPress={onLeftDateButtonPress}/>
           <VStack alignItems={"center"}>
             <Heading color="white" size="xl" letterSpacing={0.1} fontWeight="thin">
-              Reports
+              {t('reports.title')}
             </Heading>
             <Text color="white" fontSize="md" letterSpacing={0.1} fontWeight="thin">
               {selectedDate.start?.toLocaleDateString()} - {selectedDate.end?.toLocaleDateString()}

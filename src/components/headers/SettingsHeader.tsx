@@ -4,8 +4,10 @@ import { Heading, HStack, IconButton, View } from "@gluestack-ui/themed-native-b
 import { MotiView } from "moti";
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 export default function SettingsHeader(props: { children: React.ReactNode; }) {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const HEADER_MAX_HEIGHT = 150;
   const HEADER_MIN_HEIGHT = 80;
@@ -127,7 +129,7 @@ export default function SettingsHeader(props: { children: React.ReactNode; }) {
         <HStack justifyContent="space-between" alignItems="center" width="100%" height="100%" bgColor="black" paddingTop={insets.top}>
           <IconButton variant="unstyled" />
           <Heading color="white" size="xl" letterSpacing={0.1} fontWeight="thin">
-            Settings
+            {t('settings.title')}
           </Heading>
           <IconButton colorScheme="purple" variant="unstyled" />
         </HStack>

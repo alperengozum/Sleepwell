@@ -8,8 +8,10 @@ import {SlideItem} from "../components/slide/SlideItem";
 import {useSettingsStore} from "../store/SettingsStore";
 import {SettingsType} from "../store/SettingsStore";
 import { SwiperFlatListRefProps } from "react-native-swiper-flatlist/src/components/SwiperFlatList/SwiperFlatListProps";
+import {useTranslation} from "react-i18next";
 
 export default function Welcome() {
+  const { t } = useTranslation();
   const ref: React.Ref<SwiperFlatListRefProps>  = useRef(null);
   const navigation = useNavigation();
   const [index, setIndex] = React.useState(0);
@@ -45,17 +47,17 @@ export default function Welcome() {
   }
   const list = [
     {
-      title: "Elevate Your Sleep Quality:\nGet Started with Sleepwell!",
+      title: t('welcome.slide1Title'),
       image: <LottieView
         source={require("../components/lottie/FirstSlide.json")}
         style={{width: "100%", height: "30%"}}
         autoPlay
         loop
       />,
-      desc: "Sleepwell is an open-source sleep cycle app. Determine optimal wake-up, sleep, and nap times. Explore customizable alarms and progress reports for better sleep."
+      desc: t('welcome.slide1Desc')
     },
     {
-      title: "Enjoy Restful Sleep\nwith Sleepwell Features",
+      title: t('welcome.slide2Title'),
       image: <LottieView
         source={require("../components/lottie/SecondSlide.json")}
         style={{width: "100%", height: "30%"}}
@@ -63,10 +65,10 @@ export default function Welcome() {
         loop
         autoPlay
       />,
-      desc: "Sleepwell helps create and track personalized sleep schedules. Experience healthier sleep with customizable alarms, insightful reports, and user-friendly design."
+      desc: t('welcome.slide2Desc')
     },
     {
-      title: "Sleepwell: Calculating and\nTracking Sleep Cycles",
+      title: t('welcome.slide3Title'),
       image: <LottieView
         source={require("../components/lottie/ThirdSlide.json")}
         style={{width: "100%", height: "30%"}}
@@ -74,17 +76,17 @@ export default function Welcome() {
         loop
         autoPlay
       />,
-      desc: "Sleepwell analyzes sleep cycles and suggests personalized timings using advanced algorithms. Sleep better with optimized wake-up and rest times."
+      desc: t('welcome.slide3Desc')
     },
     {
-      title: "Join the Sleepwell Community:\nCollaborate for Better Sleep",
+      title: t('welcome.slide4Title'),
       image: <LottieView
         source={require("../components/lottie/FourthSlide.json")}
         style={{width: "100%", height: "30%"}}
         loop
         autoPlay
       />,
-      desc: "Sleepwell fosters a community experience. Contribute on GitHub and other platforms. Download Sleepwell for improved sleep quality and collaborative progress.",
+      desc: t('welcome.slide4Desc'),
       onPress: onDone
     }
   ]
@@ -98,16 +100,17 @@ export default function Welcome() {
         index={index}
         onChangeIndex={({index}) => setIndex(index)}
         showPagination
+        paginationStyle={{ marginBottom: 40 }}
         autoplay
         autoplayDelay={5}
         data={list}
         renderItem={({item}) => SlideItem(item)}/>
-      <HStack height={38} justifyContent={"space-between"}>
-        <Button colorScheme={"purple"} borderRadius={16} onPress={index === 0 ? onDone : onPrevious}>
-          {index === 0 ? "Skip" : "Previous"}
+      <HStack height={60} m={4} justifyContent={"space-between"}>
+        <Button colorScheme={"purple"} borderRadius={24} onPress={index === 0 ? onDone : onPrevious}>
+          {index === 0 ? t('common.skip') : t('common.previous')}
         </Button>
-        <Button colorScheme={"purple"} borderRadius={16} onPress={onNext}>
-          {index === list.length - 1 ? "Done" : "Next"}
+        <Button colorScheme={"purple"} borderRadius={24} onPress={onNext}>
+          {index === list.length - 1 ? t('common.done') : t('common.next')}
         </Button>
       </HStack>
     </View>

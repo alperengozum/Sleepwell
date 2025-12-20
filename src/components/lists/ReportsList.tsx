@@ -11,6 +11,7 @@ import {SleepLineChart} from "../charts/SleepLineChart";
 import {getMonthBefore} from "../../utils/DateUtils";
 import {SleepPieChart} from "../charts/SleepPieChart";
 import {List, ListType} from "../../domain/List";
+import {useTranslation} from "react-i18next";
 
 interface ReportsListProps {
   selectedDate?: SleepFilter;
@@ -18,6 +19,7 @@ interface ReportsListProps {
 }
 
 export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) => {
+  const { t } = useTranslation();
   const getSleeps = useSleepStore((state) => state.getSleeps);
   const deleteSleep = useSleepStore((state) => state.deleteSleep);
   const sleeps = useSleepStore((state) => state.sleeps);
@@ -38,7 +40,7 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
     const newList: Array<List> = [];
     newList.push({
       type: ListType.HEADER,
-      name: "Reports",
+      name: t('reports.title'),
     })
     filteredSleeps?.forEach((sleep: Sleep) => {
       newList.push({
@@ -76,12 +78,12 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
             <HStack my={5} mr={5} justifyContent="space-between" alignItems="center" textAlign="center">
               <VStack mx={5}>
                 <Text color="white" fontSize="lg">
-                  {item.name === SleepType.SLEEP ? `${item.desc} Sleep Cycles` : 'Powernap'}
+                  {item.name === SleepType.SLEEP ? `${item.desc} ${t('reports.sleepCycles')}` : t('reports.powernap')}
                 </Text>
                 <Text color="gray.400" fontSize="md">
                   {item.name === SleepType.SLEEP
-                    ? `Equals ${item.desc as number * 1.5} hours sleep.`
-                    : 'Equals 30 minutes sleep.'}
+                    ? t('reports.equalsHours', { hours: item.desc as number * 1.5 })
+                    : t('reports.equals30Minutes')}
                 </Text>
               </VStack>
               <View>
@@ -123,7 +125,7 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
         estimatedItemSize={200}
         ListFooterComponent={<View height={120}>
           <Text color="white" fontSize="md" textAlign="center" mt={10}>
-            {(filteredSleeps?.length ?? 0) > 0 ? `No more sleeps to show.\nTotal Sleeps: ${filteredSleeps?.length}` : "No sleeps to show.\nWhy didn't you sleep?"}
+            {(filteredSleeps?.length ?? 0) > 0 ? t('reports.noMoreSleeps', { count: filteredSleeps?.length }) : t('reports.noSleeps')}
           </Text>
         </View>}
       />

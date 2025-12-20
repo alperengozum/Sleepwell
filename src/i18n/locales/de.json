@@ -1,0 +1,112 @@
+{
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "fallAsleep": "Einschlafen",
+    "welcome": "Willkommen",
+    "fallAsleepTime": "Einschlafzeit",
+    "fallAsleepDesc": "Wie viele Minuten dauert es, bis Sie einschlafen?",
+    "showWelcomeSlide": "Willkommensfolie anzeigen"
+  },
+  "language": {
+    "select": "Sprache auswählen",
+    "english": "Englisch",
+    "turkish": "Türkisch",
+    "german": "Deutsch",
+    "french": "Französisch",
+    "azerbaijani": "Aserbaidschanisch",
+    "uzbek": "Usbekisch",
+    "hindi": "Hindi",
+    "urdu": "Urdu",
+    "arabic": "Arabisch",
+    "spanish": "Spanisch",
+    "russian": "Russisch"
+  },
+  "common": {
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "save": "Speichern",
+    "skip": "Überspringen",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "done": "Fertig"
+  },
+  "calculator": {
+    "sleep": "Schlaf",
+    "goToBedNow": "Jetzt schlafen gehen",
+    "goToBedNowDesc": "Wenn ich jetzt schlafe, wann sollte ich aufwachen?",
+    "whenToWakeUp": "Wann sollte ich aufwachen?",
+    "whenToWakeUpDesc": "Finden Sie die perfekte Zeit zum Aufwachen.",
+    "whenToGoToBed": "Wann sollte ich schlafen gehen?",
+    "whenToGoToBedDesc": "Finden Sie die perfekte Zeit zum Schlafengehen.",
+    "powerNap": "Power-Nap",
+    "takePowerNap": "Einen Power-Nap machen",
+    "takePowerNapDesc": "Steigern Sie Ihre Produktivität, Ihre Konzentration und Ihre Kraft!",
+    "selectBedTime": "Schlafenszeit auswählen.",
+    "selectWakeUpTime": "Aufwachzeit auswählen."
+  },
+  "welcome": {
+    "slide1Title": "Verbessern Sie Ihre Schlafqualität:\nStarten Sie mit Sleepwell!",
+    "slide1Desc": "Sleepwell ist eine Open-Source-Schlafzyklus-App. Bestimmen Sie optimale Aufwach-, Schlaf- und Nickerchenzeiten. Erkunden Sie anpassbare Wecker und Fortschrittsberichte für besseren Schlaf.",
+    "slide2Title": "Genießen Sie erholsamen Schlaf\nmit Sleepwell-Funktionen",
+    "slide2Desc": "Sleepwell hilft dabei, personalisierte Schlafpläne zu erstellen und zu verfolgen. Erleben Sie gesünderen Schlaf mit anpassbaren Weckern, aufschlussreichen Berichten und benutzerfreundlichem Design.",
+    "slide3Title": "Sleepwell: Berechnung und\nVerfolgung von Schlafzyklen",
+    "slide3Desc": "Sleepwell analysiert Schlafzyklen und schlägt personalisierte Zeiten mit fortschrittlichen Algorithmen vor. Schlafen Sie besser mit optimierten Aufwach- und Ruhezeiten.",
+    "slide4Title": "Treten Sie der Sleepwell-Community bei:\nZusammenarbeit für besseren Schlaf",
+    "slide4Desc": "Sleepwell fördert eine Community-Erfahrung. Tragen Sie auf GitHub und anderen Plattformen bei. Laden Sie Sleepwell für verbesserte Schlafqualität und gemeinsamen Fortschritt herunter."
+  },
+  "cycle": {
+    "sleep": "Schlaf",
+    "wakeUpAt": "Aufwachen um",
+    "goToBedAt": "Schlafen gehen um",
+    "sleepCycles": "Schlafzyklen",
+    "equalsHours": "Entspricht {{hours}} Stunden Schlaf.",
+    "title": "Schlafzyklen"
+  },
+  "reports": {
+    "title": "Berichte",
+    "sleepCycles": "Schlafzyklen",
+    "powernap": "Power-Nap",
+    "equalsHours": "Entspricht {{hours}} Stunden Schlaf.",
+    "equals30Minutes": "Entspricht 30 Minuten Schlaf.",
+    "noMoreSleeps": "Keine weiteren Schlafzeiten anzuzeigen.\nGesamte Schlafzeiten: {{count}}",
+    "noSleeps": "Keine Schlafzeiten anzuzeigen.\nWarum haben Sie nicht geschlafen?"
+  },
+  "info": {
+    "title": "Informationen",
+    "healthNotice": "Gesundheitshinweis 💜",
+    "healthNoticeDesc": "Sleepwell kann nicht mit Gesundheitsfachkräften in Verbindung gebracht werden und gibt keine Empfehlungen.",
+    "logoOrigin": "Woher kommt das Logo?",
+    "logoOriginDesc": "Es ist eine Mischung aus 🌌 Milchstraße und 🌙 Halbmond-Emojis, ich habe einige Details korrigiert. Die Emoji-Bilder verwenden Twemoji - Twitters Open-Source-Emoji-Sammlung (Lizenz: CC BY-SA 4.0)",
+    "openSource": "Ist Sleepwell ein Open-Source-Projekt?",
+    "openSourceDesc": "JA! Sie können das gesamte Projekt auf Github erreichen",
+    "openGithubProject": "Github-Projekt öffnen",
+    "addFeature": "Kann ich eine neue Funktion hinzufügen? 👋",
+    "addFeatureDesc": "Natürlich! Pull Requests auf Github sind willkommen.",
+    "openGithubPulls": "Github Pulls öffnen",
+    "haveIssue": "Ich habe ein Problem",
+    "haveIssueDesc": "Es tut mir leid, das zu hören 😔. Bitte öffnen Sie ein Github Issue oder senden Sie mir eine E-Mail, um es so schnell wie möglich zu beheben",
+    "openGithubIssues": "Github Issues öffnen",
+    "contact": "Ich möchte Sie kontaktieren",
+    "contactDesc": "Möchten Sie mir eine E-Mail senden?",
+    "sendMail": "E-Mail senden",
+    "otherProjects": "Andere Projekte",
+    "otherProjectsDesc": "Ich teile meine mobilen Projekte im Play Store, Sie können auch mein Github überprüfen. Hier ist mein Play Store-Link.",
+    "openPlayStore": "Google Play Store öffnen",
+    "link": "Link"
+  },
+  "charts": {
+    "sleepCycles": "Schlafzyklen",
+    "cyclesSuffix": " Zyklen",
+    "cycles": "Zyklus",
+    "average": "Durchschnitt",
+    "median": "Median",
+    "noSleepData": "Keine Schlafdaten"
+  },
+  "tabs": {
+    "calculate": "Berechnen",
+    "reports": "Berichte",
+    "settings": "Einstellungen"
+  }
+}
+

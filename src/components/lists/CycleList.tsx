@@ -11,37 +11,15 @@ import {getCalendars} from "expo-localization";
 import {addHours, formatHour} from "../../utils/DateUtils";
 import {createIntentAlarm} from "../../utils/AlarmUtils";
 import {List, ListType} from "../../domain/List";
-
-const getRenderItem = ({item}: { item: List }): React.ReactElement => {
-  if (item!.type === ListType.HEADER) {
-    // Rendering header
-    return <GenericHeaderCard>
-      <HStack mr={10} justifyContent="space-between" alignItems="center" textAlign="center">
-        <Text color="white" fontSize="lg">{item.name}</Text>
-        <Text color="white" fontSize="lg">{item.desc}</Text>
-      </HStack>
-    </GenericHeaderCard>;
-  } else if (item.type == ListType.ITEM) {
-    return <GenericCard style={{marginVertical: 10}} onPress={item.onClick || undefined}>
-      <HStack my={5} mr={10} justifyContent="space-between" alignItems="center" textAlign="center">
-        <VStack mx={5}>
-          <Text color="white" fontSize="lg">{item.name + " Sleep Cycles"}</Text>
-          <Text color="gray.400" fontSize="md">{"Equals " + item.name * 1.5 + " hours sleep."}</Text>
-        </VStack>
-        <Text color="purple.700" bold fontSize="xl">{item.desc}</Text>
-      </HStack>
-    </GenericCard>
-  } else {
-    return <React.Fragment/>
-  }
-}
+import {useTranslation} from "react-i18next";
 
 export const CycleList = (props: { params: any; }) => {
+  const { t } = useTranslation();
   const [is24Hour, setIs24Hour] = useState<boolean | undefined>(undefined);
   const [list, setList] = useState<Array<List>>([
     {
-      name: "Sleep",
-      desc: "Wake up at",
+      name: t('cycle.sleep'),
+      desc: t('cycle.wakeUpAt'),
       type: ListType.HEADER,
       icon: <Icon color="white" as={MaterialCommunityIcons} name="power-sleep" size={8}/>
     },
@@ -61,7 +39,7 @@ export const CycleList = (props: { params: any; }) => {
     }
     if (!params.isStart) {
       let tempList: Array<List> = [];
-      list.find((d: List) => d.name == "Sleep")!.desc = "Go to bed at";
+      list.find((d: List) => d.name == t('cycle.sleep'))!.desc = t('cycle.goToBedAt');
       for (let i = 6; i >= 1; i--) {
         let date = addHours(new Date(params.time), -i * 1.5)
         const fallAsleepSettings = useSettingsStore.getState().getSettings(SettingsType.FALL_ASLEEP);
@@ -77,7 +55,7 @@ export const CycleList = (props: { params: any; }) => {
     }
     if (params.isStart) {
       let tempList: Array<List> = [];
-      list.find((d: List) => d.name == "Sleep")!.desc = "Wake up at";
+      list.find((d: List) => d.name == t('cycle.sleep'))!.desc = t('cycle.wakeUpAt');
       for (let i = 6; i >= 1; i--) {
         let date = addHours(new Date(params.time), i * 1.5)
         const fallAsleepSettings = useSettingsStore.getState().getSettings(SettingsType.FALL_ASLEEP);
@@ -113,6 +91,30 @@ export const CycleList = (props: { params: any; }) => {
     }
     findTimeFormat();
   }, [])
+
+  const getRenderItem = ({item}: { item: List }): React.ReactElement => {
+    if (item!.type === ListType.HEADER) {
+      // Rendering header
+      return <GenericHeaderCard>
+        <HStack mr={10} justifyContent="space-between" alignItems="center" textAlign="center">
+          <Text color="white" fontSize="lg">{item.name}</Text>
+          <Text color="white" fontSize="lg">{item.desc}</Text>
+        </HStack>
+      </GenericHeaderCard>;
+    } else if (item.type == ListType.ITEM) {
+      return <GenericCard style={{marginVertical: 10}} onPress={item.onClick || undefined}>
+        <HStack my={5} mr={10} justifyContent="space-between" alignItems="center" textAlign="center">
+          <VStack mx={5}>
+            <Text color="white" fontSize="lg">{item.name + " " + t('cycle.sleepCycles')}</Text>
+            <Text color="gray.400" fontSize="md">{t('cycle.equalsHours', { hours: (item.name as number) * 1.5 })}</Text>
+          </VStack>
+          <Text color="purple.700" bold fontSize="xl">{item.desc}</Text>
+        </HStack>
+      </GenericCard>
+    } else {
+      return <React.Fragment/>
+    }
+  }
 
   return (
     <View width={"100%"} h={"100%"} mt={50}>

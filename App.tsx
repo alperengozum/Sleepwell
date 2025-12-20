@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NativeBaseProvider} from '@gluestack-ui/themed-native-base';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from "@react-navigation/native";
@@ -8,20 +8,34 @@ import 'react-native-reanimated'
 import * as NavigationBar from "expo-navigation-bar";
 import Toast from "react-native-toast-message";
 import {toastConfig} from "./src/components/config/ToastConfig";
-import {initializeSettingsStore} from "./src/store/SettingsStore";
+import {initializeSettingsStore, useSettingsStore} from "./src/store/SettingsStore";
 import {initializeSleepStore} from "./src/store/SleepStore";
 import {SafeAreaProvider} from "react-native-safe-area-context";
+import './src/i18n';
 
 export default function App() {
+  const [isInitialized, setIsInitialized] = useState(false);
+
   useEffect(() => {
-    // Initialize stores when app is ready
-    initializeSettingsStore();
-    initializeSleepStore();
+    const initApp = async () => {
+      // Initialize stores when app is ready - wait for completion
+      await initializeSettingsStore();
+      await initializeSleepStore();
+      
+      setIsInitialized(true);
+      
+      StatusBar.setHidden(true);
+      NavigationBar.setBackgroundColorAsync("black");
+      NavigationBar.setVisibilityAsync("hidden");
+    };
     
-    StatusBar.setHidden(true);
-    NavigationBar.setBackgroundColorAsync("black");
-    NavigationBar.setVisibilityAsync("hidden");
+    initApp();
   }, []);
+
+  // Show nothing until initialization is complete
+  if (!isInitialized) {
+    return null;
+  }
 
   return (
     <SafeAreaProvider>
