@@ -6,6 +6,7 @@ import {SleepFilter} from "../../store/SleepStore";
 import {getMonthBefore} from "../../utils/DateUtils";
 import {MotiView} from "moti";
 import Animated, {useSharedValue, useAnimatedScrollHandler, useAnimatedStyle} from "react-native-reanimated";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export default function ReportsHeader(props: {
   children: React.ReactNode,
@@ -13,6 +14,7 @@ export default function ReportsHeader(props: {
   setSelectedDate: React.Dispatch<React.SetStateAction<SleepFilter>>
 }) {
   const {selectedDate, setSelectedDate} = props;
+  const insets = useSafeAreaInsets();
 
   const onLeftDateButtonPress = () => {
     setSelectedDate({
@@ -96,7 +98,7 @@ export default function ReportsHeader(props: {
       right: 0,
       backgroundColor: "transparent",
       overflow: "hidden",
-      height: HEADER_MAX_HEIGHT
+      height: HEADER_MAX_HEIGHT + insets.top
     },
     headerBackground: {
       position: "absolute",
@@ -104,7 +106,7 @@ export default function ReportsHeader(props: {
       left: 0,
       right: 0,
       width: "100%",
-      height: HEADER_MAX_HEIGHT,
+      height: HEADER_MAX_HEIGHT + insets.top,
       resizeMode: "cover"
     },
     topBar: {
@@ -150,7 +152,7 @@ export default function ReportsHeader(props: {
         <MotiView style={[styles.headerBackground, headerBgStyle]}/>
       </MotiView>
       <MotiView style={[styles.topHeaderBar, topHeaderBarStyle]}>
-        <HStack justifyContent="space-between" alignItems="center" width="100%" height="100%" bgColor="black">
+        <HStack justifyContent="space-between" alignItems="center" width="100%" height="100%" bgColor="black" paddingTop={insets.top}>
           <IconButton variant="ghost" colorScheme={"white"}
                       icon={<Icon as={Ionicons} name="chevron-back-outline" color={"white"} size={8}/>}
                       onPress={onLeftDateButtonPress}/>

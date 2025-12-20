@@ -8,10 +8,12 @@ import LiveClock from "../clock/LiveClock";
 import {getCalendars} from 'expo-localization';
 import {MotiView} from "moti";
 import Animated, {useSharedValue, useAnimatedScrollHandler, useAnimatedStyle} from "react-native-reanimated";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export default function CalculatorHeader(props: { children: React.ReactNode; }) {
   const linkTo = useLinkTo();
   const [is24Hour, setIs24Hour] = useState<boolean | undefined>(undefined);
+  const insets = useSafeAreaInsets();
 
   const HEADER_MAX_HEIGHT = 240;
   const HEADER_MIN_HEIGHT = 150;
@@ -68,7 +70,7 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
       right: 0,
       backgroundColor: "transparent",
       overflow: "hidden",
-      height: HEADER_MAX_HEIGHT
+      height: HEADER_MAX_HEIGHT + insets.top
     },
     headerBackground: {
       position: "absolute",
@@ -76,21 +78,21 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
       left: 0,
       right: 0,
       width: "100%",
-      height: HEADER_MAX_HEIGHT,
+      height: HEADER_MAX_HEIGHT + insets.top,
       resizeMode: "cover"
     },
     topBar: {
-      marginTop: 120,
-      height: 10,
+      height: 50,
       alignItems: "center",
       justifyContent: "center",
       position: "absolute",
-      top: 0,
+      top: insets.top,
       left: 0,
-      right: 0
+      right: 0,
+      paddingHorizontal: 16
     },
     topHeaderBar: {
-      height: 100,
+      height: HEADER_MAX_HEIGHT,
       alignItems: "center",
       justifyContent: "center",
       position: "absolute",
@@ -116,9 +118,9 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
       <MotiView style={[styles.header, headerStyle]}>
         <MotiView style={[styles.headerBackground, headerBgStyle]}/>
       </MotiView>
-      <MotiView style={[styles.topHeaderBar, {marginTop: 50}, topHeaderBarStyle]}>
-        <VStack alignItems="center">
-          <HStack mt={5} mx={10} space={2}>
+      <MotiView style={[styles.topHeaderBar, {paddingTop: insets.top}, topHeaderBarStyle]}>
+        <VStack alignItems="center" space={2} flex={1} justifyContent="center">
+          <HStack mx={10} space={2}>
             <Heading color="white" size="xl" letterSpacing={0.1} fontWeight="thin">
               Sleep
             </Heading>
@@ -132,7 +134,7 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
           </Text>
         </VStack>
       </MotiView>
-      <MotiView style={[styles.topBar, {transform: [{scale: 1}, {translateY: -90}]}]}>
+      <MotiView style={[styles.topBar]}>
         <HStack justifyContent="flex-end" alignItems="center" width="100%" height="100%">
           <IconButton
             colorScheme="purple"

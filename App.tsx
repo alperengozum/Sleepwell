@@ -10,6 +10,7 @@ import Toast from "react-native-toast-message";
 import {toastConfig} from "./src/components/config/ToastConfig";
 import {initializeSettingsStore} from "./src/store/SettingsStore";
 import {initializeSleepStore} from "./src/store/SleepStore";
+import {SafeAreaProvider} from "react-native-safe-area-context";
 
 export default function App() {
   useEffect(() => {
@@ -20,15 +21,17 @@ export default function App() {
     StatusBar.setHidden(true);
     NavigationBar.setBackgroundColorAsync("black");
     NavigationBar.setVisibilityAsync("hidden");
-  })
+  }, []);
 
   return (
-    <NativeBaseProvider>
-      <NavigationContainer>
-        <MainNavigator/>
-        <Toast config={toastConfig}/>
-      </NavigationContainer>
-    </NativeBaseProvider>
+    <SafeAreaProvider>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <MainNavigator/>
+          <Toast config={toastConfig}/>
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </SafeAreaProvider>
   );
 };
 

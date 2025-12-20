@@ -3,8 +3,10 @@ import { StyleSheet } from "react-native";
 import { Heading, HStack, IconButton, View } from "@gluestack-ui/themed-native-base";
 import { MotiView } from "moti";
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function SettingsHeader(props: { children: React.ReactNode; }) {
+  const insets = useSafeAreaInsets();
   const HEADER_MAX_HEIGHT = 150;
   const HEADER_MIN_HEIGHT = 80;
   const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
@@ -65,7 +67,7 @@ export default function SettingsHeader(props: { children: React.ReactNode; }) {
       right: 0,
       backgroundColor: "transparent",
       overflow: "hidden",
-      height: HEADER_MAX_HEIGHT
+      height: HEADER_MAX_HEIGHT + insets.top
     },
     headerBackground: {
       position: "absolute",
@@ -73,7 +75,7 @@ export default function SettingsHeader(props: { children: React.ReactNode; }) {
       left: 0,
       right: 0,
       width: "100%",
-      height: HEADER_MAX_HEIGHT,
+      height: HEADER_MAX_HEIGHT + insets.top,
       resizeMode: "cover"
     },
     topBar: {
@@ -122,7 +124,7 @@ export default function SettingsHeader(props: { children: React.ReactNode; }) {
         <MotiView style={[styles.headerBackground, headerBgStyle]} />
       </MotiView>
       <MotiView style={[styles.topHeaderBar, topHeaderBarStyle]}>
-        <HStack justifyContent="space-between" alignItems="center" width="100%" height="100%" bgColor="black">
+        <HStack justifyContent="space-between" alignItems="center" width="100%" height="100%" bgColor="black" paddingTop={insets.top}>
           <IconButton variant="unstyled" />
           <Heading color="white" size="xl" letterSpacing={0.1} fontWeight="thin">
             Settings
