@@ -1,7 +1,6 @@
 import {HStack, Text, View, VStack} from "@gluestack-ui/themed-native-base";
 import React, { useState } from "react";
 import {useSettingsStore} from "../../store/SettingsStore";
-import {SettingsType} from "../../store/SettingsStore";
 import {GenericCard} from "./GenericCard";
 import {TouchableOpacity} from "react-native";
 import {LanguageModal} from "../modals/LanguageModal";
