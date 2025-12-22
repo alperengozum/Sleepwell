@@ -32,45 +32,6 @@ export const CycleList = (props: { params: any; }) => {
     findTimeFormat();
   }, [])
 
-  const buildList = (params: any) => {
-    //Calculate when to go to bed
-    if (!params) {
-      return console.error("where are the params?")
-    }
-    if (!params.isStart) {
-      let tempList: Array<List> = [];
-      list.find((d: List) => d.name == t('cycle.sleep'))!.desc = t('cycle.goToBedAt');
-      for (let i = 6; i >= 1; i--) {
-        let date = addHours(new Date(params.time), -i * 1.5)
-        const fallAsleepSettings = useSettingsStore.getState().getSettings(SettingsType.FALL_ASLEEP);
-        date = addHours(date, -(fallAsleepSettings?.[0]?.value as number || 0) / 60)
-        tempList.push({
-          type: ListType.ITEM,
-          name: i,
-          desc: `${formatHour(("0" + date.getHours()).slice(-2), is24Hour)}:${("0" + date.getMinutes()).slice(-2)}`,
-          onClick: () => createIntentAlarm(date, SleepType.SLEEP, i)
-        })
-      }
-      setList([list[0], ...tempList])
-    }
-    if (params.isStart) {
-      let tempList: Array<List> = [];
-      list.find((d: List) => d.name == t('cycle.sleep'))!.desc = t('cycle.wakeUpAt');
-      for (let i = 6; i >= 1; i--) {
-        let date = addHours(new Date(params.time), i * 1.5)
-        const fallAsleepSettings = useSettingsStore.getState().getSettings(SettingsType.FALL_ASLEEP);
-        date = addHours(date, (fallAsleepSettings?.[0]?.value as number || 0) / 60)
-        tempList.push({
-          type: ListType.ITEM,
-          name: i,
-          desc: `${formatHour(("0" + date.getHours()).slice(-2), is24Hour)}:${("0" + date.getMinutes()).slice(-2)}`,
-          onClick: () => createIntentAlarm(date, SleepType.SLEEP, i)
-        })
-      }
-      setList([list[0], ...tempList])
-    }
-  }
-
   const stickyHeaderIndices = list
     .map((item, index) => {
       if (item.type === ListType.HEADER) {
@@ -82,8 +43,56 @@ export const CycleList = (props: { params: any; }) => {
     .filter((item: number | null) => item !== null) as number[];
 
   useEffect(() => {
-    buildList(props.params);
-  }, [])
+    const buildList = (params: any) => {
+      //Calculate when to go to bed
+      if (!params) {
+        return console.error("where are the params?")
+      }
+      
+      // Create header item immutably - don't mutate existing state
+      const headerItem: List = {
+        name: t('cycle.sleep'),
+        desc: params.isStart ? t('cycle.wakeUpAt') : t('cycle.goToBedAt'),
+        type: ListType.HEADER,
+        icon: <Icon color="white" as={MaterialCommunityIcons} name="power-sleep" size={8}/>
+      };
+      
+      let tempList: Array<List> = [];
+      
+      if (!params.isStart) {
+        for (let i = 6; i >= 1; i--) {
+          let date = addHours(new Date(params.time), -i * 1.5)
+          const fallAsleepSettings = useSettingsStore.getState().getSettings(SettingsType.FALL_ASLEEP);
+          date = addHours(date, -(fallAsleepSettings?.[0]?.value as number || 0) / 60)
+          tempList.push({
+            type: ListType.ITEM,
+            name: i,
+            desc: `${formatHour(("0" + date.getHours()).slice(-2), is24Hour || false)}:${("0" + date.getMinutes()).slice(-2)}`,
+            onClick: () => createIntentAlarm(date, SleepType.SLEEP, i)
+          })
+        }
+      } else {
+        for (let i = 6; i >= 1; i--) {
+          let date = addHours(new Date(params.time), i * 1.5)
+          const fallAsleepSettings = useSettingsStore.getState().getSettings(SettingsType.FALL_ASLEEP);
+          date = addHours(date, (fallAsleepSettings?.[0]?.value as number || 0) / 60)
+          tempList.push({
+            type: ListType.ITEM,
+            name: i,
+            desc: `${formatHour(("0" + date.getHours()).slice(-2), is24Hour || false)}:${("0" + date.getMinutes()).slice(-2)}`,
+            onClick: () => createIntentAlarm(date, SleepType.SLEEP, i)
+          })
+        }
+      }
+      
+      // Create new array instead of mutating existing state
+      setList([headerItem, ...tempList])
+    }
+
+    if (props.params && is24Hour !== undefined) {
+      buildList(props.params);
+    }
+  }, [props.params, is24Hour, t])
 
   useEffect(() => {
     const findTimeFormat = async () => {

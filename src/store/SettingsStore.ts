@@ -1,6 +1,6 @@
 import {create} from "zustand";
 import {getItem, setItem} from "../utils/AsyncStorageUtils";
-import {syncLanguageWithStore} from "../i18n";
+import {syncLanguageWithStore, isValidLanguage} from "../i18n";
 import * as Localization from 'expo-localization';
 
 export enum SettingsType {
@@ -8,13 +8,6 @@ export enum SettingsType {
   LANGUAGE = "Language",
   WELCOME = "Welcome",
 }
-
-const SUPPORTED_LANGUAGES = ['en', 'tr', 'de', 'fr', 'az', 'uz', 'hi', 'ur', 'ar', 'es', 'ru'] as const;
-type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];
-
-const isValidLanguage = (lang: string): lang is SupportedLanguage => {
-  return SUPPORTED_LANGUAGES.includes(lang as SupportedLanguage);
-};
 
 export interface Settings {
   type: SettingsType

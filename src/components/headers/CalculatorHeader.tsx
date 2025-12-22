@@ -19,12 +19,11 @@ import {getCalendars} from 'expo-localization';
 import {MotiView} from "moti";
 import Animated, {useSharedValue, useAnimatedScrollHandler, useAnimatedStyle} from "react-native-reanimated";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
-import {useTranslation} from "react-i18next";
 import {useSettingsStore} from "../../store/SettingsStore";
+import {isValidLanguage} from "../../i18n";
 
 export default function CalculatorHeader(props: { children: React.ReactNode; }) {
   const linkTo = useLinkTo();
-  const { i18n } = useTranslation();
   const language = useSettingsStore((state) => state.language);
   const [is24Hour, setIs24Hour] = useState<boolean | undefined>(undefined);
   const [formattedDate, setFormattedDate] = useState("");
@@ -40,29 +39,8 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
 
   useEffect(() => {
     // Set moment locale based on current language
-    if (language === 'tr') {
-      moment.locale('tr');
-    } else if (language === 'de') {
-      moment.locale('de');
-    } else if (language === 'fr') {
-      moment.locale('fr');
-    } else if (language === 'az') {
-      moment.locale('az');
-    } else if (language === 'uz') {
-      moment.locale('uz');
-    } else if (language === 'hi') {
-      moment.locale('hi');
-    } else if (language === 'ur') {
-      moment.locale('ur');
-    } else if (language === 'ar') {
-      moment.locale('ar');
-    } else if (language === 'es') {
-      moment.locale('es');
-    } else if (language === 'ru') {
-      moment.locale('ru');
-    } else {
-      moment.locale('en');
-    }
+    const locale = isValidLanguage(language) ? language : 'en';
+    moment.locale(locale);
     setFormattedDate(moment().format("dddd, D MMMM YYYY"));
     
     // Update date every minute

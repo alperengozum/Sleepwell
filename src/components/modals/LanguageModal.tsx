@@ -3,6 +3,7 @@ import { Modal, Pressable, View, Text, Dimensions } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useSettingsStore } from '../../store/SettingsStore';
 import { FlashList } from '@shopify/flash-list';
+import { getLanguagesList } from '../../i18n';
 
 interface LanguageModalProps {
   visible: boolean;
@@ -12,20 +13,7 @@ interface LanguageModalProps {
 export const LanguageModal: React.FC<LanguageModalProps> = ({ visible, onClose }) => {
   const { t, i18n } = useTranslation();
   const { language, setLanguage } = useSettingsStore();
-
-  const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'tr', label: 'Türkçe' },
-    { code: 'de', label: 'Deutsch' },
-    { code: 'fr', label: 'Français' },
-    { code: 'az', label: 'Azərbaycan dili' },
-    { code: 'uz', label: 'O\'zbek tili' },
-    { code: 'hi', label: 'हिंदी' },
-    { code: 'ur', label: 'اردو' },
-    { code: 'ar', label: 'العربية' },
-    { code: 'es', label: 'Español' },
-    { code: 'ru', label: 'Русский' },
-  ];
+  const languages = getLanguagesList();
 
   const handleLanguageSelect = async (langCode: string) => {
     await setLanguage(langCode);

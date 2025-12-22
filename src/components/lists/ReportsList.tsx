@@ -125,7 +125,7 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
         estimatedItemSize={200}
         ListFooterComponent={<View height={120}>
           <Text color="white" fontSize="md" textAlign="center" mt={10}>
-            {(filteredSleeps?.length ?? 0) > 0 ? t('reports.noMoreSleeps', { count: filteredSleeps?.length }) : t('reports.noSleeps')}
+            {(filteredSleeps?.length ?? 0) > 0 ? t('reports.noMoreSleeps', { count: filteredSleeps?.length ?? 0 }) : t('reports.noSleeps')}
           </Text>
         </View>}
       />

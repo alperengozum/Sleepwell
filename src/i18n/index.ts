@@ -51,24 +51,49 @@ const resources = {
   },
 };
 
+export const SUPPORTED_LANGUAGES = ['en', 'tr', 'de', 'fr', 'az', 'uz', 'hi', 'ur', 'ar', 'es', 'ru'] as const;
+export type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];
+
+export const isValidLanguage = (lang: string): lang is SupportedLanguage => {
+  return SUPPORTED_LANGUAGES.includes(lang as SupportedLanguage);
+};
+
+export const LANGUAGE_LABELS: Record<SupportedLanguage, string> = {
+  en: 'English',
+  tr: 'Türkçe',
+  de: 'Deutsch',
+  fr: 'Français',
+  az: 'Azərbaycan dili',
+  uz: 'O\'zbek tili',
+  hi: 'हिंदी',
+  ur: 'اردو',
+  ar: 'العربية',
+  es: 'Español',
+  ru: 'Русский',
+};
+
+export const getLanguageLabel = (code: string): string => {
+  return isValidLanguage(code) ? LANGUAGE_LABELS[code] : LANGUAGE_LABELS.en;
+};
+
+export const getLanguagesList = (): Array<{ code: SupportedLanguage; label: string }> => {
+  return SUPPORTED_LANGUAGES.map(code => ({
+    code,
+    label: LANGUAGE_LABELS[code],
+  }));
+};
+
 const getInitialLanguage = async (): Promise<string> => {
   try {
     const savedLanguage = await getItem('language');
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'tr' || savedLanguage === 'de' || savedLanguage === 'fr' || savedLanguage === 'az' || savedLanguage === 'uz' || savedLanguage === 'hi' || savedLanguage === 'ur' || savedLanguage === 'ar' || savedLanguage === 'es' || savedLanguage === 'ru')) {
+    if (savedLanguage && isValidLanguage(savedLanguage)) {
       return savedLanguage;
     }
-    // Get device locale
+
     const deviceLocale = Localization.getLocales()[0]?.languageCode || 'en';
-    if (deviceLocale === 'tr') return 'tr';
-    if (deviceLocale === 'de') return 'de';
-    if (deviceLocale === 'fr') return 'fr';
-    if (deviceLocale === 'az') return 'az';
-    if (deviceLocale === 'uz') return 'uz';
-    if (deviceLocale === 'hi') return 'hi';
-    if (deviceLocale === 'ur') return 'ur';
-    if (deviceLocale === 'ar') return 'ar';
-    if (deviceLocale === 'es') return 'es';
-    if (deviceLocale === 'ru') return 'ru';
+    if (isValidLanguage(deviceLocale)) {
+      return deviceLocale;
+    }
     return 'en';
   } catch (error) {
     console.error('Error getting initial language:', error);
@@ -76,27 +101,31 @@ const getInitialLanguage = async (): Promise<string> => {
   }
 };
 
-// Initialize i18n synchronously with default, then update when async call completes
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: 'en', // Default, will be updated
-    fallbackLng: 'en',
-    compatibilityJSON: 'v4',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
-
-// Update language after async call
-getInitialLanguage().then((lang) => {
-  i18n.changeLanguage(lang);
-});
+// Initialize i18n asynchronously to avoid race conditions
+export const initializeI18n = async (): Promise<void> => {
+  // Check if i18n is already initialized to prevent multiple initialization errors
+  if (i18n.isInitialized) {
+    return;
+  }
+  
+  const initialLanguage = await getInitialLanguage();
+  
+  await i18n
+    .use(initReactI18next)
+    .init({
+      resources,
+      lng: initialLanguage,
+      fallbackLng: 'en',
+      compatibilityJSON: 'v4',
+      interpolation: {
+        escapeValue: false,
+      },
+    });
+};
 
 // Listen to language changes from store
 export const syncLanguageWithStore = (language: string) => {
-  if (language === 'en' || language === 'tr' || language === 'de' || language === 'fr' || language === 'az' || language === 'uz' || language === 'hi' || language === 'ur' || language === 'ar' || language === 'es' || language === 'ru') {
+  if (isValidLanguage(language)) {
     i18n.changeLanguage(language);
   }
 };
