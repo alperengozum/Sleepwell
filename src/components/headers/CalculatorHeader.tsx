@@ -4,15 +4,29 @@ import {Heading, HStack, Icon, IconButton, Text, View, VStack} from "@gluestack-
 import {useLinkTo} from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import moment from "moment";
+import "moment/locale/tr";
+import "moment/locale/de";
+import "moment/locale/fr";
+import "moment/locale/az";
+import "moment/locale/uz";
+import "moment/locale/hi";
+import "moment/locale/ur";
+import "moment/locale/ar";
+import "moment/locale/es";
+import "moment/locale/ru";
 import LiveClock from "../clock/LiveClock";
 import {getCalendars} from 'expo-localization';
 import {MotiView} from "moti";
 import Animated, {useSharedValue, useAnimatedScrollHandler, useAnimatedStyle} from "react-native-reanimated";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
+import {useSettingsStore} from "../../store/SettingsStore";
+import {isValidLanguage} from "../../i18n";
 
 export default function CalculatorHeader(props: { children: React.ReactNode; }) {
   const linkTo = useLinkTo();
+  const language = useSettingsStore((state) => state.language);
   const [is24Hour, setIs24Hour] = useState<boolean | undefined>(undefined);
+  const [formattedDate, setFormattedDate] = useState("");
   const insets = useSafeAreaInsets();
 
   const HEADER_MAX_HEIGHT = 240;
@@ -22,6 +36,20 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
   useEffect(() => {
     setIs24Hour(getCalendars()[0].uses24hourClock || false);
   }, []);
+
+  useEffect(() => {
+    // Set moment locale based on current language
+    const locale = isValidLanguage(language) ? language : 'en';
+    moment.locale(locale);
+    setFormattedDate(moment().format("dddd, D MMMM YYYY"));
+    
+    // Update date every minute
+    const interval = setInterval(() => {
+      setFormattedDate(moment().format("dddd, D MMMM YYYY"));
+    }, 60000);
+    
+    return () => clearInterval(interval);
+  }, [language]);
 
   const scrollY = useSharedValue(0);
 
@@ -130,7 +158,7 @@ export default function CalculatorHeader(props: { children: React.ReactNode; }) 
           </HStack>
           {is24Hour != undefined ? <LiveClock is24Hour={is24Hour}/> : <React.Fragment/>}
           <Text color="gray.200">
-            {moment().format("dddd, D MMMM YYYY")}
+            {formattedDate}
           </Text>
         </VStack>
       </MotiView>

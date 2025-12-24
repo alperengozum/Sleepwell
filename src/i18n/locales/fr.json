@@ -1,0 +1,112 @@
+{
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "fallAsleep": "S'endormir",
+    "welcome": "Bienvenue",
+    "fallAsleepTime": "Temps d'endormissement",
+    "fallAsleepDesc": "Combien de minutes faut-il pour s'endormir ?",
+    "showWelcomeSlide": "Afficher la diapositive de bienvenue"
+  },
+  "language": {
+    "select": "Sélectionner la langue",
+    "english": "Anglais",
+    "turkish": "Turc",
+    "german": "Allemand",
+    "french": "Français",
+    "azerbaijani": "Azéri",
+    "uzbek": "Ouzbek",
+    "hindi": "Hindi",
+    "urdu": "Ourdou",
+    "arabic": "Arabe",
+    "spanish": "Espagnol",
+    "russian": "Russe"
+  },
+  "common": {
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "skip": "Passer",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "done": "Terminé"
+  },
+  "calculator": {
+    "sleep": "Sommeil",
+    "goToBedNow": "Aller se coucher maintenant",
+    "goToBedNowDesc": "Si je dors maintenant, à quelle heure dois-je me réveiller ?",
+    "whenToWakeUp": "À quelle heure dois-je me réveiller ?",
+    "whenToWakeUpDesc": "Trouvez le moment parfait pour vous réveiller.",
+    "whenToGoToBed": "À quelle heure dois-je me coucher ?",
+    "whenToGoToBedDesc": "Trouvez le moment parfait pour vous coucher.",
+    "powerNap": "Sieste énergisante",
+    "takePowerNap": "Faire une sieste énergisante",
+    "takePowerNapDesc": "Améliorez votre productivité, votre concentration et votre énergie !",
+    "selectBedTime": "Sélectionner l'heure du coucher.",
+    "selectWakeUpTime": "Sélectionner l'heure du réveil."
+  },
+  "welcome": {
+    "slide1Title": "Améliorez votre qualité de sommeil :\nCommencez avec Sleepwell !",
+    "slide1Desc": "Sleepwell est une application open-source de cycles de sommeil. Déterminez les heures optimales de réveil, de sommeil et de sieste. Explorez les alarmes personnalisables et les rapports de progression pour un meilleur sommeil.",
+    "slide2Title": "Profitez d'un sommeil réparateur\navec les fonctionnalités de Sleepwell",
+    "slide2Desc": "Sleepwell aide à créer et suivre des horaires de sommeil personnalisés. Vivez un sommeil plus sain avec des alarmes personnalisables, des rapports perspicaces et un design convivial.",
+    "slide3Title": "Sleepwell : Calcul et\nsuivi des cycles de sommeil",
+    "slide3Desc": "Sleepwell analyse les cycles de sommeil et suggère des horaires personnalisés en utilisant des algorithmes avancés. Dormez mieux avec des heures de réveil et de repos optimisées.",
+    "slide4Title": "Rejoignez la communauté Sleepwell :\nCollaborez pour un meilleur sommeil",
+    "slide4Desc": "Sleepwell favorise une expérience communautaire. Contribuez sur GitHub et d'autres plateformes. Téléchargez Sleepwell pour une meilleure qualité de sommeil et des progrès collaboratifs."
+  },
+  "cycle": {
+    "sleep": "Sommeil",
+    "wakeUpAt": "Se réveiller à",
+    "goToBedAt": "Aller se coucher à",
+    "sleepCycles": "Cycles de sommeil",
+    "equalsHours": "Équivaut à {{hours}} heures de sommeil.",
+    "title": "Cycles de sommeil"
+  },
+  "reports": {
+    "title": "Rapports",
+    "sleepCycles": "Cycles de sommeil",
+    "powernap": "Sieste énergisante",
+    "equalsHours": "Équivaut à {{hours}} heures de sommeil.",
+    "equals30Minutes": "Équivaut à 30 minutes de sommeil.",
+    "noMoreSleeps": "Aucun autre sommeil à afficher.\nTotal des sommeils : {{count}}",
+    "noSleeps": "Aucun sommeil à afficher.\nPourquoi n'avez-vous pas dormi ?"
+  },
+  "info": {
+    "title": "Informations",
+    "healthNotice": "Avis de santé 💜",
+    "healthNoticeDesc": "Sleepwell ne peut pas être associé à des professionnels de la santé et ne donne pas de recommandations.",
+    "logoOrigin": "D'où vient le logo ?",
+    "logoOriginDesc": "C'est un mélange des emojis 🌌 Voie lactée et 🌙 Croissant de lune, j'ai corrigé quelques détails. Les images des emojis utilisent Twemoji - la collection d'emojis open-source de Twitter (Licence : CC BY-SA 4.0)",
+    "openSource": "Sleepwell est-il un projet open-source ?",
+    "openSourceDesc": "OUI ! Vous pouvez accéder à tout le projet sur Github",
+    "openGithubProject": "Ouvrir le projet Github",
+    "addFeature": "Puis-je ajouter une nouvelle fonctionnalité ? 👋",
+    "addFeatureDesc": "Bien sûr ! Les Pull Requests sur Github sont les bienvenues.",
+    "openGithubPulls": "Ouvrir les Pulls Github",
+    "haveIssue": "J'ai un problème",
+    "haveIssueDesc": "Je suis désolé de l'apprendre 😔. Veuillez ouvrir un Github Issue ou m'envoyer un e-mail pour le corriger dès que possible",
+    "openGithubIssues": "Ouvrir les Issues Github",
+    "contact": "Je veux vous contacter",
+    "contactDesc": "Voulez-vous m'envoyer un e-mail ?",
+    "sendMail": "Envoyer un e-mail",
+    "otherProjects": "Autres projets",
+    "otherProjectsDesc": "Je partage mes projets mobiles sur le Play Store, vous pouvez également consulter mon Github. Voici mon lien Play Store.",
+    "openPlayStore": "Ouvrir Google Play Store",
+    "link": "Lien"
+  },
+  "charts": {
+    "sleepCycles": "Cycles de sommeil",
+    "cyclesSuffix": " Cycles",
+    "cycles": "Cycle",
+    "average": "Moyenne",
+    "median": "Médiane",
+    "noSleepData": "Aucune donnée de sommeil"
+  },
+  "tabs": {
+    "calculate": "Calculer",
+    "reports": "Rapports",
+    "settings": "Paramètres"
+  }
+}
+

@@ -4,19 +4,22 @@ import {Dimensions} from "react-native";
 import {Sleep} from "../../store/SleepStore";
 import {LineChart, PieChart} from "react-native-chart-kit";
 import {Text} from "@gluestack-ui/themed-native-base";
+import {useTranslation} from "react-i18next";
 
 const sleepColors = ["#f3e8ff", "#e9d5ff", "#d8b4fe", "#c084fc", "#a855f7", "#9333ea", "#7e22ce", "#6b21a8", "#581c87", "#4c1d95", "#4527a0", "#382b7f", "#2d3a59", "#27303f", "#1e213a"]
 
 export const SleepPieChart = ({sleeps}: {sleeps: Array<Sleep> | undefined }) => {
+  const { t } = useTranslation();
   let data: { name: string; value: number; color: string; legendFontColor: string }[] | undefined = sleeps?.reduce((acc, sleep, i) => {
     if (sleep.cycle !== undefined) {
-      const existingIndex = acc.findIndex((item) => item.name === `${sleep.cycle} Cycles`);
+      const cycleLabel = `${sleep.cycle} ${t('charts.cycles')}`;
+      const existingIndex = acc.findIndex((item) => item.name === cycleLabel);
 
       if (existingIndex !== -1) {
         acc[existingIndex].value += 1;
       } else {
         acc.push({
-          name: `${sleep.cycle} Cycles`,
+          name: cycleLabel,
           value: 1,
           color: sleepColors[i % sleepColors.length],
           legendFontColor: "white",
@@ -28,7 +31,7 @@ export const SleepPieChart = ({sleeps}: {sleeps: Array<Sleep> | undefined }) => 
 
   if (!data || data.length == 0) {
     data = [{
-      name: "No Sleep Data",
+      name: t('charts.noSleepData'),
       value: 100,
       color: "white",
       legendFontColor: "white",
@@ -37,7 +40,7 @@ export const SleepPieChart = ({sleeps}: {sleeps: Array<Sleep> | undefined }) => 
 
   return (
     <GenericCard style={{marginVertical: 10, backgroundColor: "#360b54", marginTop: 5}}>
-      <Text color="white" fontSize="md" bold textAlign="center">Sleep Cycles</Text>
+      <Text color="white" fontSize="md" bold textAlign="center">{t('charts.sleepCycles')}</Text>
       <PieChart
         data={data}
         accessor={"value"}

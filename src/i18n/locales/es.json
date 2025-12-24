@@ -1,0 +1,112 @@
+{
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "fallAsleep": "Dormirse",
+    "welcome": "Bienvenido",
+    "fallAsleepTime": "Tiempo para Dormirse",
+    "fallAsleepDesc": "¿Cuántos minutos se tarda en dormirse?",
+    "showWelcomeSlide": "Mostrar Diapositiva de Bienvenida"
+  },
+  "language": {
+    "select": "Seleccionar Idioma",
+    "english": "Inglés",
+    "turkish": "Turco",
+    "german": "Alemán",
+    "french": "Francés",
+    "azerbaijani": "Azerbaiyano",
+    "uzbek": "Uzbeko",
+    "hindi": "Hindi",
+    "urdu": "Urdu",
+    "arabic": "Árabe",
+    "spanish": "Español",
+    "russian": "Ruso"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Guardar",
+    "skip": "Omitir",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "done": "Hecho"
+  },
+  "calculator": {
+    "sleep": "Dormir",
+    "goToBedNow": "Acuéstate ahora",
+    "goToBedNowDesc": "Si duermo ahora, ¿cuándo debo despertar?",
+    "whenToWakeUp": "¿Cuándo despertar?",
+    "whenToWakeUpDesc": "Encuentra el momento perfecto para despertar.",
+    "whenToGoToBed": "¿Cuándo acostarse?",
+    "whenToGoToBedDesc": "Encuentra el momento perfecto para acostarse.",
+    "powerNap": "Siesta energética",
+    "takePowerNap": "Toma una siesta energética",
+    "takePowerNapDesc": "¡Mejora tu productividad, tu concentración y simplemente disfruta la sensación!",
+    "selectBedTime": "Selecciona la hora de acostarse.",
+    "selectWakeUpTime": "Selecciona la hora de despertar."
+  },
+  "welcome": {
+    "slide1Title": "Eleva tu Calidad de Sueño:\n¡Comienza con Sleepwell!",
+    "slide1Desc": "Sleepwell es una aplicación de código abierto para ciclos de sueño. Determina los tiempos óptimos para despertar, dormir y tomar siestas. Explora alarmas personalizables e informes de progreso para un mejor sueño.",
+    "slide2Title": "Disfruta de un Sueño Reparador\ncon las Características de Sleepwell",
+    "slide2Desc": "Sleepwell ayuda a crear y rastrear horarios de sueño personalizados. Experimenta un sueño más saludable con alarmas personalizables, informes perspicaces y un diseño fácil de usar.",
+    "slide3Title": "Sleepwell: Calculando y\nRastreando Ciclos de Sueño",
+    "slide3Desc": "Sleepwell analiza los ciclos de sueño y sugiere horarios personalizados usando algoritmos avanzados. Duerme mejor con tiempos de despertar y descanso optimizados.",
+    "slide4Title": "Únete a la Comunidad Sleepwell:\nColabora para un Mejor Sueño",
+    "slide4Desc": "Sleepwell fomenta una experiencia comunitaria. Contribuye en GitHub y otras plataformas. Descarga Sleepwell para una calidad de sueño mejorada y progreso colaborativo."
+  },
+  "cycle": {
+    "sleep": "Dormir",
+    "wakeUpAt": "Despertar a las",
+    "goToBedAt": "Acostarse a las",
+    "sleepCycles": "Ciclos de Sueño",
+    "equalsHours": "Equivale a {{hours}} horas de sueño.",
+    "title": "Ciclos de Sueño"
+  },
+  "reports": {
+    "title": "Informes",
+    "sleepCycles": "Ciclos de Sueño",
+    "powernap": "Siesta energética",
+    "equalsHours": "Equivale a {{hours}} horas de sueño.",
+    "equals30Minutes": "Equivale a 30 minutos de sueño.",
+    "noMoreSleeps": "No hay más sueños para mostrar.\nTotal de Sueños: {{count}}",
+    "noSleeps": "No hay sueños para mostrar.\n¿Por qué no dormiste?"
+  },
+  "info": {
+    "title": "Información",
+    "healthNotice": "Aviso de salud 💜",
+    "healthNoticeDesc": "Sleepwell no puede asociarse con profesionales de la salud y no ofrece recomendaciones.",
+    "logoOrigin": "¿De dónde viene el logo?",
+    "logoOriginDesc": "Es una mezcla de los emojis 🌌 Vía Láctea y 🌙 Luna Creciente, arreglé algunos detalles. Las imágenes de los emojis usan Twemoji - la colección de emojis de código abierto de Twitter (Licencia: CC BY-SA 4.0)",
+    "openSource": "¿Es Sleepwell un proyecto de código abierto?",
+    "openSourceDesc": "¡SÍ! Puedes acceder a todo el proyecto en Github",
+    "openGithubProject": "Abrir Proyecto de Github",
+    "addFeature": "¿Puedo agregar una nueva característica? 👋",
+    "addFeatureDesc": "¡Por supuesto! Los Pull Request en Github son bienvenidos.",
+    "openGithubPulls": "Abrir Github Pulls",
+    "haveIssue": "Tengo un problema",
+    "haveIssueDesc": "Lamento escuchar eso 😔. Por favor abre un Github Issue o envíame un correo para solucionarlo lo antes posible",
+    "openGithubIssues": "Abrir Github Issues",
+    "contact": "Quiero contactarte",
+    "contactDesc": "¿Quieres enviarme un correo?",
+    "sendMail": "Enviar Correo",
+    "otherProjects": "Otros Proyectos",
+    "otherProjectsDesc": "Estoy compartiendo mis proyectos móviles en Play Store, también puedes revisar mi Github. Aquí está mi enlace de Play Store.",
+    "openPlayStore": "Abrir Google Play Store",
+    "link": "Enlace"
+  },
+  "charts": {
+    "sleepCycles": "Ciclos de Sueño",
+    "cyclesSuffix": " Ciclos",
+    "cycles": "Ciclos",
+    "average": "Promedio",
+    "median": "Mediana",
+    "noSleepData": "No Hay Datos de Sueño"
+  },
+  "tabs": {
+    "calculate": "Calcular",
+    "reports": "Informes",
+    "settings": "Configuración"
+  }
+}
+

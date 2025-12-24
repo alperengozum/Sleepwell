@@ -5,9 +5,12 @@ import Calculate from "../screen/Calculate";
 import Reports from "../screen/Reports";
 import Settings from "../screen/Settings";
 import {ColorValue} from "react-native";
+import {useTranslation} from "react-i18next";
+import {Icon} from "@gluestack-ui/themed-native-base";
 
 
 export function BottomTabNavigator() {
+  const { t } = useTranslation();
   const Tab = AnimatedTabBarNavigator();
 
   return (
@@ -26,12 +29,9 @@ export function BottomTabNavigator() {
         name="Calculate"
         component={Calculate}
         options={{
+          tabBarLabel: t('tabs.calculate'),
           tabBarIcon: (color: number | ColorValue | undefined, size: number | undefined) => (
-            <Ionicons
-              name="alarm-outline"
-              size={size ? size : 24}
-              color="white"
-            />
+            <Icon as={Ionicons} name="alarm-outline" size={6} color="white" />
           )
         }}
       />
@@ -39,12 +39,9 @@ export function BottomTabNavigator() {
         name="Reports"
         component={Reports}
         options={{
+          tabBarLabel: t('tabs.reports'),
           tabBarIcon: (color: number | ColorValue | undefined, size: number | undefined) => (
-            <Ionicons
-              name="file-tray-outline"
-              size={size ? size : 24}
-              color="white"
-            />
+            <Icon as={Ionicons} name="file-tray-outline" size={6} color="white" />
           )
         }}
       />
@@ -52,12 +49,9 @@ export function BottomTabNavigator() {
         name="Settings"
         component={Settings}
         options={{
+          tabBarLabel: t('tabs.settings'),
           tabBarIcon: (color: number | ColorValue | undefined, size: number | undefined) => (
-            <Ionicons
-              name="settings-outline"
-              size={size ? size : 24}
-              color="white"
-            />
+            <Icon as={Ionicons} name="settings-outline" size={6} color="white" />
           )
         }}
       />

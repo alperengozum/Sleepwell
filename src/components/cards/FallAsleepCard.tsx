@@ -4,8 +4,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {useSettingsStore} from "../../store/SettingsStore";
 import {SettingsType} from "../../store/SettingsStore";
 import {GenericCard} from "./GenericCard";
+import {useTranslation} from "react-i18next";
 
 export const FallAsleepCard = () => {
+  const { t } = useTranslation();
   const getSettings = useSettingsStore((state) => state.getSettings);
   const editSetting = useSettingsStore((state) => state.editSetting);
   // Subscribe to settings to ensure re-render when they change
@@ -28,8 +30,8 @@ export const FallAsleepCard = () => {
     <GenericCard style={{marginVertical: 10}}>
       <HStack my={5} mr={5} justifyContent="space-between" alignItems="center" textAlign="center">
         <VStack mx={5} flex={1}>
-          <Text color="white" fontSize="lg">{SettingsType.FALL_ASLEEP + " Time"}</Text>
-          <Text color="gray.400" fontSize="md">How many minutes does it take to fall asleep?</Text>
+          <Text color="white" fontSize="lg">{t('settings.fallAsleepTime')}</Text>
+          <Text color="gray.400" fontSize="md">{t('settings.fallAsleepDesc')}</Text>
         </VStack>
         <View flex={1}>
           <HStack alignItems="center" justifyContent="flex-end" space={5}>

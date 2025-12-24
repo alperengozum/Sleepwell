@@ -1,8 +1,11 @@
 import {create} from "zustand";
 import {getItem, setItem} from "../utils/AsyncStorageUtils";
+import {syncLanguageWithStore, isValidLanguage} from "../i18n";
+import * as Localization from 'expo-localization';
 
 export enum SettingsType {
   FALL_ASLEEP = "Fall Asleep",
+  LANGUAGE = "Language",
   WELCOME = "Welcome",
 }
 
@@ -15,11 +18,13 @@ export interface Settings {
 interface SettingsStore {
   settings: Array<Settings> | undefined;
   loading: boolean;
+  language: string;
   getSettings: (type?: SettingsType) => Array<Settings> | undefined;
   setSettings: (settings: Array<Settings> | undefined) => Promise<void>;
   addSetting: (setting: Settings) => Promise<void>;
   editSetting: (type: SettingsType, value: string | number | boolean | undefined) => Promise<void>;
   getSettingsAsync: (type?: SettingsType) => Promise<Array<Settings> | undefined>;
+  setLanguage: (language: string) => Promise<void>;
   initialize: () => Promise<void>;
 }
 
@@ -37,23 +42,57 @@ const getInitialSettings = (): Settings[] => {
 export const useSettingsStore = create<SettingsStore>((set, get) => ({
   settings: undefined,
   loading: true,
+  language: 'en',
 
   initialize: async () => {
     try {
       const settings = await getItem("settings");
-      const processedSettings = settings || getInitialSettings();
-      set({ settings: processedSettings, loading: false });
+      let processedSettings = settings || getInitialSettings();
+      
+      // Ensure all SettingsType enum values are present
+      const allSettingsTypes = Object.values(SettingsType);
+      const existingTypes = processedSettings.map((s: Settings) => s.type);
+      const missingTypes = allSettingsTypes.filter(type => !existingTypes.includes(type));
+      
+      // Add missing settings
+      if (missingTypes.length > 0) {
+        missingTypes.forEach((type, index) => {
+          processedSettings.push({
+            type,
+            value: undefined,
+            id: processedSettings.length + index
+          });
+        });
+      }
+      
+      // Initialize language
+      const savedLanguage = await getItem("language");
+      let initialLanguage: string;
+      
+      if (savedLanguage && isValidLanguage(savedLanguage)) {
+        initialLanguage = savedLanguage;
+      } else {
+        // First time opening - detect device language
+        const deviceLocale = Localization.getLocales()[0]?.languageCode || 'en';
+        initialLanguage = isValidLanguage(deviceLocale) ? deviceLocale : 'en';
+      }
+      
+      set({ settings: processedSettings, loading: false, language: initialLanguage });
+      syncLanguageWithStore(initialLanguage);
       try {
         await setItem("settings", processedSettings);
+        await setItem("language", initialLanguage);
       } catch (persistError) {
         console.error("Failed to persist settings during initialization:", persistError);
       }
     } catch (error) {
       console.error("Failed to initialize settings store:", error);
       const fallbackSettings = getInitialSettings();
-      set({ settings: fallbackSettings, loading: false });
+      set({ settings: fallbackSettings, loading: false, language: 'en' });
+      syncLanguageWithStore('en');
       try {
         await setItem("settings", fallbackSettings);
+        await setItem("language", 'en');
       } catch (persistError) {
         console.error("Failed to persist fallback settings during initialization:", persistError);
       }
@@ -111,6 +150,16 @@ export const useSettingsStore = create<SettingsStore>((set, get) => ({
       await new Promise(resolve => setTimeout(resolve, 50));
     }
     return getSettings(type);
+  },
+
+  setLanguage: async (language: string) => {
+    if (!isValidLanguage(language)) {
+      console.error('Invalid language:', language);
+      return;
+    }
+    set({ language });
+    await setItem("language", language);
+    syncLanguageWithStore(language);
   },
 }));
 

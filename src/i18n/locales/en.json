@@ -1,0 +1,111 @@
+{
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "fallAsleep": "Fall Asleep",
+    "welcome": "Welcome",
+    "fallAsleepTime": "Fall Asleep Time",
+    "fallAsleepDesc": "How many minutes does it take to fall asleep?",
+    "showWelcomeSlide": "Show Welcome Slide"
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "turkish": "Turkish",
+    "german": "German",
+    "french": "French",
+    "azerbaijani": "Azerbaijani",
+    "uzbek": "Uzbek",
+    "hindi": "Hindi",
+    "urdu": "Urdu",
+    "arabic": "Arabic",
+    "spanish": "Spanish",
+    "russian": "Russian"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "skip": "Skip",
+    "previous": "Previous",
+    "next": "Next",
+    "done": "Done"
+  },
+  "calculator": {
+    "sleep": "Sleep",
+    "goToBedNow": "Go to bed now",
+    "goToBedNowDesc": "If I sleep now, when should i get up?",
+    "whenToWakeUp": "When to wake up?",
+    "whenToWakeUpDesc": "Find the perfect time to wake up.",
+    "whenToGoToBed": "When to go to bed?",
+    "whenToGoToBedDesc": "Find the perfect time to go to bed.",
+    "powerNap": "Power nap",
+    "takePowerNap": "Take a power nap",
+    "takePowerNapDesc": " Improve your productivity, your focus, and simply enjoy the feeling!",
+    "selectBedTime": "Select bed time.",
+    "selectWakeUpTime": "Select wake up time."
+  },
+  "welcome": {
+    "slide1Title": "Elevate Your Sleep Quality:\nGet Started with Sleepwell!",
+    "slide1Desc": "Sleepwell is an open-source sleep cycle app. Determine optimal wake-up, sleep, and nap times. Explore customizable alarms and progress reports for better sleep.",
+    "slide2Title": "Enjoy Restful Sleep\nwith Sleepwell Features",
+    "slide2Desc": "Sleepwell helps create and track personalized sleep schedules. Experience healthier sleep with customizable alarms, insightful reports, and user-friendly design.",
+    "slide3Title": "Sleepwell: Calculating and\nTracking Sleep Cycles",
+    "slide3Desc": "Sleepwell analyzes sleep cycles and suggests personalized timings using advanced algorithms. Sleep better with optimized wake-up and rest times.",
+    "slide4Title": "Join the Sleepwell Community:\nCollaborate for Better Sleep",
+    "slide4Desc": "Sleepwell fosters a community experience. Contribute on GitHub and other platforms. Download Sleepwell for improved sleep quality and collaborative progress."
+  },
+  "cycle": {
+    "sleep": "Sleep",
+    "wakeUpAt": "Wake up at",
+    "goToBedAt": "Go to bed at",
+    "sleepCycles": "Sleep Cycles",
+    "equalsHours": "Equals {{hours}} hours sleep.",
+    "title": "Sleep Cycles"
+  },
+  "reports": {
+    "title": "Reports",
+    "sleepCycles": "Sleep Cycles",
+    "powernap": "Powernap",
+    "equalsHours": "Equals {{hours}} hours sleep.",
+    "equals30Minutes": "Equals 30 minutes sleep.",
+    "noMoreSleeps": "No more sleeps to show.\nTotal Sleeps: {{count}}",
+    "noSleeps": "No sleeps to show.\nWhy didn't you sleep?"
+  },
+  "info": {
+    "title": "Informations",
+    "healthNotice": "Health notice 💜",
+    "healthNoticeDesc": "Sleepwell cannot be associated with healthcare professionals and does not give recommendations.",
+    "logoOrigin": "Where does the logo come from?",
+    "logoOriginDesc": "It is a mix of 🌌 Milky Way and 🌙 Crescent Moon emojis, I fixed some details. Images of the emoji use Twemoji - Twitter's open-source emoji collection (License: CC BY-SA 4.0)",
+    "openSource": "Is Sleepwell an open-source project?",
+    "openSourceDesc": "YES! You can reach whole project in Github",
+    "openGithubProject": "Open Github Project",
+    "addFeature": "Can I add new feature? 👋",
+    "addFeatureDesc": "Of course! Pull Requests on Github are welcome.",
+    "openGithubPulls": "Open Github Pulls",
+    "haveIssue": "I have an Issue",
+    "haveIssueDesc": "I'm sorry to hear that 😔. Please open Github Issue or mail me to fix it ASAP",
+    "openGithubIssues": "Open Github Issues",
+    "contact": "I want to contact you",
+    "contactDesc": "Wanna mail me?",
+    "sendMail": "Send Mail",
+    "otherProjects": "Other Projects",
+    "otherProjectsDesc": "I'm sharing my mobile projects in Play Store, also you can check my Github. Here is my Play Store link.",
+    "openPlayStore": "Open Google Play Store",
+    "link": "Link"
+  },
+  "charts": {
+    "sleepCycles": "Sleep Cycles",
+    "cyclesSuffix": " Cycles",
+    "cycles": "Cycles",
+    "average": "Average",
+    "median": "Median",
+    "noSleepData": "No Sleep Data"
+  },
+  "tabs": {
+    "calculate": "Calculate",
+    "reports": "Reports",
+    "settings": "Settings"
+  }
+}

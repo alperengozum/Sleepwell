@@ -6,8 +6,10 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { MotiView } from "moti";
 import Animated, { useSharedValue, useAnimatedScrollHandler, useAnimatedStyle } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 export default function CycleHeader(props: { children: React.ReactNode; }) {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
 
@@ -132,7 +134,7 @@ export default function CycleHeader(props: { children: React.ReactNode; }) {
             icon={<Icon as={MaterialCommunityIcons} name="arrow-left" size={8} color="white" />}
           />
           <Heading color="white" size="xl" letterSpacing={0.1} fontWeight="thin">
-            Sleep Cycles
+            {t('cycle.title')}
           </Heading>
           <IconButton colorScheme="purple" variant="unstyled" />
         </HStack>

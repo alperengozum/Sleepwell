@@ -1,0 +1,111 @@
+{
+  "settings": {
+    "title": "Ayarlar",
+    "language": "Dil",
+    "fallAsleep": "Uykuya Dalma",
+    "welcome": "Hoş Geldiniz",
+    "fallAsleepTime": "Uykuya Dalma Süresi",
+    "fallAsleepDesc": "Uykuya dalmak kaç dakika sürüyor?",
+    "showWelcomeSlide": "Hoş Geldiniz Slaytını Göster"
+  },
+  "language": {
+    "select": "Dil Seçin",
+    "english": "İngilizce",
+    "turkish": "Türkçe",
+    "german": "Almanca",
+    "french": "Fransızca",
+    "azerbaijani": "Azerbaycan dili",
+    "uzbek": "Özbekçe",
+    "hindi": "Hintçe",
+    "urdu": "Urduca",
+    "arabic": "Arapça",
+    "spanish": "İspanyolca",
+    "russian": "Rusça"
+  },
+  "common": {
+    "cancel": "İptal",
+    "confirm": "Onayla",
+    "save": "Kaydet",
+    "skip": "Atla",
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "done": "Tamamla"
+  },
+  "calculator": {
+    "sleep": "Uyku",
+    "goToBedNow": "Şimdi uyu",
+    "goToBedNowDesc": "Şimdi uyursam, ne zaman uyanmalıyım?",
+    "whenToWakeUp": "Ne zaman uyanmalıyım?",
+    "whenToWakeUpDesc": "Uyanmak için mükemmel zamanı bulun.",
+    "whenToGoToBed": "Ne zaman yatmalıyım?",
+    "whenToGoToBedDesc": "Yatmak için mükemmel zamanı bulun.",
+    "powerNap": "Kısa uyku",
+    "takePowerNap": "Kısa bir güç uykusu",
+    "takePowerNapDesc": "Verimliliğinizi, odaklanmanızı ve gücünüzü arttırın!",
+    "selectBedTime": "Yatma saatini seçin.",
+    "selectWakeUpTime": "Uyanış saatini seçin."
+  },
+  "welcome": {
+    "slide1Title": "Uyku Kalitenizi Yükseltin:\nSleepwell ile Başlayın!",
+    "slide1Desc": "Sleepwell açık kaynaklı bir uyku döngüsü uygulamasıdır. Optimal kalkış, uyku ve kestirme zamanlarını belirleyin. Daha iyi uyku için özelleştirilebilir alarmlar ve ilerleme raporlarını keşfedin.",
+    "slide2Title": "Sleepwell Özellikleri ile\nHuzurlu Uyku Keyfi",
+    "slide2Desc": "Sleepwell kişiselleştirilmiş uyku programları oluşturmanıza ve takip etmenize yardımcı olur. Özelleştirilebilir alarmlar, içgörülü raporlar ve kullanıcı dostu tasarımla daha sağlıklı uyku deneyimi yaşayın.",
+    "slide3Title": "Sleepwell: Uyku Döngülerini\nHesaplama ve Takip",
+    "slide3Desc": "Sleepwell, gelişmiş algoritmalar kullanarak uyku döngülerini analiz eder ve kişiselleştirilmiş zamanlamalar önerir. Optimize edilmiş kalkış ve dinlenme zamanlarıyla daha iyi uyuyun.",
+    "slide4Title": "Sleepwell Topluluğuna Katılın:\nDaha İyi Uyku için İş Birliği",
+    "slide4Desc": "Sleepwell topluluk deneyimini destekler. GitHub ve diğer platformlarda katkıda bulunun. Geliştirilmiş uyku kalitesi ve işbirlikçi ilerleme için Sleepwell'i indirin."
+  },
+  "cycle": {
+    "sleep": "Uyku",
+    "wakeUpAt": "Şu saatte uyan",
+    "goToBedAt": "Şu saatte yat",
+    "sleepCycles": "Uyku Döngüleri",
+    "equalsHours": "{{hours}} saatlik uykuya eşittir.",
+    "title": "Uyku Döngüleri"
+  },
+  "reports": {
+    "title": "Raporlar",
+    "sleepCycles": "Uyku Döngüleri",
+    "powernap": "Kısa Uyku",
+    "equalsHours": "{{hours}} saatlik uykuya eşittir.",
+    "equals30Minutes": "30 dakikalık uykuya eşittir.",
+    "noMoreSleeps": "Gösterilecek daha fazla uyku yok.\nToplam Uyku: {{count}}",
+    "noSleeps": "Gösterilecek uyku yok.\nNeden uyumadınız?"
+  },
+  "info": {
+    "title": "Bilgiler",
+    "healthNotice": "Sağlık uyarısı 💜",
+    "healthNoticeDesc": "Sleepwell sağlık profesyonelleri ile ilişkilendirilemez ve öneri vermez.",
+    "logoOrigin": "Logo nereden geliyor?",
+    "logoOriginDesc": "🌌 Samanyolu ve 🌙 Hilal Ay emojilerinin bir karışımıdır, bazı detayları düzelttim. Emoji görüntüleri Twemoji - Twitter'ın açık kaynaklı emoji koleksiyonunu kullanır (Lisans: CC BY-SA 4.0)",
+    "openSource": "Sleepwell açık kaynaklı bir proje mi?",
+    "openSourceDesc": "EVET! Tüm projeye Github'da ulaşabilirsiniz",
+    "openGithubProject": "Github Projesini Aç",
+    "addFeature": "Yeni özellik ekleyebilir miyim? 👋",
+    "addFeatureDesc": "Tabii ki! Github'da Pull Request'ler hoş karşılanır.",
+    "openGithubPulls": "Github Pull'ları Aç",
+    "haveIssue": "Bir sorunum var",
+    "haveIssueDesc": "Bunu duyduğuma üzüldüm 😔. Lütfen Github Issue açın veya mümkün olan en kısa sürede düzeltmem için bana mail gönderin",
+    "openGithubIssues": "Github Issue'ları Aç",
+    "contact": "Sizinle iletişime geçmek istiyorum",
+    "contactDesc": "Bana mail göndermek ister misiniz?",
+    "sendMail": "Mail Gönder",
+    "otherProjects": "Diğer Projeler",
+    "otherProjectsDesc": "Mobil projelerimi Play Store'da paylaşıyorum, ayrıca Github'ımı kontrol edebilirsiniz. İşte Play Store linkim.",
+    "openPlayStore": "Google Play Store'u Aç",
+    "link": "Bağlantı"
+  },
+  "charts": {
+    "sleepCycles": "Uyku Döngüleri",
+    "cyclesSuffix": " Döngü",
+    "cycles": "Döngü",
+    "average": "Ortalama",
+    "median": "Medyan",
+    "noSleepData": "Uyku Verisi Yok"
+  },
+  "tabs": {
+    "calculate": "Hesapla",
+    "reports": "Raporlar",
+    "settings": "Ayarlar"
+  }
+}

@@ -14,6 +14,7 @@ import {TimerPickerModal} from "react-native-timer-picker";
 import {LinearGradient} from "expo-linear-gradient";
 import {getCalendars} from "expo-localization";
 import Constants from "expo-constants";
+import {useTranslation} from "react-i18next";
 
 const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : (Constants.expoConfig?.extra?.adUnitId || 'ca-app-pub-3940256099942544/1033173712');
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {requestNonPersonalizedAdsOnly: true});
@@ -46,6 +47,7 @@ const getRenderItem = ({item}: { item: List }): React.ReactElement => {
 }
 
 export const CalculatorList = () => {
+  const { t } = useTranslation();
   const [loaded, setLoaded] = useState(false);
   const navigation = useNavigation();
 
@@ -55,36 +57,36 @@ export const CalculatorList = () => {
 
   const list: (List)[] = [
     {
-      name: "Sleep",
+      name: t('calculator.sleep'),
       type: ListType.HEADER,
       icon: <Icon color="white" as={MaterialCommunityIcons} name="power-sleep" size={8}/>
     },
     {
-      name: "Go to bed now",
-      desc: "If I sleep now, when should i get up?",
+      name: t('calculator.goToBedNow'),
+      desc: t('calculator.goToBedNowDesc'),
       onClick: () => goToBedNow(),
       type: ListType.ITEM
     },
     {
-      name: "When to wake up?",
-      desc: "Find the perfect time to wake up.",
+      name: t('calculator.whenToWakeUp'),
+      desc: t('calculator.whenToWakeUpDesc'),
       onClick: () => whenToWakeUp(),
       type: ListType.ITEM
     },
     {
-      name: "When to go to bed?",
-      desc: "Find the perfect time to go to bed.",
+      name: t('calculator.whenToGoToBed'),
+      desc: t('calculator.whenToGoToBedDesc'),
       onClick: () => whenToGoToBed(),
       type: ListType.ITEM
     },
     {
-      name: "Power nap",
+      name: t('calculator.powerNap'),
       type: ListType.HEADER,
       icon: <Icon color="white" as={MaterialCommunityIcons} name="desk" size={8}/>,
     },
     {
-      name: "Take a power nap",
-      desc: " Improve your productivity, your focus, and simply enjoy the feeling!",
+      name: t('calculator.takePowerNap'),
+      desc: t('calculator.takePowerNapDesc'),
       type: ListType.ITEM,
       onClick: () => takeAPowerNap()
     },
@@ -106,13 +108,13 @@ export const CalculatorList = () => {
   }
 
   const whenToWakeUp = (): void => {
-    setPickerTitle("Select bed time.");
+    setPickerTitle(t('calculator.selectBedTime'));
     setIsStart(true);
     setShowPicker(true);
   }
 
   const whenToGoToBed = (): void => {
-    setPickerTitle("Select wake up time.");
+    setPickerTitle(t('calculator.selectWakeUpTime'));
     setIsStart(false);
     setShowPicker(true);
   }
