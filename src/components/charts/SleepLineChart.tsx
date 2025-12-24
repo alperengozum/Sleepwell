@@ -5,13 +5,20 @@ import {Sleep} from "../../store/SleepStore";
 import {LineChart} from "react-native-chart-kit";
 import {Text} from "@gluestack-ui/themed-native-base";
 import {useTranslation} from "react-i18next";
+import {useSettingsStore} from "../../store/SettingsStore";
+import {isValidLanguage} from "../../i18n";
 
 export const SleepLineChart = ({sleeps}: {sleeps: Array<Sleep> | undefined }) => {
   const { t } = useTranslation();
+  const language = useSettingsStore((state) => state.language);
+  const locale = isValidLanguage(language) ? language : 'en';
   let data = sleeps?.map((sleep) => sleep.cycle).filter((sleep) => (sleep != undefined))
   if (!data || data.length == 0) {
     data = [0]
   }
+  
+  // Note: react-native-chart-kit doesn't support locale-specific number formatting
+  // The chart library will display numbers in its default format
 
   return (
     <GenericCard style={{marginVertical: 10, backgroundColor: "#440e6a", marginTop: 5}}>

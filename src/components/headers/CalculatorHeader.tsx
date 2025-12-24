@@ -4,16 +4,6 @@ import {Heading, HStack, Icon, IconButton, Text, View, VStack} from "@gluestack-
 import {useLinkTo} from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import moment from "moment";
-import "moment/locale/tr";
-import "moment/locale/de";
-import "moment/locale/fr";
-import "moment/locale/az";
-import "moment/locale/uz";
-import "moment/locale/hi";
-import "moment/locale/ur";
-import "moment/locale/ar";
-import "moment/locale/es";
-import "moment/locale/ru";
 import LiveClock from "../clock/LiveClock";
 import {getCalendars} from 'expo-localization';
 import {MotiView} from "moti";

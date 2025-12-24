@@ -5,14 +5,19 @@ import {Sleep} from "../../store/SleepStore";
 import {LineChart, PieChart} from "react-native-chart-kit";
 import {Text} from "@gluestack-ui/themed-native-base";
 import {useTranslation} from "react-i18next";
+import {formatNumber} from "../../utils/DateUtils";
+import {useSettingsStore} from "../../store/SettingsStore";
+import {isValidLanguage} from "../../i18n";
 
 const sleepColors = ["#f3e8ff", "#e9d5ff", "#d8b4fe", "#c084fc", "#a855f7", "#9333ea", "#7e22ce", "#6b21a8", "#581c87", "#4c1d95", "#4527a0", "#382b7f", "#2d3a59", "#27303f", "#1e213a"]
 
 export const SleepPieChart = ({sleeps}: {sleeps: Array<Sleep> | undefined }) => {
   const { t } = useTranslation();
+  const language = useSettingsStore((state) => state.language);
+  const locale = isValidLanguage(language) ? language : 'en';
   let data: { name: string; value: number; color: string; legendFontColor: string }[] | undefined = sleeps?.reduce((acc, sleep, i) => {
     if (sleep.cycle !== undefined) {
-      const cycleLabel = `${sleep.cycle} ${t('charts.cycles')}`;
+      const cycleLabel = `${formatNumber(sleep.cycle, locale)} ${t('charts.cycles')}`;
       const existingIndex = acc.findIndex((item) => item.name === cycleLabel);
 
       if (existingIndex !== -1) {

@@ -8,13 +8,16 @@ import {SleepType} from "../../store/SleepStore";
 import {useSettingsStore} from "../../store/SettingsStore";
 import {SettingsType} from "../../store/SettingsStore";
 import {getCalendars} from "expo-localization";
-import {addHours, formatHour} from "../../utils/DateUtils";
+import {addHours, formatTime, formatNumber} from "../../utils/DateUtils";
 import {createIntentAlarm} from "../../utils/AlarmUtils";
 import {List, ListType} from "../../domain/List";
 import {useTranslation} from "react-i18next";
+import {isValidLanguage} from "../../i18n";
 
 export const CycleList = (props: { params: any; }) => {
   const { t } = useTranslation();
+  const language = useSettingsStore((state) => state.language);
+  const locale = isValidLanguage(language) ? language : 'en';
   const [is24Hour, setIs24Hour] = useState<boolean | undefined>(undefined);
   const [list, setList] = useState<Array<List>>([
     {
@@ -67,7 +70,7 @@ export const CycleList = (props: { params: any; }) => {
           tempList.push({
             type: ListType.ITEM,
             name: i,
-            desc: `${formatHour(("0" + date.getHours()).slice(-2), is24Hour || false)}:${("0" + date.getMinutes()).slice(-2)}`,
+            desc: formatTime(date, is24Hour || false, locale),
             onClick: () => createIntentAlarm(date, SleepType.SLEEP, i)
           })
         }
@@ -79,7 +82,7 @@ export const CycleList = (props: { params: any; }) => {
           tempList.push({
             type: ListType.ITEM,
             name: i,
-            desc: `${formatHour(("0" + date.getHours()).slice(-2), is24Hour || false)}:${("0" + date.getMinutes()).slice(-2)}`,
+            desc: formatTime(date, is24Hour || false, locale),
             onClick: () => createIntentAlarm(date, SleepType.SLEEP, i)
           })
         }
@@ -92,7 +95,7 @@ export const CycleList = (props: { params: any; }) => {
     if (props.params && is24Hour !== undefined) {
       buildList(props.params);
     }
-  }, [props.params, is24Hour, t])
+  }, [props.params, is24Hour, t, language])
 
   useEffect(() => {
     const findTimeFormat = async () => {
@@ -114,8 +117,8 @@ export const CycleList = (props: { params: any; }) => {
       return <GenericCard style={{marginVertical: 10}} onPress={item.onClick || undefined}>
         <HStack my={5} mr={10} justifyContent="space-between" alignItems="center" textAlign="center">
           <VStack mx={5}>
-            <Text color="white" fontSize="lg">{item.name + " " + t('cycle.sleepCycles')}</Text>
-            <Text color="gray.400" fontSize="md">{t('cycle.equalsHours', { hours: (item.name as number) * 1.5 })}</Text>
+            <Text color="white" fontSize="lg">{formatNumber(item.name as number, locale) + " " + t('cycle.sleepCycles')}</Text>
+            <Text color="gray.400" fontSize="md">{t('cycle.equalsHours', { hours: formatNumber((item.name as number) * 1.5, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) })}</Text>
           </VStack>
           <Text color="purple.700" bold fontSize="xl">{item.desc}</Text>
         </HStack>
