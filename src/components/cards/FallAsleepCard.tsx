@@ -5,9 +5,13 @@ import {useSettingsStore} from "../../store/SettingsStore";
 import {SettingsType} from "../../store/SettingsStore";
 import {GenericCard} from "./GenericCard";
 import {useTranslation} from "react-i18next";
+import {formatNumber} from "../../utils/DateUtils";
+import {isValidLanguage} from "../../i18n";
 
 export const FallAsleepCard = () => {
   const { t } = useTranslation();
+  const language = useSettingsStore((state) => state.language);
+  const locale = isValidLanguage(language) ? language : 'en';
   const getSettings = useSettingsStore((state) => state.getSettings);
   const editSetting = useSettingsStore((state) => state.editSetting);
   // Subscribe to settings to ensure re-render when they change
@@ -43,7 +47,7 @@ export const FallAsleepCard = () => {
               onPress={onMinusPress}
             />
             <Text color="white"
-                  fontSize="xl">{currentValue}</Text>
+                  fontSize="xl">{formatNumber(currentValue, locale)}</Text>
             <IconButton
               colorScheme="dark"
               borderRadius="15"

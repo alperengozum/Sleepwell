@@ -107,6 +107,12 @@
     "calculate": "حساب کریں",
     "reports": "رپورٹس",
     "settings": "ترتیبات"
+  },
+  "alarm": {
+    "set": "الارم سیٹ کیا گیا",
+    "setFor": "{{time}} کے لیے الارم سیٹ کیا گیا Sleepwell!",
+    "sleep": "نیند",
+    "powernap": "چھوٹی نیند"
   }
 }
 

@@ -107,6 +107,12 @@
     "calculate": "Calculer",
     "reports": "Rapports",
     "settings": "Paramètres"
+  },
+  "alarm": {
+    "set": "Alarme définie",
+    "setFor": "Alarme définie pour {{time}} Sleepwell!",
+    "sleep": "Sommeil",
+    "powernap": "Sieste"
   }
 }
 

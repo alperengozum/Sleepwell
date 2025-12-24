@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState, useEffect} from "react";
 import {StyleSheet} from "react-native";
 import {Heading, HStack, Icon, IconButton, Text, View, VStack} from "@gluestack-ui/themed-native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -8,6 +8,9 @@ import {MotiView} from "moti";
 import Animated, {useSharedValue, useAnimatedScrollHandler, useAnimatedStyle} from "react-native-reanimated";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {useTranslation} from "react-i18next";
+import moment from "moment";
+import {useSettingsStore} from "../../store/SettingsStore";
+import {isValidLanguage} from "../../i18n";
 
 export default function ReportsHeader(props: {
   children: React.ReactNode,
@@ -15,6 +18,18 @@ export default function ReportsHeader(props: {
   setSelectedDate: React.Dispatch<React.SetStateAction<SleepFilter>>
 }) {
   const { t } = useTranslation();
+  const language = useSettingsStore((state) => state.language);
+  const locale = isValidLanguage(language) ? language : 'en';
+  const [formattedDateRange, setFormattedDateRange] = useState("");
+  
+  useEffect(() => {
+    if (selectedDate.start && selectedDate.end) {
+      moment.locale(locale);
+      const startDate = moment(selectedDate.start).format("D MMM YYYY");
+      const endDate = moment(selectedDate.end).format("D MMM YYYY");
+      setFormattedDateRange(`${startDate} - ${endDate}`);
+    }
+  }, [selectedDate, locale]);
   const {selectedDate, setSelectedDate} = props;
   const insets = useSafeAreaInsets();
 
@@ -163,7 +178,7 @@ export default function ReportsHeader(props: {
               {t('reports.title')}
             </Heading>
             <Text color="white" fontSize="md" letterSpacing={0.1} fontWeight="thin">
-              {selectedDate.start?.toLocaleDateString()} - {selectedDate.end?.toLocaleDateString()}
+              {formattedDateRange}
             </Text>
           </VStack>
           <IconButton variant="ghost" colorScheme={"white"}

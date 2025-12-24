@@ -8,10 +8,12 @@ import {Sleep, SleepFilter, SleepType} from "../../store/SleepStore";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {SleepIndicatorChart} from "../charts/SleepIndicatorChart";
 import {SleepLineChart} from "../charts/SleepLineChart";
-import {getMonthBefore} from "../../utils/DateUtils";
+import {getMonthBefore, formatNumber} from "../../utils/DateUtils";
 import {SleepPieChart} from "../charts/SleepPieChart";
 import {List, ListType} from "../../domain/List";
 import {useTranslation} from "react-i18next";
+import {useSettingsStore} from "../../store/SettingsStore";
+import {isValidLanguage} from "../../i18n";
 
 interface ReportsListProps {
   selectedDate?: SleepFilter;
@@ -20,6 +22,8 @@ interface ReportsListProps {
 
 export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) => {
   const { t } = useTranslation();
+  const language = useSettingsStore((state) => state.language);
+  const locale = isValidLanguage(language) ? language : 'en';
   const getSleeps = useSleepStore((state) => state.getSleeps);
   const deleteSleep = useSleepStore((state) => state.deleteSleep);
   const sleeps = useSleepStore((state) => state.sleeps);
@@ -78,11 +82,11 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
             <HStack my={5} mr={5} justifyContent="space-between" alignItems="center" textAlign="center">
               <VStack mx={5}>
                 <Text color="white" fontSize="lg">
-                  {item.name === SleepType.SLEEP ? `${item.desc} ${t('reports.sleepCycles')}` : t('reports.powernap')}
+                  {item.name === SleepType.SLEEP ? `${formatNumber(item.desc as number, locale)} ${t('reports.sleepCycles')}` : t('reports.powernap')}
                 </Text>
                 <Text color="gray.400" fontSize="md">
                   {item.name === SleepType.SLEEP
-                    ? t('reports.equalsHours', { hours: item.desc as number * 1.5 })
+                    ? t('reports.equalsHours', { hours: formatNumber((item.desc as number) * 1.5, locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 }) })
                     : t('reports.equals30Minutes')}
                 </Text>
               </VStack>
@@ -125,7 +129,7 @@ export const ReportsList = ({selectedDate, setSelectedDate}: ReportsListProps) =
         estimatedItemSize={200}
         ListFooterComponent={<View height={120}>
           <Text color="white" fontSize="md" textAlign="center" mt={10}>
-            {(filteredSleeps?.length ?? 0) > 0 ? t('reports.noMoreSleeps', { count: filteredSleeps?.length ?? 0 }) : t('reports.noSleeps')}
+            {(filteredSleeps?.length ?? 0) > 0 ? t('reports.noMoreSleeps', { count: formatNumber(filteredSleeps?.length ?? 0, locale) }) : t('reports.noSleeps')}
           </Text>
         </View>}
       />
