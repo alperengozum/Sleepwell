@@ -107,5 +107,11 @@
     "calculate": "Hesapla",
     "reports": "Raporlar",
     "settings": "Ayarlar"
+  },
+  "alarm": {
+    "set": "Alarm kuruldu",
+    "setFor": "{{time}} için alarm kuruldu Sleepwell!",
+    "sleep": "Uyku",
+    "powernap": "Kısa Uyku"
   }
 }

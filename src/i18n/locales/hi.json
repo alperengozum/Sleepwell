@@ -107,6 +107,12 @@
     "calculate": "गणना करें",
     "reports": "रिपोर्ट",
     "settings": "सेटिंग्स"
+  },
+  "alarm": {
+    "set": "अलार्म सेट किया गया",
+    "setFor": "{{time}} के लिए अलार्म सेट किया गया Sleepwell!",
+    "sleep": "नींद",
+    "powernap": "पावर नैप"
   }
 }
 

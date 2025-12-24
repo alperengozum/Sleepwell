@@ -107,6 +107,12 @@
     "calculate": "Hesabla",
     "reports": "Hesabatlar",
     "settings": "Parametrlər"
+  },
+  "alarm": {
+    "set": "Alarm quruldu",
+    "setFor": "{{time}} üçün alarm quruldu Sleepwell!",
+    "sleep": "Yuxu",
+    "powernap": "Qısa yuxu"
   }
 }
 

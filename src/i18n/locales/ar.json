@@ -107,6 +107,12 @@
     "calculate": "احسب",
     "reports": "التقارير",
     "settings": "الإعدادات"
+  },
+  "alarm": {
+    "set": "تم ضبط المنبه",
+    "setFor": "تم ضبط المنبه لـ {{time}} Sleepwell!",
+    "sleep": "نوم",
+    "powernap": "قيلولة"
   }
 }
 

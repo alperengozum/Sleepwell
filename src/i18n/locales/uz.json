@@ -107,6 +107,12 @@
     "calculate": "Hisobla",
     "reports": "Hisobotlar",
     "settings": "Sozlamalar"
+  },
+  "alarm": {
+    "set": "Signal o'rnatildi",
+    "setFor": "{{time}} uchun signal o'rnatildi Sleepwell!",
+    "sleep": "Uyqu",
+    "powernap": "Qisqa uyqu"
   }
 }
 
