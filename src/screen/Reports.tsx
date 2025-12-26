@@ -6,23 +6,26 @@ import {getMonthBefore} from "../utils/DateUtils";
 import {useFocusEffect} from "@react-navigation/native";
 
 export default function Reports() {
-  const [selectedDate, setSelectedDate] = React.useState<SleepFilter>({
-    start: getMonthBefore(new Date(), 0),
-    end: getMonthBefore(new Date(), -1)
-  });
+  const getCurrentMonthRange = () => {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), now.getMonth(), 1);
+    return {
+      start: start,
+      end: now
+    };
+  };
+
+  const [selectedDate, setSelectedDate] = React.useState<SleepFilter>(getCurrentMonthRange());
 
   useFocusEffect(React.useCallback(() => {
     return () => {
-      setSelectedDate({
-        start: getMonthBefore(new Date(), 0),
-        end: getMonthBefore(new Date(), -1)
-      });
+      setSelectedDate(getCurrentMonthRange());
     };
   }, []))
 
   return (
     <ReportsHeader setSelectedDate={setSelectedDate} selectedDate={selectedDate}>
-      <ReportsList/>
+      <ReportsList selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
     </ReportsHeader>
   );
 }

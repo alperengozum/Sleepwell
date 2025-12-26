@@ -21,31 +21,45 @@ export default function ReportsHeader(props: {
   const language = useSettingsStore((state) => state.language);
   const locale = isValidLanguage(language) ? language : 'en';
   const [formattedDateRange, setFormattedDateRange] = useState("");
+  const {selectedDate, setSelectedDate} = props;
   
   useEffect(() => {
-    if (selectedDate.start && selectedDate.end) {
+    if (selectedDate?.start && selectedDate?.end) {
       moment.locale(locale);
       const startDate = moment(selectedDate.start).format("D MMM YYYY");
       const endDate = moment(selectedDate.end).format("D MMM YYYY");
       setFormattedDateRange(`${startDate} - ${endDate}`);
     }
   }, [selectedDate, locale]);
-  const {selectedDate, setSelectedDate} = props;
   const insets = useSafeAreaInsets();
 
   const onLeftDateButtonPress = () => {
-    setSelectedDate({
-      start: getMonthBefore(selectedDate.start, 1),
-      end: selectedDate.start
-    });
+    if (selectedDate?.start) {
+      const prevMonthStart = new Date(selectedDate.start.getFullYear(), selectedDate.start.getMonth() - 1, 1);
+      const prevMonthEnd = new Date(selectedDate.start.getFullYear(), selectedDate.start.getMonth(), 0); // Last day of previous month
+      setSelectedDate({
+        start: prevMonthStart,
+        end: prevMonthEnd
+      });
+    }
   };
   const onRightDateButtonPress = () => {
-    const monthAfter = new Date(selectedDate.end?.getTime() || 0);
-    monthAfter.setMonth(monthAfter.getMonth() + 1);
-    setSelectedDate({
-      start: selectedDate.end,
-      end: monthAfter
-    });
+    if (selectedDate?.start) {
+      const nextMonthStart = new Date(selectedDate.start.getFullYear(), selectedDate.start.getMonth() + 1, 1);
+      const now = new Date();
+      const nextMonthEnd = new Date(selectedDate.start.getFullYear(), selectedDate.start.getMonth() + 2, 0); // Last day of next month
+      
+      const isNextMonthCurrentMonth = nextMonthStart.getMonth() === now.getMonth() && 
+                                       nextMonthStart.getFullYear() === now.getFullYear();
+      const endDate = isNextMonthCurrentMonth ? now : nextMonthEnd;
+      
+      if (nextMonthStart.getTime() <= now.getTime()) {
+        setSelectedDate({
+          start: nextMonthStart,
+          end: endDate
+        });
+      }
+    }
   };
 
   const HEADER_MAX_HEIGHT = 80;
@@ -183,7 +197,7 @@ export default function ReportsHeader(props: {
           </VStack>
           <IconButton variant="ghost" colorScheme={"white"}
                       icon={<Icon as={Ionicons} name="chevron-forward-outline" color={"white"} size={8}/>}
-                      isDisabled={selectedDate.end!.getTime() >= new Date().getTime()}
+                      isDisabled={!selectedDate?.end || selectedDate.end.getTime() >= new Date().getTime()}
                       onPress={onRightDateButtonPress}/>
         </HStack>
       </MotiView>
