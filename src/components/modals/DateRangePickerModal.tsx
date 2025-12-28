@@ -161,16 +161,13 @@ export const DateRangePickerModal: React.FC<DateRangePickerModalProps> = ({
         
         moment.locale(currentLocale);
         
-        switch (isBefore) {
-          case true:
-            setEndDate(startDate);
-            setStartDate(dateStr);
-            updateMarkedDates(dateStr, startDate);
-            break;
-          case false:
-            setEndDate(dateStr);
-            updateMarkedDates(startDate, dateStr);
-            break;
+        if (isBefore) {
+          setEndDate(startDate);
+          setStartDate(dateStr);
+          updateMarkedDates(dateStr, startDate);
+        } else {
+          setEndDate(dateStr);
+          updateMarkedDates(startDate, dateStr);
         }
         break;
     }
