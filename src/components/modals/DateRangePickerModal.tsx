@@ -40,33 +40,26 @@ export const DateRangePickerModal: React.FC<DateRangePickerModalProps> = ({
   const [currentMonth, setCurrentMonth] = useState<string>(moment().format('YYYY-MM-DD'));
 
   useEffect(() => {
-    const dateState = selectedDate?.start && selectedDate?.end ? 'hasDates' : (visible ? 'visible' : 'none');
-    
-    switch (dateState) {
-      case 'hasDates': {
-        const currentLocale = moment.locale();
-        moment.locale('en');
-        
-        const start = moment(selectedDate.start).format('YYYY-MM-DD');
-        const end = moment(selectedDate.end).format('YYYY-MM-DD');
-        
-        moment.locale(currentLocale);
-        
-        setStartDate(start);
-        setEndDate(end);
-        setCurrentMonth(start);
-        updateMarkedDates(start, end);
-        break;
-      }
-      case 'visible': {
-        const currentLocale = moment.locale();
-        moment.locale('en');
-        setCurrentMonth(moment().format('YYYY-MM-DD'));
-        moment.locale(currentLocale);
-        break;
-      }
-      case 'none':
-        break;
+    const hasStartAndEnd = !!selectedDate?.start && !!selectedDate?.end;
+
+    if (hasStartAndEnd) {
+      const currentLocale = moment.locale();
+      moment.locale('en');
+
+      const start = moment(selectedDate.start).format('YYYY-MM-DD');
+      const end = moment(selectedDate.end).format('YYYY-MM-DD');
+
+      moment.locale(currentLocale);
+
+      setStartDate(start);
+      setEndDate(end);
+      setCurrentMonth(start);
+      updateMarkedDates(start, end);
+    } else if (visible) {
+      const currentLocale = moment.locale();
+      moment.locale('en');
+      setCurrentMonth(moment().format('YYYY-MM-DD'));
+      moment.locale(currentLocale);
     }
   }, [selectedDate, visible]);
 
