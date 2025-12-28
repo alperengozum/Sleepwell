@@ -26,7 +26,6 @@ module.exports = {
   },
   android: {
     versionCode: 500000,
-    versionName: "0.5.0",
     permissions: [
       "com.android.alarm.permission.SET_ALARM"
     ],
