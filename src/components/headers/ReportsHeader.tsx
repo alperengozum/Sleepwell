@@ -176,10 +176,11 @@ export default function ReportsHeader(props: {
         scrollEventThrottle={16}
         onScroll={onScroll}
       >
-        {props && props.children && React.cloneElement(props.children as React.ReactElement<any>, {
-          selectedDate: selectedDate,
-          setSelectedDate: setSelectedDate,
-        })}
+        {React.isValidElement(props.children) &&
+          React.cloneElement(props.children, {
+            selectedDate: selectedDate,
+            setSelectedDate: setSelectedDate,
+          })}
       </Animated.ScrollView>
       <MotiView style={[styles.header, headerStyle]}>
         <MotiView style={[styles.headerBackground, headerBgStyle]}/>
