@@ -202,7 +202,7 @@ export default function ReportsHeader(props: {
           </VStack>
           <IconButton variant="ghost" colorScheme={"white"}
                       icon={<Icon as={Ionicons} name="chevron-forward-outline" color={"white"} size={8}/>}
-                      isDisabled={!selectedDate?.end || selectedDate.end.getTime() >= new Date().getTime()}
+                      isDisabled={!selectedDate.end || selectedDate.end.getTime() >= new Date().getTime()}
                       onPress={onRightDateButtonPress}/>
         </HStack>
       </MotiView>
