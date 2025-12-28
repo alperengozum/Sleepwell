@@ -144,7 +144,7 @@ export const DateRangePickerModal: React.FC<DateRangePickerModalProps> = ({
 
   const handleDayPress = (day: DateData) => {
     const dateStr = day.dateString;
-    const selectionState = !startDate ? 'none' : (startDate && endDate ? 'complete' : 'partial');
+    const selectionState = !startDate ? 'none' : (endDate ? 'complete' : 'partial');
     
     switch (selectionState) {
       case 'none':
