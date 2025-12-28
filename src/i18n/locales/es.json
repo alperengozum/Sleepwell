@@ -29,7 +29,8 @@
     "skip": "Omitir",
     "previous": "Anterior",
     "next": "Siguiente",
-    "done": "Hecho"
+    "done": "Hecho",
+    "reset": "Restablecer"
   },
   "calculator": {
     "sleep": "Dormir",
@@ -70,7 +71,8 @@
     "equalsHours": "Equivale a {{hours}} horas de sueño.",
     "equals30Minutes": "Equivale a 30 minutos de sueño.",
     "noMoreSleeps": "No hay más sueños para mostrar.\nTotal de Sueños: {{count}}",
-    "noSleeps": "No hay sueños para mostrar.\n¿Por qué no dormiste?"
+    "noSleeps": "No hay sueños para mostrar.\n¿Por qué no dormiste?",
+    "selectDateRange": "Seleccionar rango de fechas"
   },
   "info": {
     "title": "Información",

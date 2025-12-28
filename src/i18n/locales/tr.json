@@ -29,7 +29,8 @@
     "skip": "Atla",
     "previous": "Önceki",
     "next": "Sonraki",
-    "done": "Tamamla"
+    "done": "Tamamla",
+    "reset": "Sıfırla"
   },
   "calculator": {
     "sleep": "Uyku",
@@ -70,7 +71,8 @@
     "equalsHours": "{{hours}} saatlik uykuya eşittir.",
     "equals30Minutes": "30 dakikalık uykuya eşittir.",
     "noMoreSleeps": "Gösterilecek daha fazla uyku yok.\nToplam Uyku: {{count}}",
-    "noSleeps": "Gösterilecek uyku yok.\nNeden uyumadınız?"
+    "noSleeps": "Gösterilecek uyku yok.\nNeden uyumadınız?",
+    "selectDateRange": "Tarih Aralığı Seçin"
   },
   "info": {
     "title": "Bilgiler",

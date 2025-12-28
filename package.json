@@ -1,6 +1,6 @@
 {
   "name": "sleepwell",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -42,6 +42,7 @@
     "react-i18next": "^16.5.0",
     "react-native": "0.79.6",
     "react-native-animated-nav-tab-bar": "^3.1.13",
+    "react-native-calendars": "^1.1313.0",
     "react-native-chart-kit": "^6.12.0",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-google-mobile-ads": "14.11.0",

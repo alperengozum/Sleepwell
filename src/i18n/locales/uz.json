@@ -29,7 +29,8 @@
     "skip": "O'tkazib yuborish",
     "previous": "Oldingi",
     "next": "Keyingi",
-    "done": "Tugallandi"
+    "done": "Tugallandi",
+    "reset": "Qayta tiklash"
   },
   "calculator": {
     "sleep": "Uyqu",
@@ -70,7 +71,8 @@
     "equalsHours": "{{hours}} soatlik uyquga teng.",
     "equals30Minutes": "30 daqiqalik uyquga teng.",
     "noMoreSleeps": "Ko'rsatish uchun boshqa uyqu yo'q.\nJami uyqu: {{count}}",
-    "noSleeps": "Ko'rsatish uchun uyqu yo'q.\nNima uchun uxlamadingiz?"
+    "noSleeps": "Ko'rsatish uchun uyqu yo'q.\nNima uchun uxlamadingiz?",
+    "selectDateRange": "Sana oralig'ini tanlang"
   },
   "info": {
     "title": "Ma'lumotlar",

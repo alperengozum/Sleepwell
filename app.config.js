@@ -1,6 +1,3 @@
-require('dotenv/config');
-
-// Validate that required environment variables are set
 if (!process.env.EXPO_PUBLIC_AD_UNIT_ID) {
   console.warn('Warning: EXPO_PUBLIC_AD_UNIT_ID is not set. Please set it in your .env file.');
   console.warn('For development/testing, use: ca-app-pub-3940256099942544/1033173712');
@@ -28,7 +25,7 @@ module.exports = {
     bundleIdentifier: "com.alperengozum.sleepwell"
   },
   android: {
-    versionCode: 400000,
+    versionCode: 500000,
     permissions: [
       "com.android.alarm.permission.SET_ALARM"
     ],
