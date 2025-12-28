@@ -29,7 +29,8 @@
     "skip": "Passer",
     "previous": "Précédent",
     "next": "Suivant",
-    "done": "Terminé"
+    "done": "Terminé",
+    "reset": "Réinitialiser"
   },
   "calculator": {
     "sleep": "Sommeil",
@@ -70,7 +71,8 @@
     "equalsHours": "Équivaut à {{hours}} heures de sommeil.",
     "equals30Minutes": "Équivaut à 30 minutes de sommeil.",
     "noMoreSleeps": "Aucun autre sommeil à afficher.\nTotal des sommeils : {{count}}",
-    "noSleeps": "Aucun sommeil à afficher.\nPourquoi n'avez-vous pas dormi ?"
+    "noSleeps": "Aucun sommeil à afficher.\nPourquoi n'avez-vous pas dormi ?",
+    "selectDateRange": "Sélectionner la plage de dates"
   },
   "info": {
     "title": "Informations",

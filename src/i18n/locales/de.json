@@ -29,7 +29,8 @@
     "skip": "Überspringen",
     "previous": "Zurück",
     "next": "Weiter",
-    "done": "Fertig"
+    "done": "Fertig",
+    "reset": "Zurücksetzen"
   },
   "calculator": {
     "sleep": "Schlaf",
@@ -70,7 +71,8 @@
     "equalsHours": "Entspricht {{hours}} Stunden Schlaf.",
     "equals30Minutes": "Entspricht 30 Minuten Schlaf.",
     "noMoreSleeps": "Keine weiteren Schlafzeiten anzuzeigen.\nGesamte Schlafzeiten: {{count}}",
-    "noSleeps": "Keine Schlafzeiten anzuzeigen.\nWarum haben Sie nicht geschlafen?"
+    "noSleeps": "Keine Schlafzeiten anzuzeigen.\nWarum haben Sie nicht geschlafen?",
+    "selectDateRange": "Datumsbereich auswählen"
   },
   "info": {
     "title": "Informationen",

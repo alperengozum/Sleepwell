@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect} from "react";
-import {StyleSheet} from "react-native";
+import {StyleSheet, Pressable} from "react-native";
 import {Heading, HStack, Icon, IconButton, Text, View, VStack} from "@gluestack-ui/themed-native-base";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {SleepFilter} from "../../store/SleepStore";
@@ -11,6 +11,7 @@ import {useTranslation} from "react-i18next";
 import moment from "moment";
 import {useSettingsStore} from "../../store/SettingsStore";
 import {isValidLanguage} from "../../i18n";
+import {DateRangePickerModal} from "../modals/DateRangePickerModal";
 
 export default function ReportsHeader(props: {
   children: React.ReactNode,
@@ -21,6 +22,7 @@ export default function ReportsHeader(props: {
   const language = useSettingsStore((state) => state.language);
   const locale = isValidLanguage(language) ? language : 'en';
   const [formattedDateRange, setFormattedDateRange] = useState("");
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const {selectedDate, setSelectedDate} = props;
   
   useEffect(() => {
@@ -174,7 +176,7 @@ export default function ReportsHeader(props: {
         scrollEventThrottle={16}
         onScroll={onScroll}
       >
-        {props && props.children && React.cloneElement(props.children as React.ReactElement, {
+        {props && props.children && React.cloneElement(props.children as React.ReactElement<any>, {
           selectedDate: selectedDate,
           setSelectedDate: setSelectedDate,
         })}
@@ -191,9 +193,11 @@ export default function ReportsHeader(props: {
             <Heading color="white" size="xl" letterSpacing={0.1} fontWeight="thin">
               {t('reports.title')}
             </Heading>
-            <Text color="white" fontSize="md" letterSpacing={0.1} fontWeight="thin">
-              {formattedDateRange}
-            </Text>
+            <Pressable onPress={() => setShowDatePicker(true)}>
+              <Text color="white" fontSize="md" letterSpacing={0.1} fontWeight="thin" style={{ textDecorationLine: 'underline' }}>
+                {formattedDateRange}
+              </Text>
+            </Pressable>
           </VStack>
           <IconButton variant="ghost" colorScheme={"white"}
                       icon={<Icon as={Ionicons} name="chevron-forward-outline" color={"white"} size={8}/>}
@@ -202,6 +206,15 @@ export default function ReportsHeader(props: {
         </HStack>
       </MotiView>
       <MotiView style={[styles.topBar, topBarStyle]}/>
+      <DateRangePickerModal
+        visible={showDatePicker}
+        onClose={() => setShowDatePicker(false)}
+        selectedDate={selectedDate}
+        onConfirm={(dateRange) => {
+          setSelectedDate(dateRange);
+          setShowDatePicker(false);
+        }}
+      />
     </View>
   );
 }

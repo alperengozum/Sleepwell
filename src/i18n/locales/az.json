@@ -29,7 +29,8 @@
     "skip": "Keç",
     "previous": "Əvvəlki",
     "next": "Növbəti",
-    "done": "Bitdi"
+    "done": "Bitdi",
+    "reset": "Sıfırla"
   },
   "calculator": {
     "sleep": "Yuxu",
@@ -70,7 +71,8 @@
     "equalsHours": "{{hours}} saatlıq yuxuya bərabərdir.",
     "equals30Minutes": "30 dəqiqəlik yuxuya bərabərdir.",
     "noMoreSleeps": "Göstəriləcək daha çox yuxu yoxdur.\nÜmumi yuxu: {{count}}",
-    "noSleeps": "Göstəriləcək yuxu yoxdur.\nNiyə yatmadınız?"
+    "noSleeps": "Göstəriləcək yuxu yoxdur.\nNiyə yatmadınız?",
+    "selectDateRange": "Tarix Aralığı Seçin"
   },
   "info": {
     "title": "Məlumat",

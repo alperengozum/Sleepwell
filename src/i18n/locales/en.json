@@ -29,7 +29,8 @@
     "skip": "Skip",
     "previous": "Previous",
     "next": "Next",
-    "done": "Done"
+    "done": "Done",
+    "reset": "Reset"
   },
   "calculator": {
     "sleep": "Sleep",
@@ -70,7 +71,8 @@
     "equalsHours": "Equals {{hours}} hours sleep.",
     "equals30Minutes": "Equals 30 minutes sleep.",
     "noMoreSleeps": "No more sleeps to show.\nTotal Sleeps: {{count}}",
-    "noSleeps": "No sleeps to show.\nWhy didn't you sleep?"
+    "noSleeps": "No sleeps to show.\nWhy didn't you sleep?",
+    "selectDateRange": "Select Date Range"
   },
   "info": {
     "title": "Informations",
